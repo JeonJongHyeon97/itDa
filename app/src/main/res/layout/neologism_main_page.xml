@@ -35,8 +35,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="75dp"
         android:text="Request addition"
+        app:backgroundTint="@color/color1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/neologism_recycle"
-        app:rippleColor="@color/color1" />
+        app:layout_constraintTop_toBottomOf="@+id/neologism_recycle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@
         android:id="@+id/button2"
         android:layout_width="64dp"
         android:layout_height="50dp"
+        app:backgroundTint="@color/complete_color"
         app:icon="?android:attr/listChoiceIndicatorSingle"
         tools:layout_editor_absoluteX="331dp"
         tools:layout_editor_absoluteY="24dp" />
@@ -30,16 +31,6 @@
         android:textSize="20sp"
         tools:layout_editor_absoluteX="163dp"
         tools:layout_editor_absoluteY="35dp" />
-
-    <Button
-        android:id="@+id/write_secret"
-        android:layout_width="114dp"
-        android:layout_height="52dp"
-        android:text="secret"
-        android:textSize="10sp"
-        app:icon="@android:drawable/checkbox_on_background"
-        tools:layout_editor_absoluteX="285dp"
-        tools:layout_editor_absoluteY="673dp" />
 
     <TextView
         android:id="@+id/write_title"

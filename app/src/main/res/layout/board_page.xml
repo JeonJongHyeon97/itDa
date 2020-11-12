@@ -12,24 +12,27 @@
         android:layout_height="wrap_content"
         android:text="Search"
         android:textColor="#000000"
-        tools:layout_editor_absoluteX="184dp"
-        tools:layout_editor_absoluteY="39dp" />
+        app:layout_constraintEnd_toStartOf="@+id/board_search"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/board_recycle"
         android:layout_width="346dp"
         android:layout_height="396dp"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="116dp" />
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/board_search_text" />
 
     <Button
         android:id="@+id/board_write"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:text="Button"
         app:backgroundTint="@color/color1"
-        tools:layout_editor_absoluteX="284dp"
-        tools:layout_editor_absoluteY="536dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/board_right_arrow"
@@ -37,8 +40,8 @@
         android:layout_height="45dp"
         android:text=">"
         app:backgroundTint="@color/color2"
-        tools:layout_editor_absoluteX="235dp"
-        tools:layout_editor_absoluteY="601dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/board_left_arrow"
@@ -46,8 +49,8 @@
         android:layout_height="47dp"
         android:text="<"
         app:backgroundTint="@color/color2"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="601dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/board_search"
@@ -57,7 +60,7 @@
         android:inputType="textPersonName"
         android:text="Please enter the word"
         android:textSize="12sp"
-        tools:layout_editor_absoluteX="235dp"
-        tools:layout_editor_absoluteY="29dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

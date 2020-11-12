@@ -12,4 +12,5 @@
     <color name="color1">#FF3700B3</color>
     <color name="color2">#FF03DAC5</color>
     <color name="like_color">#FFBB86FC</color>
+    <color name="complete_color">#FF018786</color>
 </resources>
