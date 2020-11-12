@@ -63,28 +63,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/reply_send"
-        android:layout_width="108dp"
-        android:layout_height="79dp"
-        android:layout_marginBottom="9dp"
-        app:icon="@android:drawable/ic_menu_send"
-        app:iconSize="100"
-        app:layout_constraintBottom_toBottomOf="@+id/reply_box"
-        app:layout_constraintEnd_toEndOf="@+id/reply_box"
-        app:layout_constraintTop_toTopOf="@+id/reply_box"
-        app:layout_constraintVertical_bias="0.363" />
-
-    <EditText
-        android:id="@+id/reply_box"
-        android:layout_width="409dp"
-        android:layout_height="99dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+    <LinearLayout
+        android:layout_width="406dp"
+        android:layout_height="141dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_text"
-        app:layout_constraintVertical_bias="0.811" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/reply_box"
+            android:layout_width="285dp"
+            android:layout_height="89dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="댓글을 입력하세요" />
+
+        <Button
+            android:id="@+id/reply_send"
+            android:layout_width="108dp"
+            android:layout_height="79dp"
+            app:icon="@android:drawable/ic_menu_send"
+            app:iconSize="100" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
