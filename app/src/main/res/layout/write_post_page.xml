@@ -7,45 +7,60 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/write_complete"
         android:layout_width="64dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
         app:backgroundTint="@color/complete_color"
         app:icon="?android:attr/listChoiceIndicatorSingle"
-        tools:layout_editor_absoluteX="331dp"
-        tools:layout_editor_absoluteY="24dp" />
+        app:layout_constraintBottom_toTopOf="@+id/write_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.506" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/write_cancel"
         android:layout_width="64dp"
         android:layout_height="50dp"
+        android:layout_marginStart="20dp"
         app:icon="@android:drawable/ic_menu_close_clear_cancel"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="24dp" />
+        app:layout_constraintBottom_toTopOf="@+id/write_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/write_page"
         android:layout_width="68dp"
         android:layout_height="33dp"
+        android:layout_marginTop="52dp"
         android:text="Wrting"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="35dp" />
+        app:layout_constraintEnd_toStartOf="@+id/write_complete"
+        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintStart_toEndOf="@+id/write_cancel"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/write_title"
-        android:layout_width="288dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="99dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/write_page" />
 
-    <TextView
+    <EditText
         android:id="@+id/write_text"
-        android:layout_width="352dp"
-        android:layout_height="227dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="147dp" />
+        android:layout_width="371dp"
+        android:layout_height="376dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/write_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
