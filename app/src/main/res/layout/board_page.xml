@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/board_search"
+        android:layout_width="155dp"
+        android:layout_height="23dp"
+        android:text="Please enter the word"
+        tools:layout_editor_absoluteX="240dp"
+        tools:layout_editor_absoluteY="39dp" />
+
+    <TextView
+        android:id="@+id/board_search_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="39dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/board_recycle"
+        android:layout_width="348dp"
+        android:layout_height="486dp"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="116dp" />
+
+    <Button
+        android:id="@+id/board_write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Write"
+        tools:layout_editor_absoluteX="286dp"
+        tools:layout_editor_absoluteY="628dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
