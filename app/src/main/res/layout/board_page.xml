@@ -26,8 +26,8 @@
         android:id="@+id/board_write"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/color1"
         android:text="Button"
+        app:backgroundTint="@color/color1"
         tools:layout_editor_absoluteX="284dp"
         tools:layout_editor_absoluteY="536dp" />
 
@@ -35,8 +35,8 @@
         android:id="@+id/board_right_arrow"
         android:layout_width="38dp"
         android:layout_height="45dp"
-        android:background="@color/color2"
         android:text=">"
+        app:backgroundTint="@color/color2"
         tools:layout_editor_absoluteX="235dp"
         tools:layout_editor_absoluteY="601dp" />
 
@@ -44,8 +44,8 @@
         android:id="@+id/board_left_arrow"
         android:layout_width="40dp"
         android:layout_height="47dp"
-        android:background="@color/color2"
         android:text="<"
+        app:backgroundTint="@color/color2"
         tools:layout_editor_absoluteX="126dp"
         tools:layout_editor_absoluteY="601dp" />
 

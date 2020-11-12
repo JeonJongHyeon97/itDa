@@ -32,21 +32,22 @@
 
     <TextView
         android:id="@+id/post_title"
-        android:layout_width="116dp"
-        android:layout_height="0dp"
+        android:layout_width="346dp"
+        android:layout_height="34dp"
         android:layout_marginStart="1dp"
         android:layout_marginBottom="11dp"
         android:text="안녕하세요!"
-        android:textSize="20"
+        android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/post_text"
         app:layout_constraintStart_toStartOf="@+id/post_text"
         app:layout_constraintTop_toBottomOf="@+id/post_date" />
 
     <TextView
         android:id="@+id/post_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_width="356dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
         android:text="안녕못해요!"
         app:layout_constraintBottom_toTopOf="@+id/post_like"
         app:layout_constraintStart_toStartOf="parent" />
@@ -56,45 +57,19 @@
         android:layout_width="102dp"
         android:layout_height="0dp"
         android:layout_marginTop="171dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="145dp"
+        android:layout_marginEnd="20dp"
         android:text="Like"
-        app:layout_constraintBottom_toTopOf="@+id/post_reply"
+        app:backgroundTint="@color/like_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/post_reply"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="370dp"
-        android:layout_marginBottom="166dp"
-        android:text="댓글"
-        app:layout_constraintBottom_toTopOf="@+id/reply_send"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/reply_like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Like"
-        app:layout_constraintBottom_toBottomOf="@+id/post_reply"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/reply_box"
-        android:layout_width="0dp"
+        android:layout_width="411dp"
         android:layout_height="83dp"
-        android:layout_marginTop="164dp"
         android:text="댓글을 입력하세요"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_reply"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="551dp" />
 
     <Button
         android:id="@+id/reply_send"
@@ -102,8 +77,7 @@
         android:layout_height="79dp"
         app:icon="@android:drawable/ic_menu_send"
         app:iconSize="100"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/reply_box"
-        app:layout_constraintTop_toBottomOf="@+id/post_reply" />
+        tools:layout_editor_absoluteX="303dp"
+        tools:layout_editor_absoluteY="555dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
