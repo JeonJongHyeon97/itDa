@@ -79,11 +79,13 @@
         android:layout_width="350dp"
         android:layout_height="146dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center_vertical"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/view1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view1">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <TextView
             android:id="@+id/ask_a_father"
@@ -125,11 +127,22 @@
 
     <View
         android:id="@+id/view1"
-        android:layout_width="390dp"
-        android:layout_height="165dp"
+        android:layout_width="373dp"
+        android:layout_height="213dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Family"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/view1"
+        app:layout_constraintTop_toTopOf="@+id/view1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
