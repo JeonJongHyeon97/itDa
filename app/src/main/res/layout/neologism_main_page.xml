@@ -5,11 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/neologism_search_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Search"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/neologism_search"
+        app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
+
+    <EditText
+        android:id="@+id/neologism_search"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Please enter the word"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
+
     <Button
         android:id="@+id/neologism_quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:text="Play Neologism Quiz"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +49,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/neologism_right_arrow"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:text=">"
+        app:backgroundTint="@color/color2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/neologism_left_arrow"
+        android:layout_width="40dp"
+        android:layout_height="47dp"
+        android:text="<"
+        app:backgroundTint="@color/color2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/neologism_request"

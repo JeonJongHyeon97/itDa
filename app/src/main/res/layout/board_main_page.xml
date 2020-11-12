@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,40 +9,127 @@
         android:id="@+id/create_board"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:text="Create board"
         app:backgroundTint="@color/color1"
-        tools:layout_editor_absoluteX="246dp"
-        tools:layout_editor_absoluteY="628dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
-        android:layout_width="349dp"
-        android:layout_height="177dp"
+        android:id="@+id/main_tab"
+        android:layout_width="350dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="116dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/my_post"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="My post" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="My post"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/my_reply"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="My reply" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="My reply"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/hot_post"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hot post" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Hot post"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/best_post"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Best post" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Best post"
+            android:textSize="18sp" />
+
     </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="390dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/family_tab"
+        android:layout_width="350dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view1">
+
+        <TextView
+            android:id="@+id/ask_a_father"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Ask a father"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/ask_a_mother"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Ask a mother"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/ask_a_brother"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Ask a brother"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/ask_a_grandparents"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Ask a grandparents"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="390dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
