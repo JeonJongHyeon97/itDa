@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "108872971300",
+    "firebase_url": "https://itda-e14f7.firebaseio.com",
+    "project_id": "itda-e14f7",
+    "storage_bucket": "itda-e14f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108872971300:android:e8627e73e86a6d8f20d4b1",
+        "android_client_info": {
+          "package_name": "com.example.itda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108872971300-i6incqu5aobasrie80hq36n0hq29qssj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADv0ygNYCDFMjzQLL2UycgDC9BRQ_BFBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "108872971300-i6incqu5aobasrie80hq36n0hq29qssj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
