@@ -1,16 +1,15 @@
 package com.example.itda
 
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.firebase.auth.*
-import com.google.firebase.auth.R
-import java.util.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 
 
 class LoginActivity : AppCompatActivity() {
@@ -33,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
         // User is signed in
         if (user != null) {
-            Toast.makeText(this, getString(R.string.signin_complete), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "sign-in complete", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
