@@ -4,25 +4,12 @@ package com.example.itda
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
-import com.facebook.AccessToken
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.*
 import com.google.firebase.auth.R
-import com.twitter.sdk.android.core.*
-import com.twitter.sdk.android.core.identity.TwitterAuthClient
-import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 
 
