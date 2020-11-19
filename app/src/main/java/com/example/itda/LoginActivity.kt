@@ -10,6 +10,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.android.synthetic.main.login_page.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -32,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
         // User is signed in
         if (user != null) {
-            Toast.makeText(this, "sign-in complete", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -47,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     //아이디 생성이 성공했을 경우
                     Toast.makeText(this,
-                        getString(R.string.signup_complete), Toast.LENGTH_SHORT).show()
+                        "회원가입 성공", Toast.LENGTH_SHORT).show()
 
                     //다음페이지 호출
                     moveMainPage(auth?.currentUser)
@@ -66,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
     fun emailLogin() {
 
         if (email_edittext.text.toString().isNullOrEmpty() || password_edittext.text.toString().isNullOrEmpty()) {
-            Toast.makeText(this, getString(R.string.signout_fail_null), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "이메일과 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
 
         } else {
 
