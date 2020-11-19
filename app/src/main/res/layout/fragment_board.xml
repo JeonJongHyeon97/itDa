@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".board">
+
+    <TextView
+        android:id="@+id/board_search_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:text="Search"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/board_search"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/board_search"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Please enter the word"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/board_recycle"
+        android:layout_width="356dp"
+        android:layout_height="595dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/board_search_text" />
+
+    <Button
+        android:id="@+id/board_write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="32dp"
+        android:text="Write"
+        app:backgroundTint="@color/color1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/board_right_arrow"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_gravity="bottom|right"
+        android:text="&gt;"
+        app:backgroundTint="@color/color2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/board_left_arrow"
+        android:layout_width="40dp"
+        android:layout_height="47dp"
+        android:layout_gravity="bottom"
+        android:text="&lt;"
+        app:backgroundTint="@color/color2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</FrameLayout>
