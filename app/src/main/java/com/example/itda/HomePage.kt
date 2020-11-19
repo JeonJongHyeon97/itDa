@@ -45,7 +45,7 @@ class HomePage : AppCompatActivity() {
                 }
                 true
             }
-            selectedItemId = R.id.board
+            selectedItemId = R.id.home
         }
     }
     private fun changeFragment(fragment: Fragment) {
