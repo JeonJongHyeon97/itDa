@@ -69,7 +69,7 @@
         android:layout_height="79dp"
         android:layout_marginBottom="9dp"
         app:icon="@android:drawable/ic_menu_send"
-        app:iconSize="100"
+        app:iconSize="50dp"
         app:layout_constraintBottom_toBottomOf="@+id/reply_box"
         app:layout_constraintEnd_toEndOf="@+id/reply_box"
         app:layout_constraintTop_toTopOf="@+id/reply_box"

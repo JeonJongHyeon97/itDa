@@ -48,7 +48,7 @@
         android:id="@+id/board_right_arrow"
         android:layout_width="38dp"
         android:layout_height="45dp"
-        android:text=">"
+        android:text="&gt;"
         app:backgroundTint="@color/color2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -57,7 +57,7 @@
         android:id="@+id/board_left_arrow"
         android:layout_width="40dp"
         android:layout_height="47dp"
-        android:text="<"
+        android:text="&lt;"
         app:backgroundTint="@color/color2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
