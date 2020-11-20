@@ -1,73 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".board">
-
-    <TextView
-        android:id="@+id/board_search_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|top"
-        android:text="Search"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/board_search"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/board_search"
-        android:layout_width="160dp"
-        android:layout_height="40dp"
-        android:layout_gravity="right"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Please enter the word"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/board_recycle"
-        android:layout_width="356dp"
-        android:layout_height="595dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/board_search_text" />
+    android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/board_write"
+        android:id="@+id/create_board"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
-        android:text="Write"
+        android:text="Create board"
         app:backgroundTint="@color/color1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/board_right_arrow"
-        android:layout_width="38dp"
-        android:layout_height="45dp"
-        android:layout_gravity="bottom|right"
-        android:text="&gt;"
-        app:backgroundTint="@color/color2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <LinearLayout
+        android:id="@+id/main_tab"
+        android:layout_width="350dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/board_left_arrow"
-        android:layout_width="40dp"
-        android:layout_height="47dp"
-        android:layout_gravity="bottom"
-        android:text="&lt;"
-        app:backgroundTint="@color/color2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/my_post"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="My post"
+            android:textSize="18sp" />
 
+        <TextView
+            android:id="@+id/my_reply"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="My reply"
+            android:textSize="18sp" />
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/hot_post"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Hot post"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/best_post"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Best post"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="390dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/family_tab"
+        android:layout_width="350dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/view1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <TextView
+            android:id="@+id/ask_a_father"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Ask a father"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/ask_a_mother"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Ask a mother"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/ask_a_brother"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Ask a brother"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/ask_a_grandparents"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Ask a grandparents"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="373dp"
+        android:layout_height="213dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Family"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/view1"
+        app:layout_constraintTop_toTopOf="@+id/view1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
