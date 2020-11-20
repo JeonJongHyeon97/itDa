@@ -96,24 +96,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-        auth?.signInWithCredential(credential)
-            ?.addOnCompleteListener { task ->
-                progress_bar.visibility = View.GONE
-                if (task.isSuccessful) {
-
-
-                    //다음페이지 호출
-                    moveMainPage(auth?.currentUser)
-                }
-            }
-    }
-    override fun onStart() {
-        super.onStart()
-
-        //자동 로그인 설정
-        moveMainPage(auth?.currentUser)
-
-    }
+//    override fun onStart() {
+//        super.onStart()
+//
+//        //자동 로그인 설정
+//        moveMainPage(auth?.currentUser)
+//
+//    }
 }
