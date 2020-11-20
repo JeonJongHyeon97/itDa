@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
 
-        var email:String? = "empty"
-
+        var email = intent.getStringExtra("email")
+        //if (email.isNullOrBlank()){email_edittext.text=email}
         signup_button.setOnClickListener{
             val intent = Intent(this,SignUp::class.java)
             startActivity(intent)
