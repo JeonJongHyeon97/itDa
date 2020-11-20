@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ItDa">
         <activity android:name=".HomePage" />
+        <activity android:name=".BoardPage" />
         <activity android:name=".SignUp" />
         <activity
             android:name=".MainActivity"

@@ -23,19 +23,27 @@ class SignUp: AppCompatActivity() {
         setContentView(R.layout.signup_page)
 
         firestore = FirebaseFirestore.getInstance()
-        Toast.makeText(this, "You can use this email", Toast.LENGTH_SHORT).show()
 
         check_id.setOnClickListener {
                 var email = email_edittext.text.toString()
                 println("input email ->" + email)
-
-                val duplicateCheck = checkId(email)
-                println("duplicate -> " + duplicateCheck)
-                if (duplicateCheck) {
-                    Toast.makeText(this, "You can use this email", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "You can not use this email", Toast.LENGTH_SHORT).show()
-                }
+                var duplicateCheck = false
+                firestore!!.collection("accounts").whereEqualTo("Email", email).get()
+                    .addOnCompleteListener { task ->
+                        Log.d("firebase", "success")
+                        duplicateCheck = task.result.documents.isNullOrEmpty()
+                        Log.d("firebase", "$duplicateCheck")
+                        println("duplicate -> " + duplicateCheck)
+                        if (duplicateCheck) {
+                            Toast.makeText(this, "You can use this email", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "You can not use this email", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.d("firebase", "failed")
+                        Toast.makeText(this, "Please try later", Toast.LENGTH_SHORT).show()
+                    }
             }
         }
 
@@ -54,20 +62,20 @@ class SignUp: AppCompatActivity() {
 //    CoroutineScope(IO).launch{
 //
 //    }
-     fun checkId(email:String): Boolean{
-        var bool = false
-            firestore!!.collection("accounts").whereEqualTo("Email", email).get()
-                .addOnCompleteListener { task ->
-                    Log.d("firebase", "success")
-                    bool = task.result.documents.isNullOrEmpty()
-                    Log.d("firebase", "$bool")
-                }
-                .addOnFailureListener { exception ->
-                    Log.d("firebase", "failed")
-                    //Toast.makeText(this, "Please try later", Toast.LENGTH_SHORT).show()
-                }
-    return bool
-    }
+//     fun checkId(email:String): Boolean{
+//        var bool = false
+//            firestore!!.collection("accounts").whereEqualTo("Email", email).get()
+//                .addOnCompleteListener { task ->
+//                    Log.d("firebase", "success")
+//                    bool = task.result.documents.isNullOrEmpty()
+//                    Log.d("firebase", "$bool")
+//                }
+//                .addOnFailureListener { exception ->
+//                    Log.d("firebase", "failed")
+//                    Toast.makeText(this, "Please try later", Toast.LENGTH_SHORT).show()
+//                }
+//    return bool
+//    }
 
 //    fun createAndLoginEmail() {
 //
