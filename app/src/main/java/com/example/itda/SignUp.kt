@@ -82,7 +82,7 @@ class SignUp: AppCompatActivity() {
                     }
                 val intent = Intent(this,MainActivity::class.java)
                 startActivity(intent)
-                intent.putExtra("email", email_edittext.text)
+                intent.putExtra("email", email_edittext.text.toString())
                 finish()
             }else if (!emailCheck){
                 Toast.makeText(this, "Please check ID", Toast.LENGTH_SHORT).show()
