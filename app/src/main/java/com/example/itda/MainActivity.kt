@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         //이메일 로그인 세팅
-        email_login_button.setOnClickListener { emailLogin() }
+        login_button.setOnClickListener { emailLogin() }
     }
 
     fun moveMainPage(user: FirebaseUser?) {
