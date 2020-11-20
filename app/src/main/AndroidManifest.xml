@@ -12,6 +12,7 @@
         <activity android:name=".HomePage" />
         <activity android:name=".BoardPage" />
         <activity android:name=".SignUp" />
+        <activity android:name=".WritePage" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
