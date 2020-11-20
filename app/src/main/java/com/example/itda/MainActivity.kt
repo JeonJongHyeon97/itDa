@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
         signup_button.setOnClickListener({
-            val intent = Intent(this,Sign_in::class.java)
+            val intent = Intent(this,SignUp::class.java)
             startActivity(intent)
         })
 
@@ -45,31 +45,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //이메일 회원가입 및 로그인 메소드
-    fun createAndLoginEmail() {
-
-        auth?.createUserWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())
-            ?.addOnCompleteListener { task ->
-                progress_bar.visibility = View.GONE
-                if (task.isSuccessful) {
-                    //아이디 생성이 성공했을 경우
-                    Toast.makeText(this,
-                        "회원가입 성공", Toast.LENGTH_SHORT).show()
-
-                    //다음페이지 호출
-                    moveMainPage(auth?.currentUser)
-                } else if (task.exception?.message.isNullOrEmpty()) {
-                    //회원가입 에러가 발생했을 경우
-                    Toast.makeText(this,
-                        task.exception!!.message, Toast.LENGTH_SHORT).show()
-                } else {
-                    //아이디 생성도 안되고 에러도 발생되지 않았을 경우 로그인
-                    signinEmail()
-                }
-            }
-
-    }
-
     fun emailLogin() {
 
         if (email_edittext.text.toString().isNullOrEmpty() || password_edittext.text.toString().isNullOrEmpty()) {
@@ -78,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         } else {
 
             progress_bar.visibility = View.VISIBLE
-            createAndLoginEmail()
+            signinEmail()
 
         }
     }

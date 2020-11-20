@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ItDa">
         <activity android:name=".HomePage" />
+        <activity android:name=".SignUp" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -19,6 +20,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Sign_in"/>
     </application>
 </manifest>
