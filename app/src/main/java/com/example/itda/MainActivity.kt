@@ -21,6 +21,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
+        signup_button.setOnClickListener({
+            val intent = Intent(this,Sign_in::class.java)
+            startActivity(intent)
+        })
+
+
 
         // Firebase 로그인 통합 관리하는 Object 만들기
         auth = FirebaseAuth.getInstance()
