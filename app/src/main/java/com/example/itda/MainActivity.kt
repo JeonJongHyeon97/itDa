@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.login_page)
 
         var email:String? = "empty"
-        
+
         signup_button.setOnClickListener{
             val intent = Intent(this,SignUp::class.java)
             startActivity(intent)
@@ -80,11 +80,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-
-        //자동 로그인 설정
-        moveMainPage(auth?.currentUser)
-
-    }
+//    override fun onStart() {
+//        super.onStart()
+//
+//        //자동 로그인 설정
+//        moveMainPage(auth?.currentUser)
+//
+//    }
 }
