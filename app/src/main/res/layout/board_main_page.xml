@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/board_recycle"
+        android:id="@+id/com.example.itda.board_recycle"
         android:layout_width="356dp"
         android:layout_height="595dp"
         android:layout_gravity="center_horizontal"
