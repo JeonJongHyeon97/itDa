@@ -1,29 +1,38 @@
 package com.example.itda
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.login_page.*
 import kotlinx.android.synthetic.main.signup_page.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.android.synthetic.main.signup_page.email_edittext
+import kotlinx.android.synthetic.main.signup_page.password_edittext
 
 
 class SignUp: AppCompatActivity() {
     //firebase 선언
     var firestore : FirebaseFirestore?=null
-
+    var auth: FirebaseAuth? = null
+    var userDTO = UserDTO()
+    var emailCheck = false
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_page)
 
         firestore = FirebaseFirestore.getInstance()
-
+        val age_array = Array(100,{i->(2020-i)})
+        val myAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, age_array)
+        year_spinner.adapter = myAdapter
+        var sex = "Male"
+        var marital = true
+        var age = 1
+        //아이디 중복체크
         check_id.setOnClickListener {
                 var email = email_edittext.text.toString()
                 println("input email ->" + email)
@@ -36,6 +45,7 @@ class SignUp: AppCompatActivity() {
                         println("duplicate -> " + duplicateCheck)
                         if (duplicateCheck) {
                             Toast.makeText(this, "You can use this email", Toast.LENGTH_SHORT).show()
+                            emailCheck=true
                         } else {
                             Toast.makeText(this, "You can not use this email", Toast.LENGTH_SHORT).show()
                         }
@@ -45,59 +55,67 @@ class SignUp: AppCompatActivity() {
                         Toast.makeText(this, "Please try later", Toast.LENGTH_SHORT).show()
                     }
             }
+
+        //Complete 버튼 누를시 회원가입
+        complete_button.setOnClickListener{
+            var password=password_edittext.text.toString()
+            var passwordCheck=password_check_edittext.text.toString()
+
+            if (emailCheck&&(password==passwordCheck)) {
+                createEmail()
+                if (radio_female.isChecked) {
+                    sex = "Female"
+                }
+                if (radio_single.isChecked) {
+                    marital = false
+                }
+                age = 2020 - year_spinner.getSelectedItem().toString().toInt() + 1
+                userDTO = UserDTO(
+                    email_edittext.text.toString(), password,
+                    name_edittext.text.toString(), sex, age, marital
+                )
+                firestore!!.collection("accounts").document().set(userDTO)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Sign complete!!", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                finish()
+            }else if (!emailCheck){
+                Toast.makeText(this, "Please check ID", Toast.LENGTH_SHORT).show()
+            }else if(!password.isNullOrBlank()&&(password!=passwordCheck)){
+                Toast.makeText(this, "Please check the password", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this, "Please enter 어쩌구저쩌구", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        //Cancel 버튼 누를시 전페이지로 돌아감
+        cancel_button.setOnClickListener{
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
-//    fun checkId(email:String): Boolean{
-//        var result = false
-//        firestore?.collection("accounts")?.whereEqualTo("Email",email)?.get()?.
-//        addOnCompleteListener{
-//            task ->
-//            if(task.isSuccessful){
-//                println("task is sucessful")
-//                result= task.result?.documents.isNullOrEmpty()
-//            }
-//        }
-//        return result
-//    }
-//    CoroutineScope(IO).launch{
-//
-//    }
-//     fun checkId(email:String): Boolean{
-//        var bool = false
-//            firestore!!.collection("accounts").whereEqualTo("Email", email).get()
-//                .addOnCompleteListener { task ->
-//                    Log.d("firebase", "success")
-//                    bool = task.result.documents.isNullOrEmpty()
-//                    Log.d("firebase", "$bool")
-//                }
-//                .addOnFailureListener { exception ->
-//                    Log.d("firebase", "failed")
-//                    Toast.makeText(this, "Please try later", Toast.LENGTH_SHORT).show()
-//                }
-//    return bool
-//    }
 
-//    fun createAndLoginEmail() {
-//
-//        auth?.createUserWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())
-//            ?.addOnCompleteListener { task ->
-//                progress_bar.visibility = View.GONE
-//                if (task.isSuccessful) {
-//                    //아이디 생성이 성공했을 경우
-//                    Toast.makeText(this,
-//                        "회원가입 성공", Toast.LENGTH_SHORT).show()
-//
-//                    //다음페이지 호출
-//                    moveMainPage(auth?.currentUser)
-//                } else if (task.exception?.message.isNullOrEmpty()) {
-//                    //회원가입 에러가 발생했을 경우
-//                    Toast.makeText(this,
-//                        task.exception!!.message, Toast.LENGTH_SHORT).show()
-//                } else {
-//                    //아이디 생성도 안되고 에러도 발생되지 않았을 경우 로그인
-//                    signinEmail()
-//                }
-//            }
-//
-//    }
+        }
+
+
+
+    fun createEmail() {
+        auth?.createUserWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())
+            ?.addOnCompleteListener { task ->
+                progress_bar.visibility = View.GONE
+                if (task.isSuccessful) {
+                    //아이디 생성이 성공했을 경우
+                    Toast.makeText(this,
+                        getString(R.string.signup_complete), Toast.LENGTH_SHORT).show()
+                } else if (task.exception?.message.isNullOrEmpty()) {
+                    //회원가입 에러가 발생했을 경우
+                    Toast.makeText(this,
+                        task.exception!!.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
 }
+data class UserDTO(var email:String?=null, var pw:String?=null, var name:String?=null, var sex:String?=null, var age:Int?=null, var marital:Boolean?=null)
