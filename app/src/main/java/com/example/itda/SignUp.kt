@@ -21,6 +21,9 @@ class SignUp: AppCompatActivity() {
     var auth: FirebaseAuth? = null
     var userDTO = UserDTO()
     var emailCheck = false
+    var emailAddress="email"
+    var password="password"
+    var passwordCheck="password check"
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_page)
@@ -39,8 +42,8 @@ class SignUp: AppCompatActivity() {
                 var duplicateCheck = false
                 firestore!!.collection("accounts").whereEqualTo("Email", email).get()
                     .addOnCompleteListener { task ->
-                        Log.d("firebase", "success")
-                        duplicateCheck = task.result.documents.isNullOrEmpty()
+                        Log.d("firebase", "email check success")
+                        duplicateCheck = task.result!!.documents.isNullOrEmpty()
                         Log.d("firebase", "$duplicateCheck")
                         println("duplicate -> " + duplicateCheck)
                         if (duplicateCheck) {
@@ -51,18 +54,18 @@ class SignUp: AppCompatActivity() {
                         }
                     }
                     .addOnFailureListener { exception ->
-                        Log.d("firebase", "failed")
+                        Log.d("firebase", "email check failed")
                         Toast.makeText(this, "Please try later", Toast.LENGTH_SHORT).show()
                     }
             }
 
         //Complete 버튼 누를시 회원가입
         complete_button.setOnClickListener{
-            var password=password_edittext.text.toString()
-            var passwordCheck=password_check_edittext.text.toString()
+            emailAddress=email_edittext.text.toString()
+            password=password_edittext.text.toString()
+            passwordCheck=password_check_edittext.text.toString()
 
             if (emailCheck&&(password==passwordCheck)) {
-                createEmail()
                 if (radio_female.isChecked) {
                     sex = "Female"
                 }
@@ -71,19 +74,16 @@ class SignUp: AppCompatActivity() {
                 }
                 age = 2020 - year_spinner.getSelectedItem().toString().toInt() + 1
                 userDTO = UserDTO(
-                    email_edittext.text.toString(), password,
+                    emailAddress, password,
                     name_edittext.text.toString(), sex, age, marital
                 )
                 firestore!!.collection("accounts").document().set(userDTO)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this, "Sign complete!!", Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(this, "Sign complete!!", Toast.LENGTH_SHORT).show()
                         }
                     }
-                val intent = Intent(this,MainActivity::class.java)
-                startActivity(intent)
-                intent.putExtra("email", email_edittext.text.toString())
-                finish()
+                createEmail()
             }else if (!emailCheck){
                 Toast.makeText(this, "Please check ID", Toast.LENGTH_SHORT).show()
             }else if(!password.isNullOrBlank()&&(password!=passwordCheck)){
@@ -106,14 +106,22 @@ class SignUp: AppCompatActivity() {
 
 
     fun createEmail() {
-        auth?.createUserWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())
+        progressBar.visibility = View.VISIBLE
+        progressBar.bringToFront()
+        Log.d("firebase", "try create account")
+        auth?.createUserWithEmailAndPassword(emailAddress, password)
             ?.addOnCompleteListener { task ->
-                progress_bar.visibility = View.GONE
+                progressBar.visibility = View.GONE
                 if (task.isSuccessful) {
+                    Log.d("firebase", "create account complete")
                     //아이디 생성이 성공했을 경우
                     Toast.makeText(this,
-                        getString(R.string.signup_complete), Toast.LENGTH_SHORT).show()
+                        "Sign-up complete!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else if (task.exception?.message.isNullOrEmpty()) {
+                    Log.d("firebase", "create account failed")
                     //회원가입 에러가 발생했을 경우
                     Toast.makeText(this,
                         task.exception!!.message, Toast.LENGTH_SHORT).show()
