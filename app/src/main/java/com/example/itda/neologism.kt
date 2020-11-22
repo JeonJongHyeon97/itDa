@@ -39,7 +39,6 @@ class neologism : Fragment() {
                 dat.add(oneData)
             }
             Log.d("firebase", "for문 끝")
-
             data = dat
             adapter.listData = data
             neologism_recycle.adapter = adapter
