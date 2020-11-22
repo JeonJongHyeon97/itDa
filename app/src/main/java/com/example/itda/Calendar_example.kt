@@ -3,6 +3,7 @@ package com.example.itda
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,7 @@ class Calendar_example: AppCompatActivity() {
         val calendar = Calendar.getInstance()
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
 // 달력 날짜가 선택되면
+            Log.d("check", "$year,$month,$dayOfMonth")
             diaryTextView.visibility = View.VISIBLE // 해당 날짜가 뜨는 textView가 Visible
             save_Btn.visibility = View.VISIBLE // 저장 버튼이 Visible
             contextEditText.visibility = View.VISIBLE // EditText가 Visible
@@ -37,7 +39,7 @@ class Calendar_example: AppCompatActivity() {
             diaryTextView.text = formattedDate
 //            diaryTextView.text = String.format("%d / %d / %d", year, month + 1, dayOfMonth)
 // 날짜를 보여주는 텍스트에 해당 날짜를 넣는다.
-            contextEditText.setText("") // EditText에 공백값 넣기
+//            contextEditText.setText("") // EditText에 공백값 넣기
 
             checkedDay(year, month, dayOfMonth) // checkedDay 메소드 호출
 
