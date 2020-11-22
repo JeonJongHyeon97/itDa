@@ -11,6 +11,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.login_page.*
+import kotlinx.android.synthetic.main.login_page.email_edittext
+import kotlinx.android.synthetic.main.login_page.password_edittext
+import kotlinx.android.synthetic.main.signup_page.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -54,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         } else {
 
             progress_bar.visibility = View.VISIBLE
+            progressBar.bringToFront()
             signinEmail()
 
         }
@@ -64,25 +68,25 @@ class MainActivity : AppCompatActivity() {
 
         auth?.signInWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())
             ?.addOnCompleteListener { task ->
-                progress_bar.visibility = View.GONE
-
                 if (task.isSuccessful) {
                     //로그인 성공 및 다음페이지 호출
+
                     moveMainPage(auth?.currentUser)
                 } else {
                     //로그인 실패
                     Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
                 }
             }
+        progress_bar.visibility = View.GONE
 
     }
 
 
-    override fun onStart() {
-        super.onStart()
-
-        //자동 로그인 설정
-        moveMainPage(auth?.currentUser)
-
-    }
+//    override fun onStart() {
+//        super.onStart()
+//
+//        //자동 로그인 설정
+//        moveMainPage(auth?.currentUser)
+//
+//    }
 }

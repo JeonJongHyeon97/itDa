@@ -3,7 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@color/mainBackground">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="50dp"
+        android:indeterminateTint="@color/dadrkButton"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/signin_layout"
@@ -13,7 +25,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:background="#FDF4EF"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -23,10 +34,12 @@
         <TextView
             android:id="@+id/Sign_up"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="25dp"
+            android:layout_weight="1"
             android:gravity="center_horizontal"
             android:text="Sign up"
             android:textColor="#000000"
@@ -34,10 +47,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_id"
@@ -46,24 +61,26 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_weight="2"
+                android:layout_weight="2.3"
                 android:gravity="center_vertical"
                 android:text="ID"
-                android:textSize="24sp" />
+                android:textSize="21sp" />
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="6">
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="8">
 
                 <EditText
                     android:id="@+id/email_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/colorsignup"
-                    android:hint="아이디를 입력해주세요"
+                    android:gravity="center"
+                    android:hint="email address"
                     android:inputType="textEmailAddress"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -72,18 +89,21 @@
                 android:id="@+id/check_id"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:text="Check ID"
-                android:textSize="10sp"
-                app:backgroundTint="#D95454" />
+                android:layout_margin="5dp"
+                android:layout_weight="2"
+                android:text="Check \nID"
+                android:textAllCaps="true"
+                android:textSize="8sp"
+                app:backgroundTint="@color/redButton" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/text_password"
@@ -95,11 +115,11 @@
                 android:layout_weight="2"
                 android:gravity="center_vertical"
                 android:text="PW"
-                android:textSize="24sp" />
+                android:textSize="21sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="9">
 
@@ -107,18 +127,22 @@
                     android:id="@+id/password_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/colorsignup"
-                    android:hint="비밀번호를 입력해주세요"
+                    android:gravity="center"
+                    android:hint="at least 6 characters"
                     android:inputType="textPassword"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/text_password_check"
@@ -129,12 +153,12 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
-                android:text="PW"
-                android:textSize="24sp" />
+                android:text="Re-PW"
+                android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="9">
 
@@ -142,18 +166,23 @@
                     android:id="@+id/password_check_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/colorsignup"
-                    android:hint="비밀번호를 다시 입력해주세요"
+                    android:gravity="center"
+                    android:hint="re-enter password"
                     android:inputType="textPassword"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/text_name"
@@ -165,11 +194,11 @@
                 android:layout_weight="2"
                 android:gravity="center_vertical"
                 android:text="Name"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="9">
 
@@ -177,18 +206,23 @@
                     android:id="@+id/name_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/colorsignup"
-                    android:hint="이름을 입력해주세요"
+                    android:gravity="center"
+                    android:hint="first name"
                     android:inputType="textShortMessage"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/text_sex"
@@ -200,7 +234,7 @@
                 android:layout_weight="2"
                 android:gravity="center_vertical"
                 android:text="Sex"
-                android:textSize="24sp" />
+                android:textSize="21sp" />
 
             <RadioGroup
                 android:layout_width="0dp"
@@ -229,12 +263,14 @@
             </RadioGroup>
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/text_age"
@@ -245,8 +281,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_weight="2"
                 android:gravity="center_vertical"
-                android:text="Age"
-                android:textSize="24sp" />
+                android:text="Year of birth"
+                android:textSize="12sp" />
 
             <Spinner
                 android:id="@+id/year_spinner"
@@ -256,12 +292,14 @@
                 android:layout_weight="9" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/text_marital"
@@ -305,23 +343,24 @@
         <Button
             android:id="@+id/complete_button"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_weight="0.7"
             android:text="Complete"
-            app:backgroundTint="#966161" />
+            app:backgroundTint="@color/basicButton" />
 
         <Button
             android:id="@+id/cancel_button"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
+            android:layout_weight="0.7"
             android:text="Cancel"
-            app:backgroundTint="#966161" />
-
+            app:backgroundTint="@color/basicButton" />
 
 
     </LinearLayout>
