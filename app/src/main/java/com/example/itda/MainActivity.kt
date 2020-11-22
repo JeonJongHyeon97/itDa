@@ -56,8 +56,8 @@ class MainActivity : AppCompatActivity() {
 
         } else {
 
-            progress_bar.visibility = View.VISIBLE
-            progressBar.bringToFront()
+            progress_bar!!.visibility = View.VISIBLE
+            progress_bar!!.bringToFront()
             signinEmail()
 
         }
@@ -70,23 +70,24 @@ class MainActivity : AppCompatActivity() {
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     //로그인 성공 및 다음페이지 호출
-
+                    progress_bar!!.visibility = View.GONE
                     moveMainPage(auth?.currentUser)
                 } else {
                     //로그인 실패
                     Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
+                    progress_bar!!.visibility = View.GONE
                 }
             }
-        progress_bar.visibility = View.GONE
+
 
     }
 
 
-//    override fun onStart() {
-//        super.onStart()
-//
-//        //자동 로그인 설정
-//        moveMainPage(auth?.currentUser)
-//
-//    }
+    override fun onStart() {
+        super.onStart()
+
+        //자동 로그인 설정
+        moveMainPage(auth?.currentUser)
+
+    }
 }

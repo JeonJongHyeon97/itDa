@@ -8,8 +8,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.login_page.*
+import com.google.firebase.ktx.Firebase
+
 import kotlinx.android.synthetic.main.signup_page.*
 import kotlinx.android.synthetic.main.signup_page.email_edittext
 import kotlinx.android.synthetic.main.signup_page.password_edittext
@@ -18,7 +20,7 @@ import kotlinx.android.synthetic.main.signup_page.password_edittext
 class SignUp: AppCompatActivity() {
     //firebase 선언
     var firestore : FirebaseFirestore?=null
-    var auth: FirebaseAuth? = null
+    private lateinit var auth: FirebaseAuth
     var userDTO = UserDTO()
     var emailCheck = false
     var emailAddress="email"
@@ -28,6 +30,7 @@ class SignUp: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_page)
 
+        auth= Firebase.auth
         firestore = FirebaseFirestore.getInstance()
         val age_array = Array(100,{i->(2020-i)})
         val myAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, age_array)
@@ -106,12 +109,12 @@ class SignUp: AppCompatActivity() {
 
 
     fun createEmail() {
-        progressBar.visibility = View.VISIBLE
-        progressBar.bringToFront()
+        progressBar!!.visibility = View.VISIBLE
+        progressBar!!.bringToFront()
         Log.d("firebase", "try create account")
-        auth?.createUserWithEmailAndPassword(emailAddress, password)
-            ?.addOnCompleteListener { task ->
-                progressBar.visibility = View.GONE
+        auth.createUserWithEmailAndPassword(emailAddress, password)
+            .addOnCompleteListener { task ->
+                progressBar!!.visibility = View.GONE
                 if (task.isSuccessful) {
                     Log.d("firebase", "create account complete")
                     //아이디 생성이 성공했을 경우
@@ -128,5 +131,5 @@ class SignUp: AppCompatActivity() {
                 }
             }
     }
+
 }
-data class UserDTO(var email:String?=null, var pw:String?=null, var name:String?=null, var sex:String?=null, var age:Int?=null, var marital:Boolean?=null)

@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="0dp"
-    android:background="@android:color/white"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="8dp">
+    android:background="@color/mainBackground">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:id="@+id/neologism_box"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
+        android:background="@color/mainBackground"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/neologism_title"
-            android:layout_width="wrap_content"
+            android:id="@+id/neologism_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
             android:includeFontPadding="false"
             android:text="얼죽아"
             android:textColor="@android:color/black"
-            android:textSize="15sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/neologism_text"
+            android:id="@+id/neologism_definition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:includeFontPadding="false"
             android:text="'얼어 죽어도 아메리카노'의 줄임말"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="italic" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_weight="4" />
+            android:textStyle="normal" />
 
         <View
             android:id="@+id/divider7"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="15dp"
             android:background="#FF000000" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/calendar"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher_calendar2_round"
+        android:icon="@mipmap/ic_launcher_calendar_foreground"
         android:roundIcon="@mipmap/ic_launcher_calendar2_round"
-        android:title="@string/title_calendar" />
+        android:title="@string/title_calendar"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/board"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher_calendar"
-        android:title="@string/title_board" />
+        android:icon="@drawable/post"
+        android:title="@string/title_board"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/home"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher_neologism"
-        android:title="@string/title_home" />
+        android:icon="@drawable/ic_home"
+        android:title="@string/title_home"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/neologism"
         app:showAsAction="ifRoom"

@@ -1,91 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".neologism">
+    android:background="@color/mainBackground">
 
-    <TextView
-        android:id="@+id/neologism_search_text"
-        android:layout_width="69dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="70dp"
-        android:text="Search"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/neologism_search"
-        app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/neologism_search"
-        android:layout_width="160dp"
-        android:layout_height="40sp"
-        android:layout_gravity="right"
-        android:layout_marginTop="60sp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Please enter the word"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
+        <Button
+            android:id="@+id/neologism_quiz"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            app:backgroundTint="@color/basicButton"
+            android:text="Play Neologism Quiz"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/neologism_quiz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_marginTop="16dp"
-        android:text="Play Neologism Quiz"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/neologism_recycle"
-        android:layout_width="259dp"
-        android:layout_height="248dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="47dp"
-        app:layout_constraintBottom_toTopOf="@+id/neologism_request"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/neologism_search_text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|end"
+                android:text="Search"
+                android:textColor="#000000"
+                app:layout_constraintEnd_toStartOf="@+id/neologism_search"
+                app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
 
-    <Button
-        android:id="@+id/neologism_right_arrow"
-        android:layout_width="38dp"
-        android:layout_height="45dp"
-        android:layout_gravity="bottom|right"
-        android:text="&gt;"
-        app:backgroundTint="@color/color2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            <EditText
+                android:id="@+id/neologism_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:hint="Please enter the word"
+                android:inputType="textPersonName"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/neologism_left_arrow"
-        android:layout_width="40dp"
-        android:layout_height="47dp"
-        android:layout_gravity="bottom|left"
-        android:text="&lt;"
-        app:backgroundTint="@color/color2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/neologism_request"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="75dp"
-        android:text="Request addition"
-        app:backgroundTint="@color/color1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/neologism_recycle" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/neologism_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="10"
+            app:layout_constraintBottom_toTopOf="@+id/neologism_request"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/neologism_left_arrow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="&lt;"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/dadrkButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+
+            <Button
+                android:id="@+id/neologism_right_arrow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="&gt;"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                app:backgroundTint="@color/dadrkButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/neologism_request"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom|right"
+            android:layout_weight="1"
+            android:text="Request addition"
+            app:backgroundTint="@color/redButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/neologism_recycle" />
+    </LinearLayout>
+</RelativeLayout>
