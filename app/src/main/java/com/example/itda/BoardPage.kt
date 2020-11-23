@@ -32,14 +32,14 @@ class BoardPage : AppCompatActivity() {
         var boardName = intent.getStringExtra("BoardPage")!!.toString()
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection(boardName)?.orderBy("date")?.limit(10)?.get()?.addOnSuccessListener { result ->
+        firestore?.collection(boardName)?.orderBy("date")?.get()?.addOnSuccessListener { result ->
             var size=result.size()
-            Log.d("firebase", "result size : $size")
+            Log.d("firebase", "result size1 : $size")
             lastVisible = result.documents[result.size()-1]
-            firstVisible = result.documents[result.size()-11]}
+            firstVisible = result.documents[result.size()-11]
+            loadData(boardName,firstVisible)}
 
         board_name.text="Ask a "+boardName
-        loadData(boardName,firstVisible)
         board_write.setOnClickListener{
             val intent = Intent(this,WritePage::class.java)
             intent.putExtra("BoardPage", boardName)
@@ -70,14 +70,15 @@ class BoardPage : AppCompatActivity() {
 
     }
     fun loadData(boardName:String, firstVisi: DocumentSnapshot?){
+        Log.d("firebase", "firstVisi : $firstVisi")
         var data: MutableList<BoardDTO>
         val adapter = BoardRecycleAdapter()
         var dat: MutableList<BoardDTO> = mutableListOf()
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection(boardName)?.orderBy("date")?.limit(10)?.startAfter(firstVisi)?.get()?.addOnSuccessListener { result ->
+        firestore?.collection(boardName)?.orderBy("date")?.startAfter(firstVisi)?.limit(10)?.get()?.addOnSuccessListener { result ->
                 var size=result.size()
-                Log.d("firebase", "result size : $size")
+                Log.d("firebase", "result size2 : $size")
                 //var pointer = result.documents[result.size() - 1]
                 Log.d("firebase", "진입은 성공")
                 for (document in result) {
