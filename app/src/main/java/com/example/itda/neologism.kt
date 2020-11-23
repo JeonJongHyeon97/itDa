@@ -46,19 +46,7 @@ class neologism : Fragment() {
         }
         return view
     }
-    fun loadData():MutableList<NeologismData>{
-        val data:MutableList<NeologismData> = mutableListOf()
-        firestore?.collection("neologism")?.get()?.addOnCompleteListener{
-            task ->
-            if(task.isComplete){
-                for(dt in task.result?.documents!!){
-                    var oneData = dt.toObject(NeologismData::class.java)
-                    data.add(oneData!!)
-                }
-            }
-        }
-        return data
-    }
+
 }
 
 

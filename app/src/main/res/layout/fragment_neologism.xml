@@ -17,8 +17,8 @@
             android:layout_gravity="center_horizontal|top"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
-            app:backgroundTint="@color/basicButton"
             android:text="Play Neologism Quiz"
+            app:backgroundTint="@color/basicButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +53,16 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
+
+            <ImageButton
+                android:id="@+id/search_button"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:scaleType="fitCenter"
+                app:backgroundTint="#FFA000"
+                app:srcCompat="@drawable/ic_search" />
         </LinearLayout>
 
 
