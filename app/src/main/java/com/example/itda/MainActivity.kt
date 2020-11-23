@@ -72,6 +72,8 @@ class MainActivity : AppCompatActivity() {
                     //로그인 성공 및 다음페이지 호출
                     progress_bar!!.visibility = View.GONE
                     moveMainPage(auth?.currentUser)
+                    var au=auth?.currentUser
+                    Toast.makeText(this, "$au", Toast.LENGTH_SHORT).show()
                 } else {
                     //로그인 실패
                     Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
