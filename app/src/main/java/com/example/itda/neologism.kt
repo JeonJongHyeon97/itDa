@@ -40,14 +40,13 @@ class neologism : Fragment() {
             }
             Log.d("firebase", "for문 끝")
             data = dat
-            adapter.listData = data
-            neologism_recycle.adapter = adapter
-            neologism_recycle.layoutManager = LinearLayoutManager(requireContext())
+            adapter?.listData = data
+            neologism_recycle?.adapter = adapter
+            neologism_recycle?.layoutManager = LinearLayoutManager(getContext())
         }
         return view
     }
 
 }
-
 
 

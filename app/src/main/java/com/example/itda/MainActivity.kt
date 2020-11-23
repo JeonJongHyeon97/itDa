@@ -1,8 +1,10 @@
 package com.example.itda
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,13 +19,13 @@ import kotlinx.android.synthetic.main.signup_page.*
 
 
 class MainActivity : AppCompatActivity() {
-
     // Firebase Authentication 관리 클래스
     var auth: FirebaseAuth? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
+
+
 
         signup_button.setOnClickListener{
             val intent = Intent(this,SignUp::class.java)
@@ -45,6 +47,8 @@ class MainActivity : AppCompatActivity() {
         if (user != null) {
             Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, HomePage::class.java))
+            //val UserEmail = MyApplication.prefs.getString("email", "no email")
+            //intent.putExtra("email", UserEmail)
             finish()
         }
     }
@@ -55,7 +59,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "이메일과 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
 
         } else {
-
             progress_bar!!.visibility = View.VISIBLE
             progress_bar!!.bringToFront()
             signinEmail()
@@ -71,9 +74,8 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     //로그인 성공 및 다음페이지 호출
                     progress_bar!!.visibility = View.GONE
+                    MyApplication.prefs.setString("email", email_edittext.text.toString())
                     moveMainPage(auth?.currentUser)
-                    var au=auth?.currentUser
-                    Toast.makeText(this, "$au", Toast.LENGTH_SHORT).show()
                 } else {
                     //로그인 실패
                     Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
@@ -87,7 +89,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         //자동 로그인 설정
         moveMainPage(auth?.currentUser)
 

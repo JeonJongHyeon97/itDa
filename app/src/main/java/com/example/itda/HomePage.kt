@@ -1,6 +1,7 @@
 package com.example.itda
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ class HomePage : AppCompatActivity() {
     private val fragment_home by lazy {home()}
     private val fragment_neologism by lazy {neologism()}
     private val fragment_setting by lazy {setting()}
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
