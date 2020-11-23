@@ -32,7 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@drawable/border_layout"
             android:gravity="center_vertical"
+            android:rotationY="0"
             android:text="My post"
             android:textSize="18sp" />
 
@@ -41,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@drawable/border_layout"
             android:gravity="center_vertical"
             android:text="My reply"
             android:textSize="18sp" />
@@ -50,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@drawable/border_layout"
             android:gravity="center_vertical"
             android:text="Hot post"
             android:textSize="18sp" />
@@ -59,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@drawable/border_layout"
             android:gravity="center_vertical"
             android:text="Best post"
             android:textSize="18sp" />
@@ -92,15 +97,19 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@drawable/border_layout"
             android:gravity="center_vertical"
             android:text="Ask a father"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="visible"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/ask_a_mother"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@drawable/border_layout"
             android:gravity="center_vertical"
             android:text="Ask a mother"
             android:textSize="18sp" />
@@ -110,6 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@drawable/border_layout"
             android:gravity="center_vertical"
             android:text="Ask a brother"
             android:textSize="18sp" />
@@ -119,6 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@drawable/border_layout"
             android:gravity="center_vertical"
             android:text="Ask a grandparents"
             android:textSize="18sp" />
@@ -130,6 +141,8 @@
         android:layout_width="373dp"
         android:layout_height="213dp"
         android:layout_marginTop="8dp"
+        android:hapticFeedbackEnabled="false"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
