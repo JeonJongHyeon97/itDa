@@ -47,8 +47,6 @@ class MainActivity : AppCompatActivity() {
         if (user != null) {
             Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, HomePage::class.java))
-            //val UserEmail = MyApplication.prefs.getString("email", "no email")
-            //intent.putExtra("email", UserEmail)
             finish()
         }
     }

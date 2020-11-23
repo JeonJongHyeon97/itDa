@@ -43,6 +43,7 @@ class BoardPage : AppCompatActivity() {
             val intent = Intent(this,WritePage::class.java)
             intent.putExtra("BoardPage", boardName)
             startActivity(intent)
+            finish()
         }
         board_right_arrow.setOnClickListener{
             Log.d("firebase", "right진입은 성공")

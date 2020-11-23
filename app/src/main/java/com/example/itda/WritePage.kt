@@ -1,5 +1,6 @@
 package com.example.itda
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -45,6 +46,9 @@ class WritePage: AppCompatActivity() {
                         Toast.makeText(this, "Write post complete!!", Toast.LENGTH_SHORT).show()
                     }
                 }
+            val intent = Intent(this,BoardPage::class.java)
+            intent.putExtra("BoardPage", boardName)
+            startActivity(intent)
             finish()
         }
     }
