@@ -39,8 +39,11 @@ class BoardRecycleAdapter : RecyclerView.Adapter<BoardRecycleAdapter.Holder>() {
             itemView.board_email.text = data.email!!.substring(0,data.email!!.indexOf("@"))
             itemView.reply_text.text = data.text
             itemView.board_date.text = data.date.toString().subSequence(2,4).toString()+"."+data.date.toString().subSequence(4,6).toString()+"."+data.date.toString().subSequence(6,8).toString()
-            itemView.reply_likes.text = data.like.toString()+"likes"
-            itemView.board_replies.text = data.reply!!.size.toString()+"replies"
+            itemView.reply_likes.text = data.like.toString()+" likes"
+            itemView.board_replies.text = if(data.reply.isNullOrEmpty()){
+                "0 replies"}else{
+                data.reply?.size.toString()+" replies"
+            }
             this.inputData =data
         }
     }
