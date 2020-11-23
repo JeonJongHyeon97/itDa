@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.board_main_page.*
@@ -23,7 +24,7 @@ class BoardPage : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     var start = 0
     var lastVisible:DocumentSnapshot? = null
-    var leftVisible : DocumentSnapshot? =null
+    var firstVisible : DocumentSnapshot? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +32,14 @@ class BoardPage : AppCompatActivity() {
         var boardName = intent.getStringExtra("BoardPage")!!.toString()
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection(boardName)?.orderBy("date")?.limit(1)?.get()?.addOnSuccessListener { result ->
+        firestore?.collection(boardName)?.orderBy("date")?.limit(10)?.get()?.addOnSuccessListener { result ->
             var size=result.size()
             Log.d("firebase", "result size : $size")
-            lastVisible = result.documents[result.size() - 1]
-            leftVisible = result.documents[result.size() - 1]}
+            lastVisible = result.documents[result.size()-1]
+            firstVisible = result.documents[result.size()-11]}
 
         board_name.text="Ask a "+boardName
-        loadData(boardName,lastVisible)
+        loadData(boardName,firstVisible)
         board_write.setOnClickListener{
             val intent = Intent(this,WritePage::class.java)
             intent.putExtra("BoardPage", boardName)
@@ -49,7 +50,7 @@ class BoardPage : AppCompatActivity() {
             Log.d("firebase", "right진입은 성공")
             try{
                 Log.d("firebase", "try진입은 성공")
-                loadData(boardName,lastVisible)
+                loadData(boardName,firstVisible)
             }catch(e:NullPointerException){
                 Log.d("firebase", "exception진입은 성공")
                 Toast.makeText(this, "Last page!", Toast.LENGTH_SHORT).show()
@@ -60,7 +61,7 @@ class BoardPage : AppCompatActivity() {
             if(start>=0){
                 Log.d("firebase", "if진입은 성공")
                 start-=10
-                loadData(boardName,lastVisible)
+                loadData(boardName,firstVisible)
             }else{
                 Log.d("firebase", "else진입은 성공")
                 Toast.makeText(this, "First page!", Toast.LENGTH_SHORT).show()
@@ -68,17 +69,16 @@ class BoardPage : AppCompatActivity() {
         }
 
     }
-    fun loadData(boardName:String, lastVisi: DocumentSnapshot?){
+    fun loadData(boardName:String, firstVisi: DocumentSnapshot?){
         var data: MutableList<BoardDTO>
         val adapter = BoardRecycleAdapter()
         var dat: MutableList<BoardDTO> = mutableListOf()
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection(boardName)?.orderBy("date")?.limit(10)?.startAfter(lastVisi)
-            ?.get()?.addOnSuccessListener { result ->
+        firestore?.collection(boardName)?.orderBy("date")?.limit(10)?.startAfter(firstVisi)?.get()?.addOnSuccessListener { result ->
                 var size=result.size()
                 Log.d("firebase", "result size : $size")
-                var pointer = result.documents[result.size() - 1]
+                //var pointer = result.documents[result.size() - 1]
                 Log.d("firebase", "진입은 성공")
                 for (document in result) {
                     Log.d("asdf", "${document.id} => ${document.data}")
@@ -88,11 +88,11 @@ class BoardPage : AppCompatActivity() {
                     dat.add(oneData)
                 }
                 Log.d("firebase", "for문 끝")
-                data = dat
+                data = dat.asReversed()
                 adapter.listData = data
                 board_recycle.adapter = adapter
                 board_recycle.layoutManager = LinearLayoutManager(this)
-                lastVisible=pointer
+                //lastVisible=pointer
             }
     }
 }
