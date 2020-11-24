@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
@@ -24,20 +25,19 @@ class BoardPage : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     var start = 0
     var lastVisible:DocumentSnapshot? = null
-    var firstVisible : DocumentSnapshot? =null
-
+    var rightVisible : DocumentSnapshot? =null
+    var leftVisible : DocumentSnapshot? =null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.board_main_page)
         var boardName = intent.getStringExtra("BoardPage")!!.toString()
-        auth = Firebase.auth
-        firestore = FirebaseFirestore.getInstance()
-        firestore?.collection(boardName)?.orderBy("date")?.get()?.addOnSuccessListener { result ->
-            var size=result.size()
-            Log.d("firebase", "result size1 : $size")
-            lastVisible = result.documents[result.size()-1]
-            firstVisible = result.documents[result.size()-11]
-            loadData(boardName,firstVisible)}
+//        auth = Firebase.auth
+//        firestore = FirebaseFirestore.getInstance()
+//        firestore?.collection(boardName)?.orderBy("date", Query.Direction.DESCENDING)?.get()?.addOnSuccessListener { result ->
+//            totalSize=result.size()
+//            Log.d("firebase", "total size1 : $totalSize")
+//            lastVisible = result.documents[0]
+        loadData(boardName,lastVisible)
 
         board_name.text="Ask a "+boardName
         board_write.setOnClickListener{
@@ -50,7 +50,8 @@ class BoardPage : AppCompatActivity() {
             Log.d("firebase", "right진입은 성공")
             try{
                 Log.d("firebase", "try진입은 성공")
-                loadData(boardName,firstVisible)
+                //lastVisible+=10
+                loadData(boardName,lastVisible)
             }catch(e:NullPointerException){
                 Log.d("firebase", "exception진입은 성공")
                 Toast.makeText(this, "Last page!", Toast.LENGTH_SHORT).show()
@@ -61,7 +62,7 @@ class BoardPage : AppCompatActivity() {
             if(start>=0){
                 Log.d("firebase", "if진입은 성공")
                 start-=10
-                loadData(boardName,firstVisible)
+                //loadData(boardName,firstVisible)
             }else{
                 Log.d("firebase", "else진입은 성공")
                 Toast.makeText(this, "First page!", Toast.LENGTH_SHORT).show()
@@ -69,17 +70,18 @@ class BoardPage : AppCompatActivity() {
         }
 
     }
-    fun loadData(boardName:String, firstVisi: DocumentSnapshot?){
-        Log.d("firebase", "firstVisi : $firstVisi")
+    fun loadData(boardName:String, lastVisi: DocumentSnapshot?){
+        Log.d("firebase", "lastVisi : $lastVisi")
         var data: MutableList<BoardDTO>
         val adapter = BoardRecycleAdapter()
         var dat: MutableList<BoardDTO> = mutableListOf()
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection(boardName)?.orderBy("date")?.startAfter(firstVisi)?.limit(10)?.get()?.addOnSuccessListener { result ->
+        firestore?.collection(boardName)?.orderBy("date",Query.Direction.DESCENDING)?.limit(50)?.get()?.addOnSuccessListener { result ->
                 var size=result.size()
                 Log.d("firebase", "result size2 : $size")
-                //var pointer = result.documents[result.size() - 1]
+                rightVisible = result.documents[result.size()-1]
+                leftVisible = result.documents[0]
                 Log.d("firebase", "진입은 성공")
                 for (document in result) {
                     Log.d("asdf", "${document.id} => ${document.data}")
@@ -89,13 +91,42 @@ class BoardPage : AppCompatActivity() {
                     dat.add(oneData)
                 }
                 Log.d("firebase", "for문 끝")
-                data = dat.asReversed()
+                data = dat
                 adapter.listData = data
                 board_recycle.adapter = adapter
                 board_recycle.layoutManager = LinearLayoutManager(this)
-                //lastVisible=pointer
+                //firstVisible=pointer
             }
     }
+    fun loadLeftData(boardName:String, leftVisi: DocumentSnapshot?){
+        Log.d("firebase", "lefttVisi : $leftVisi")
+        var data: MutableList<BoardDTO>
+        val adapter = BoardRecycleAdapter()
+        var dat: MutableList<BoardDTO> = mutableListOf()
+        auth = Firebase.auth
+        firestore = FirebaseFirestore.getInstance()
+        firestore?.collection(boardName)?.orderBy("date")?.startAfter(leftVisi)?.limit(10)?.get()?.addOnSuccessListener { result ->
+            var size=result.size()
+            Log.d("firebase", "result size2 : $size")
+            rightVisible = result.documents[result.size()-1]
+            //leftVisible = result.documents[]
+            Log.d("firebase", "진입은 성공")
+            for (document in result) {
+                Log.d("asdf", "${document.id} => ${document.data}")
+                var oneData = document.toObject(BoardDTO::class.java)
+                println(oneData)
+                Log.d("firebase", "for문 돌아가는중")
+                dat.add(oneData)
+            }
+            Log.d("firebase", "for문 끝")
+            data = dat
+            adapter.listData = data
+            board_recycle.adapter = adapter
+            board_recycle.layoutManager = LinearLayoutManager(this)
+            //firstVisible=pointer
+        }
+    }
+
 }
 
 
