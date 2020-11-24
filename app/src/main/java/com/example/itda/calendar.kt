@@ -8,6 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -17,37 +22,64 @@ import java.util.*
 
 
 class calendar : Fragment() {
-
+    var firestore : FirebaseFirestore?=null
+    private lateinit var auth: FirebaseAuth
+    var calendarDTO =CalendarDTO()
+    var Useremail = MyApplication.prefs.getString("email", "no email")
+    val host = "test@naver.com"
     var fname: String = ""
     var str: String = ""
-
+    lateinit var list : Map<String,Any>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_calendar,container,false)
+        auth= Firebase.auth
+        firestore = FirebaseFirestore.getInstance()
+        firestore?.collection("calendar")?.document(host)?.get()?.addOnSuccessListener { document ->
+            list = document.data as Map<String, Any>
+        }
         return view
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         val calendar = Calendar.getInstance()
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-    // 달력 날짜가 선택되면
-            Log.d("check", "$year,$month,$dayOfMonth")
-            diaryTextView.visibility = View.VISIBLE // 해당 날짜가 뜨는 textView가 Visible
-            save_Btn_setting.visibility = View.VISIBLE // 저장 버튼이 Visible
-            contextEditText.visibility = View.VISIBLE // EditText가 Visible
-            textView2.visibility = View.INVISIBLE // 저장된 일기 textView가 Invisible
-            cha_Btn.visibility = View.INVISIBLE // 수정 Button이 Invisible
-            del_Btn.visibility = View.INVISIBLE // 삭제 Button이 Invisible
+            Log.d("check", "$year,${month+1},$dayOfMonth")
             calendar.set(year,month,dayOfMonth)
-            val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
-            val formattedDate = dateFormatter.format(calendar.time)
-            diaryTextView.text = formattedDate
-            diaryTextView.text = String.format("%d / %d / %d", year, month + 1, dayOfMonth)
-    // 날짜를 보여주는 텍스트에 해당 날짜를 넣는다.
-            contextEditText.setText("") // EditText에 공백값 넣기
+            var contents = list.get(year.toString()+(month+1).toString()+dayOfMonth.toString()).toString()
+            Log.d("check", "contents => $contents")
+            if (contents.length>4){
+            var date=contents.substring(10,contents.indexOf("&"))
+            var text = contents.substring(contents.indexOf("&")+1,contents.length-1)
+            Log.d("check", "$date, $text")
+            textView2.text=text
+            }else{
+                textView2.text=""
+            }
+//                textView2.text=list[0]+"\n"+list[1]
 
-            checkedDay(year, month, dayOfMonth) // checkedDay 메소드 호출
+//                    var oneData = document.toObject(NeologismData::class.java)
+//                    println(oneData)
+//                    Log.d("firebase", "for문 돌아가는중")
+//                    if (oneData.name!!.contains(keyword.toString())) dat.add(oneData)
+//                Log.d("firebase", "for문 끝")
+//                data = dat
+//                if (data.isNullOrEmpty()) {
+//                    Toast.makeText(this, "Result is empty", Toast.LENGTH_SHORT).show()
+//                } else {
+//                    adapter?.listData = data
+//                    neologism_recycle?.adapter = adapter
+//                    neologism_recycle?.layoutManager = LinearLayoutManager(this)
+//                }
+//
+//
+//            val dateFormatter = DateFormat.getDateInstance(DateFormat.MEDIUM)
+//
+//            contextEditText.setText("") // EditText에 공백값 넣기
+//
+//            checkedDay(year, month, dayOfMonth) // checkedDay 메소드 호출
         }
 
         save_Btn_setting.setOnClickListener { // 저장 Button이 클릭되면
@@ -111,7 +143,7 @@ class calendar : Fragment() {
 
             if (textView2.getText() == "") {
                 textView2.visibility = View.INVISIBLE
-                diaryTextView.visibility = View.VISIBLE
+//                diaryTextView.visibility = View.VISIBLE
                 save_Btn_setting.visibility = View.VISIBLE
                 cha_Btn.visibility = View.INVISIBLE
                 del_Btn.visibility = View.INVISIBLE
