@@ -16,17 +16,16 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="0dp"
             android:layout_weight="0.7"
             android:gravity="center"
-            android:text="Writing"
+            android:text="Request addition"
             android:textColor="#000000"
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/write_cancel" />
 
         <View
-            android:id="@+id/divider2"
-            android:layout_width="120dp"
+            android:id="@+id/divider3"
+            android:layout_width="240dp"
             android:layout_height="3dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
@@ -99,7 +98,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </LinearLayout>
-
     </LinearLayout>
 
 </RelativeLayout>

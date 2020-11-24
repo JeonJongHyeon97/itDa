@@ -25,6 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:background="@color/mainBackground"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -64,6 +65,7 @@
                 android:layout_weight="2.3"
                 android:gravity="center_vertical"
                 android:text="ID"
+                android:textColor="#000000"
                 android:textSize="21sp" />
 
 
@@ -79,9 +81,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
                     android:background="@color/colorsignup"
-                    android:gravity="center"
                     android:hint="email address"
                     android:inputType="textEmailAddress"
+                    android:paddingStart="10dp"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,6 +117,7 @@
                 android:layout_weight="2"
                 android:gravity="center_vertical"
                 android:text="PW"
+                android:textColor="#000000"
                 android:textSize="21sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -128,10 +131,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/colorsignup"
-                    android:gravity="center"
+                    android:background="#F8EDE1"
                     android:hint="at least 6 characters"
                     android:inputType="textPassword"
+                    android:paddingStart="10dp"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -154,6 +157,7 @@
                 android:layout_weight="2"
                 android:gravity="center_vertical"
                 android:text="Re-PW"
+                android:textColor="#000000"
                 android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -169,9 +173,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@color/colorsignup"
-                    android:gravity="center"
                     android:hint="re-enter password"
                     android:inputType="textPassword"
+                    android:paddingStart="10dp"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -194,6 +198,7 @@
                 android:layout_weight="2"
                 android:gravity="center_vertical"
                 android:text="Name"
+                android:textColor="#000000"
                 android:textSize="18sp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -209,9 +214,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:background="@color/colorsignup"
-                    android:gravity="center"
                     android:hint="first name"
                     android:inputType="textShortMessage"
+                    android:paddingStart="10dp"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -234,6 +239,7 @@
                 android:layout_weight="2"
                 android:gravity="center_vertical"
                 android:text="Sex"
+                android:textColor="#000000"
                 android:textSize="21sp" />
 
             <RadioGroup
@@ -282,6 +288,7 @@
                 android:layout_weight="2"
                 android:gravity="center_vertical"
                 android:text="Year of birth"
+                android:textColor="#000000"
                 android:textSize="12sp" />
 
             <Spinner
@@ -311,6 +318,7 @@
                 android:layout_weight="3"
                 android:gravity="center_vertical"
                 android:text="Marital"
+                android:textColor="#000000"
                 android:textSize="19sp" />
 
             <RadioGroup

@@ -10,22 +10,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/neologism_quiz"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center_horizontal|top"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1"
-            android:text="Play Neologism Quiz"
-            app:backgroundTint="@color/colorEmailSignIn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:orientation="horizontal">
@@ -43,15 +31,16 @@
                 app:layout_constraintEnd_toStartOf="@+id/neologism_search"
                 app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
 
-            <TextView
+            <EditText
                 android:id="@+id/neologism_search"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="right"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="7"
                 android:background="@drawable/underline"
-                android:gravity="center_vertical"
                 android:hint="Please enter the word"
+                android:inputType="textPersonName"
                 android:paddingStart="10dp"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -119,17 +108,5 @@
                 app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/neologism_request"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:text="Request addition"
-            app:backgroundTint="@color/redButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/neologism_recycle" />
     </LinearLayout>
 </RelativeLayout>

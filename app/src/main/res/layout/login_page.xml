@@ -63,7 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Email address"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- EditText - Password -->
@@ -79,7 +80,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:paddingStart="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
             <!-- Button -->
 

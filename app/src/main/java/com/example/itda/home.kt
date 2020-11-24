@@ -38,15 +38,15 @@ class home : Fragment() {
                 name_list.add(oneData.name)
                 definition_list.add(oneData.definition)
             }
-            neologism_title1.text=name_list[0]
-            neologism_title2.text=name_list[1]
-            neologism_title3.text=name_list[2]
-            neologism_title4.text=name_list[3]
+            neologism_title1?.text=name_list[0]
+            neologism_title2?.text=name_list[1]
+            neologism_title3?.text=name_list[2]
+            neologism_title4?.text=name_list[3]
 
-            neologism_text1.text=definition_list[0]
-            neologism_text2.text=definition_list[1]
-            neologism_text3.text=definition_list[2]
-            neologism_text4.text=definition_list[3]
+            neologism_text1?.text=definition_list[0]
+            neologism_text2?.text=definition_list[1]
+            neologism_text3?.text=definition_list[2]
+            neologism_text4?.text=definition_list[3]
             Log.d("firebase", "for문 끝")
         }
         return view

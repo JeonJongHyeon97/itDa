@@ -12,7 +12,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".HomePage" />
         <activity android:name=".BoardPage" />
+        <activity android:name=".SearchNeologism" />
         <activity android:name=".SignUp" />
+        <activity android:name=".NeologismRequest" />
         <activity android:name=".WritePage" />
         <activity
             android:name=".MainActivity"
