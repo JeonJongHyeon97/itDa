@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.widget.Toast.makeText
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -34,7 +36,7 @@ class calendar : Fragment() {
     // 달력 날짜가 선택되면
             Log.d("check", "$year,$month,$dayOfMonth")
             diaryTextView.visibility = View.VISIBLE // 해당 날짜가 뜨는 textView가 Visible
-            save_Btn_setting.visibility = View.VISIBLE // 저장 버튼이 Visible
+            save_Btn.visibility = View.VISIBLE // 저장 버튼이 Visible
             contextEditText.visibility = View.VISIBLE // EditText가 Visible
             textView2.visibility = View.INVISIBLE // 저장된 일기 textView가 Invisible
             cha_Btn.visibility = View.INVISIBLE // 수정 Button이 Invisible
@@ -50,13 +52,13 @@ class calendar : Fragment() {
             checkedDay(year, month, dayOfMonth) // checkedDay 메소드 호출
         }
 
-        save_Btn_setting.setOnClickListener { // 저장 Button이 클릭되면
+        save_Btn.setOnClickListener { // 저장 Button이 클릭되면
             saveDiary(fname) // saveDiary 메소드 호출
             Toast.makeText(activity, "저장되었습니다.", Toast.LENGTH_SHORT).show() // 토스트 메세지
             str = contextEditText.getText().toString() // str 변수에 edittext내용을 toString
     //형으로 저장
             textView2.text = "${str}" // textView에 str 출력
-            save_Btn_setting.visibility = View.INVISIBLE
+            save_Btn.visibility = View.INVISIBLE
             cha_Btn.visibility = View.VISIBLE
             del_Btn.visibility = View.VISIBLE
             contextEditText.visibility = View.INVISIBLE
@@ -83,7 +85,7 @@ class calendar : Fragment() {
             textView2.visibility = View.VISIBLE
             textView2.text = "${str}" // textView에 str 출력
 
-            save_Btn_setting.visibility = View.INVISIBLE
+            save_Btn.visibility = View.INVISIBLE
             cha_Btn.visibility = View.VISIBLE
             del_Btn.visibility = View.VISIBLE
 
@@ -92,7 +94,7 @@ class calendar : Fragment() {
                 textView2.visibility = View.INVISIBLE
                 contextEditText.setText(str) // editText에 textView에 저장된
     // 내용을 출력
-                save_Btn_setting.visibility = View.VISIBLE
+                save_Btn.visibility = View.VISIBLE
                 cha_Btn.visibility = View.INVISIBLE
                 del_Btn.visibility = View.INVISIBLE
                 textView2.text = "${contextEditText.getText()}"
@@ -102,7 +104,7 @@ class calendar : Fragment() {
                 textView2.visibility = View.INVISIBLE
                 contextEditText.setText("")
                 contextEditText.visibility = View.VISIBLE
-                save_Btn_setting.visibility = View.VISIBLE
+                save_Btn.visibility = View.VISIBLE
                 cha_Btn.visibility = View.INVISIBLE
                 del_Btn.visibility = View.INVISIBLE
                 removeDiary(fname)
@@ -112,7 +114,7 @@ class calendar : Fragment() {
             if (textView2.getText() == "") {
                 textView2.visibility = View.INVISIBLE
                 diaryTextView.visibility = View.VISIBLE
-                save_Btn_setting.visibility = View.VISIBLE
+                save_Btn.visibility = View.VISIBLE
                 cha_Btn.visibility = View.INVISIBLE
                 del_Btn.visibility = View.INVISIBLE
                 contextEditText.visibility = View.VISIBLE

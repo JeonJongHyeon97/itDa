@@ -141,7 +141,6 @@
         android:layout_width="373dp"
         android:layout_height="213dp"
         android:layout_marginTop="8dp"
-        android:background="#00000000"
         android:hapticFeedbackEnabled="false"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"

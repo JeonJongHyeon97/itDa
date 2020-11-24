@@ -80,7 +80,7 @@
             android:layout_weight="0.5">
 
             <Button
-                android:id="@+id/save_Btn_setting"
+                android:id="@+id/save_Btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
