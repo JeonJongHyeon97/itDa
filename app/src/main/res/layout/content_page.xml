@@ -98,9 +98,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="6"
+                android:hint="댓글을 입력하세요"
                 android:inputType="textPersonName"
-                android:paddingStart="10dp"
-                android:text="댓글을 입력하세요" />
+                android:paddingStart="10dp" />
 
             <Button
                 android:id="@+id/reply_send"
