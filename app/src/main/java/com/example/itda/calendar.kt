@@ -35,7 +35,6 @@ class calendar : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_calendar,container,false)
         var time = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis())).toString()
-
         auth= Firebase.auth
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("calendar")?.document(host)?.get()?.addOnSuccessListener { document ->

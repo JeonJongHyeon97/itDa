@@ -59,10 +59,6 @@ class neologism : Fragment() {
             }
         }
 
-
-
-
-
     }
 
 }
