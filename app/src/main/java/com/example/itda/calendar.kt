@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.graphics.colorSpace
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -49,6 +50,7 @@ class calendar : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val calendar = Calendar.getInstance()
+
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             Log.d("check", "$year,${month+1},$dayOfMonth")
             calendar.set(year,month,dayOfMonth)

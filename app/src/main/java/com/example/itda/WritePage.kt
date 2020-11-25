@@ -30,7 +30,7 @@ class WritePage: AppCompatActivity() {
         write_cancel.setOnClickListener{
             finish()
         }
-        //data class BoardDTO(var date:Long?=null, var email:String?=null,
+        //data class BoardDTO(var boardName:String?=null, var date:Long?=null, var email:String?=null,
          //                   var like:Long?=null, var reply:Map<String,String>?=null,
          //                   var text:String?=null, var title:String?=null)
 
@@ -43,7 +43,7 @@ class WritePage: AppCompatActivity() {
                 var time =
                     SimpleDateFormat("yyyyMMddHHmmss").format(Date(System.currentTimeMillis()))
                         .toLong()
-                boardDTO = BoardDTO(
+                boardDTO = BoardDTO(boardName,
                     time,
                     Useremail,
                     0,

@@ -5,20 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.board_main_page.*
-import kotlinx.android.synthetic.main.fragment_board.*
-import kotlinx.android.synthetic.main.fragment_neologism.*
-import kotlinx.android.synthetic.main.login_page.*
 
 class BoardPage : AppCompatActivity() {
     var firestore : FirebaseFirestore?=null
@@ -27,10 +21,12 @@ class BoardPage : AppCompatActivity() {
     var lastVisible:DocumentSnapshot? = null
     var rightVisible : DocumentSnapshot? =null
     var leftVisible : DocumentSnapshot? =null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.board_main_page)
         var boardName = intent.getStringExtra("BoardPage")!!.toString()
+
         loadData(boardName,lastVisible)
 
         board_name.text="Ask a "+boardName
@@ -87,8 +83,8 @@ class BoardPage : AppCompatActivity() {
                 Log.d("firebase", "for문 끝")
                 data = dat
                 adapter.listData = data
-                board_recycle.adapter = adapter
-                board_recycle.layoutManager = LinearLayoutManager(this)
+                board_recycle_view.adapter = adapter
+                board_recycle_view.layoutManager = LinearLayoutManager(this)
                 //firstVisible=pointer
             }
     }
@@ -115,9 +111,8 @@ class BoardPage : AppCompatActivity() {
             Log.d("firebase", "for문 끝")
             data = dat
             adapter.listData = data
-            board_recycle.adapter = adapter
-            board_recycle.layoutManager = LinearLayoutManager(this)
-            //firstVisible=pointer
+            board_recycle_view.adapter = adapter
+            board_recycle_view.layoutManager = LinearLayoutManager(this)
         }
     }
 

@@ -5,32 +5,34 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_weight="0.5" />
-
     <TextView
         android:id="@+id/reply_title"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:text="YoungHun"
+        android:layout_marginBottom="8dp"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:text="익명1"
         android:textColor="@color/black"
+        android:textSize="17sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/reply_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="9"
-        android:text="Oh My God" />
+        android:paddingStart="15dp"
+        android:text="Oh My God"
+        android:textColor="#000000"
+        android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/reply_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:text="TextView" />
+        android:gravity="right"
+        android:paddingEnd="10dp"
+        android:text="2020-11-26 03:15" />
 
     <View
         android:id="@+id/divider7"
@@ -38,6 +40,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
-        android:background="#FF000000" />
+        android:background="#8B8B8B"
+        android:paddingStart="5dp" />
 </LinearLayout>
 

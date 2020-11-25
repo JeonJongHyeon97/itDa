@@ -24,7 +24,6 @@ class HomePage : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initNavigationBar()
     }
-
     private fun initNavigationBar() {
         nav_view.run {
             setOnNavigationItemSelectedListener {

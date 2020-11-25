@@ -25,15 +25,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
 
-
-
         signup_button.setOnClickListener{
             val intent = Intent(this,SignUp::class.java)
             startActivity(intent)
         }
-
-
-
         // Firebase 로그인 통합 관리하는 Object 만들기
         auth = FirebaseAuth.getInstance()
 
@@ -60,13 +55,10 @@ class MainActivity : AppCompatActivity() {
             progress_bar!!.visibility = View.VISIBLE
             progress_bar!!.bringToFront()
             signinEmail()
-
         }
     }
-
     //로그인 메소드
     fun signinEmail() {
-
         auth?.signInWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -80,10 +72,7 @@ class MainActivity : AppCompatActivity() {
                     progress_bar!!.visibility = View.GONE
                 }
             }
-
-
     }
-
 
     override fun onStart() {
         super.onStart()
