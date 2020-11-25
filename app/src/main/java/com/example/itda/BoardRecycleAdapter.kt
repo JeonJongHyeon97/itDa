@@ -1,12 +1,13 @@
 package com.example.itda
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.board_recycle.view.*
-import kotlinx.android.synthetic.main.neologism_recycle.view.*
-import kotlinx.android.synthetic.main.neologism_recycle.view.neologism_name
 
 class BoardRecycleAdapter : RecyclerView.Adapter<BoardRecycleAdapter.Holder>() {
     var listData = mutableListOf<BoardDTO>()
@@ -28,11 +29,14 @@ class BoardRecycleAdapter : RecyclerView.Adapter<BoardRecycleAdapter.Holder>() {
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var inputData:BoardDTO? = null
         init {
-//            itemView.buttonDelete.setOnClickListener {
-//                helper?.deleteMemo(mMemo!!)
-//                listData.remove(mMemo)
-//                notifyDataSetChanged()
-//            }
+            itemView.detail_post.setOnClickListener {
+                val intent = Intent(itemView.context,BoardDetail::class.java)
+                intent.putExtra("BoardPage", "boardName")
+
+
+
+                itemView.context.startActivity(intent)
+            }
         }
         fun setData(data: BoardDTO) {
             itemView.reply_title.text = data.title

@@ -2,74 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="10dp"
         android:layout_weight="0.5" />
 
     <TextView
         android:id="@+id/reply_title"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.7"
+        android:layout_height="30dp"
         android:text="YoungHun"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/reply_text"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.7"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_weight="9"
+        android:text="Oh My God" />
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.6" />
-
-        <TextView
-            android:id="@+id/reply_text"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="9"
-            android:text="Oh My God" />
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="6" />
-
-        <TextView
-            android:id="@+id/reply_likes"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="start"
-            android:text="1" />
-
-        <Button
-            android:id="@+id/reply_like_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="like"
-            android:textColor="#000000"
-            android:textSize="8sp"
-            app:backgroundTint="@color/like_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="TextView" />
 
     <View
         android:id="@+id/divider7"

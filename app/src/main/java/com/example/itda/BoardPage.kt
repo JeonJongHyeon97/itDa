@@ -31,12 +31,6 @@ class BoardPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.board_main_page)
         var boardName = intent.getStringExtra("BoardPage")!!.toString()
-//        auth = Firebase.auth
-//        firestore = FirebaseFirestore.getInstance()
-//        firestore?.collection(boardName)?.orderBy("date", Query.Direction.DESCENDING)?.get()?.addOnSuccessListener { result ->
-//            totalSize=result.size()
-//            Log.d("firebase", "total size1 : $totalSize")
-//            lastVisible = result.documents[0]
         loadData(boardName,lastVisible)
 
         board_name.text="Ask a "+boardName

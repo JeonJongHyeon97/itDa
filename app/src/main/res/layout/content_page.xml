@@ -1,98 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground">
 
-    <TextView
-        android:id="@+id/Writer_name"
-        android:layout_width="0dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="ziziwhdgus"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/post_date"
-        app:layout_constraintEnd_toStartOf="@+id/post_date"
-        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/post_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="218dp"
-        android:layout_marginBottom="14dp"
-        android:text="2020.11.11"
-        app:layout_constraintBottom_toTopOf="@+id/post_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Writer_name"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8">
 
-    <TextView
-        android:id="@+id/post_title"
-        android:layout_width="346dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="11dp"
-        android:text="안녕하세요!"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/post_text"
-        app:layout_constraintStart_toStartOf="@+id/post_text"
-        app:layout_constraintTop_toBottomOf="@+id/post_date" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/post_text"
-        android:layout_width="356dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="16dp"
-        android:text="안녕못해요!"
-        app:layout_constraintBottom_toTopOf="@+id/post_like"
-        app:layout_constraintStart_toStartOf="parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/post_like"
-        android:layout_width="102dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="171dp"
-        android:layout_marginEnd="20dp"
-        android:text="Like"
-        app:backgroundTint="@color/like_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/post_date"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:paddingStart="10dp"
+                        android:text="2020.11.11" />
 
-    <Button
-        android:id="@+id/reply_send"
-        android:layout_width="108dp"
-        android:layout_height="79dp"
-        android:layout_marginBottom="9dp"
-        app:icon="@android:drawable/ic_menu_send"
-        app:iconSize="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/reply_box"
-        app:layout_constraintEnd_toEndOf="@+id/reply_box"
-        app:layout_constraintTop_toTopOf="@+id/reply_box"
-        app:layout_constraintVertical_bias="0.363" />
+                    <Button
+                        android:id="@+id/post_like"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Like"
+                        app:backgroundTint="@color/like_color" />
 
-    <EditText
-        android:id="@+id/reply_box"
-        android:layout_width="409dp"
-        android:layout_height="99dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="댓글을 입력하세요"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_text"
-        app:layout_constraintVertical_bias="0.811" />
+                </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/post_recycle"
-        android:layout_width="275dp"
-        android:layout_height="192dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="237dp" />
+                <TextView
+                    android:id="@+id/post_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
+                    android:text="안녕하세요!"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/post_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="안녕못해요!"
+                    android:textColor="#000000"
+                    android:textSize="17sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/post_recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/reply_box"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:inputType="textPersonName"
+                android:paddingStart="10dp"
+                android:text="댓글을 입력하세요" />
+
+            <Button
+                android:id="@+id/reply_send"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="9dp"
+                android:layout_weight="1"
+                android:foreground="@android:drawable/ic_menu_send"
+                app:icon="@android:drawable/ic_menu_send"
+                app:iconSize="50dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
