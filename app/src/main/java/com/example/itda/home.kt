@@ -1,5 +1,6 @@
 package com.example.itda
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,7 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_neologism.*
+
 
 
 class home : Fragment() {
@@ -59,6 +60,11 @@ class home : Fragment() {
         today_summary.setOnClickListener {
 
         }
-
+        neologism_more.setOnClickListener {
+            activity?.let {
+                val intent = Intent(context, neologism_page::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }
