@@ -34,7 +34,7 @@ class SearchNeologism : AppCompatActivity() {
             val adapter = NeologismRecycleAdapter()
             var dat:MutableList<NeologismData> = mutableListOf()
             var keyword: String? = neologism_search.text.toString()
-            if (keyword.isNullOrEmpty()) {
+            if (keyword.isNullOrEmpty()||keyword.length<2) {
                 Toast.makeText(this, "Enter at least 2 words", Toast.LENGTH_SHORT).show()
             }else {
                 firestore?.collection("neologism")?.get()?.addOnSuccessListener { result ->

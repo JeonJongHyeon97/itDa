@@ -52,7 +52,7 @@ class neologism : Fragment() {
             val intent = Intent(getContext(),NeologismRequest::class.java)
             startActivity(intent)
         }
-        neologism_search.setOnClickListener {
+        search_layout.setOnClickListener {
             activity?.let {
                 val intent = Intent(context, SearchNeologism::class.java)
                 startActivity(intent)

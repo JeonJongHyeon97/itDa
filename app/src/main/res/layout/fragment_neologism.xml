@@ -10,24 +10,24 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/neologism_quiz"
+        <TextView
+            android:id="@+id/title_neologism"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_gravity="center_horizontal|top"
             android:layout_marginTop="16dp"
-            android:layout_weight="1"
-            android:text="Play Neologism Quiz"
-            app:backgroundTint="@color/colorEmailSignIn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
+            android:paddingStart="15dp"
+            android:text="Neologism Dictionary"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:id="@+id/search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0"
             android:orientation="horizontal">
 
             <TextView
@@ -61,7 +61,7 @@
                 android:id="@+id/search_button"
                 style="@style/Widget.AppCompat.ImageButton"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.3"
                 android:scaleType="fitCenter"
                 app:backgroundTint="#FFA000"

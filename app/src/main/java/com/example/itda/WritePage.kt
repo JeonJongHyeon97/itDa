@@ -9,9 +9,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.board_main_page.*
-import kotlinx.android.synthetic.main.board_main_page.board_write
-import kotlinx.android.synthetic.main.signup_page.*
 import kotlinx.android.synthetic.main.write_post_page.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,18 +35,33 @@ class WritePage: AppCompatActivity() {
          //                   var text:String?=null, var title:String?=null)
 
         write_complete.setOnClickListener{
-            var time = SimpleDateFormat("yyyyMMddHHmmss").format(Date(System.currentTimeMillis())).toLong()
-            boardDTO = BoardDTO(time, Useremail,0, null, write_text.text.toString(), write_title.text.toString())
-            firestore!!.collection(boardName).document(time.toString()).set(boardDTO)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this, "Write post complete!!", Toast.LENGTH_SHORT).show()
+            if(write_title.text.isNullOrEmpty()){
+                Toast.makeText(this, "Please enter the Title", Toast.LENGTH_SHORT).show()
+            }else if(write_text.text.isNullOrEmpty()){
+                Toast.makeText(this, "Please enter the Content", Toast.LENGTH_SHORT).show()
+            }else {
+                var time =
+                    SimpleDateFormat("yyyyMMddHHmmss").format(Date(System.currentTimeMillis()))
+                        .toLong()
+                boardDTO = BoardDTO(
+                    time,
+                    Useremail,
+                    0,
+                    null,
+                    write_text.text.toString(),
+                    write_title.text.toString()
+                )
+                firestore!!.collection(boardName).document(time.toString()).set(boardDTO)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Write post complete!!", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
-            val intent = Intent(this,BoardPage::class.java)
-            intent.putExtra("BoardPage", boardName)
-            startActivity(intent)
-            finish()
+                val intent = Intent(this, BoardPage::class.java)
+                intent.putExtra("BoardPage", boardName)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 }
