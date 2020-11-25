@@ -1,3 +1,3 @@
 package com.example.itda
 
-class CalendarDTO(var date:Long?=null, var text:String?=null)
+class CalendarDTO(var map:Map<String,Object>)
