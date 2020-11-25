@@ -52,7 +52,7 @@ class calendar : Fragment() {
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             Log.d("check", "$year,${month+1},$dayOfMonth")
             calendar.set(year,month,dayOfMonth)
-            selectDay = year.toString()+(month+1).toString()+dayOfMonth.toString()
+            selectDay = year.toString()+(month+1).toString().format("%02d")+dayOfMonth.toString().format("%02d")
             checkSchedule(selectDay)
         }
 

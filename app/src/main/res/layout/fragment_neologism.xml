@@ -14,7 +14,7 @@
             android:id="@+id/title_neologism"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:paddingStart="15dp"
