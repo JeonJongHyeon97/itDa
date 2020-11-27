@@ -58,7 +58,7 @@ class home : Fragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Toast.makeText(this, "sign in with $Useremail", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "sign in with $Useremail", Toast.LENGTH_SHORT).show()
         new_neologism_summary.setOnClickListener {
 
         }
