@@ -33,9 +33,7 @@ class SettingPage: AppCompatActivity() {
                 Log.d("Family", "진입2")
                 for (document in documents) {
                     var data = document.toObject(UserDTO::class.java)
-//                    downloadKey=data.family.toString()
-//                    Log.d("Family", "$downloadKey")
-//                    entered_familykey.text = "downloadKey"
+                    downloadKey=data.family.toString()
                     name_list.add(data.family)
                 }
                 Log.d("Family", "$name_list[0]")
@@ -55,24 +53,25 @@ class SettingPage: AppCompatActivity() {
         cha_Btn.setOnClickListener {
             family_key.setText(downloadKey)
             entered_familykey.visibility= View.INVISIBLE
+            cha_Btn.visibility= View.INVISIBLE
             family_key.visibility= View.VISIBLE
+            save_btn.visibility= View.VISIBLE
         }
 
         save_btn.setOnClickListener {
             var newKey = family_key.text.toString()
-            var input = mutableMapOf<String,String?>("family" to newKey)
-            firestore!!.collection("accounts").document(Useremail).update(input as Map<String, Any>)
+            Log.d("Change", "$Useremail")
+            Log.d("Change", "$newKey")
+            firestore!!.collection("accounts").document(Useremail).update("family",newKey)
                 .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this, "Family Key is Changed !", Toast.LENGTH_SHORT).show()
-                        downloadKey=newKey
-                        entered_familykey.text=newKey
-                        entered_familykey.visibility= View.VISIBLE
-                        family_key.visibility= View.INVISIBLE
+                    Toast.makeText(this, "Family Key is Changed !", Toast.LENGTH_SHORT).show()
+                    downloadKey=newKey
+                    entered_familykey.text = newKey
+                    entered_familykey.visibility= View.VISIBLE
+                    family_key.visibility= View.INVISIBLE
+                    save_btn.visibility= View.INVISIBLE
+                    cha_Btn.visibility= View.VISIBLE
                     }
                 }
         }
     }
-
-
-}

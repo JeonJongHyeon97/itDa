@@ -28,7 +28,7 @@ class calendar : Fragment() {
     var firestore : FirebaseFirestore?=null
     private lateinit var auth: FirebaseAuth
     var Useremail = MyApplication.prefs.getString("email", "no email")
-    var downloadKey :String? = "null"
+    var downloadKey :String = "null"
     var check = false
     var selectDay = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis())).toString()
     lateinit var list : Map<String,Any>
@@ -43,15 +43,15 @@ class calendar : Fragment() {
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     var data = document.toObject(UserDTO::class.java)
-                    downloadKey = data.family
+                    downloadKey = data.family.toString()
                 }
             }
-//        firestore?.collection("calendar")?.document(downloadKey)?.get()?.addOnSuccessListener { document ->
-//            list = document.data as Map<String, Any>
-//            Log.d("check", "list : $list")
-//            Log.d("check", "document : ${document.data}")
-//            checkSchedule(time)
-//        }
+        firestore?.collection("calendar")?.document(downloadKey)?.get()?.addOnSuccessListener { document ->
+            list = document.data as Map<String, Any>
+            Log.d("check", "list : $list")
+            Log.d("check", "document : ${document.data}")
+            checkSchedule(time)
+        }
         return view
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {

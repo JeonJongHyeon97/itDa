@@ -73,5 +73,6 @@
         android:layout_height="1dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
+        android:layout_marginBottom="10dp"
         android:background="#FF000000" />
 </LinearLayout>
