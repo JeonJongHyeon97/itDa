@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class BoardDetail : AppCompatActivity() {
+class SearchBoardDetail : AppCompatActivity() {
     var firestore: FirebaseFirestore? = null
     lateinit var list: Map<String, Any?>
     var boardname = ""
@@ -64,45 +64,44 @@ class BoardDetail : AppCompatActivity() {
         var dat: MutableList<String?> = mutableListOf()
         firestore?.collection(boardName)?.whereEqualTo("date", date.toLong())
             ?.whereEqualTo("email", email)?.get()?.addOnSuccessListener { result ->
-            Log.d("check", "date : ${date}, email : $email")
-            Log.d("check", "document : ${result.documents}")
-            var oneData = result.toObjects(BoardDTO::class.java).get(0)
-            reply_list = oneData.replies
-            Log.d("check", "oneData : $oneData")
+                Log.d("check", "date : ${date}, email : $email")
+                Log.d("check", "document : ${result.documents}")
+                var oneData = result.toObjects(BoardDTO::class.java).get(0)
+                reply_list = oneData.replies
+                Log.d("check", "oneData : $oneData")
 
-            var date_text = oneData.date!!.toString()
-            var title_text = oneData.title!!.toString()
-            var text_text = oneData.text!!.toString()
-            var like_text = oneData.like!!.toLong()
-            post_date.text = date_text.substring(0, 4) + "." + date_text.substring(
-                4,
-                6
-            ) + "." + date_text.substring(6, 8) + " " + date_text.substring(
-                8,
-                10
-            ) + ":" + date_text.substring(10, 12)
-            post_title.text = title_text
-            post_text.text = text_text
-            var size = email.substring(0,email.indexOf("@")).length
-            writer_email.text = email.replaceRange(1,email.indexOf("@"),"*")
-            //post_like.text = like_text.toString() + " Likes"
-            if (!reply_list.isNullOrEmpty()) {
-                for (document in reply_list!!) {
-                    dat.add(document)
+                var date_text = oneData.date!!.toString()
+                var title_text = oneData.title!!.toString()
+                var text_text = oneData.text!!.toString()
+                var like_text = oneData.like!!.toLong()
+                post_date.text = date_text.substring(0, 4) + "." + date_text.substring(
+                    4,
+                    6
+                ) + "." + date_text.substring(6, 8) + " " + date_text.substring(
+                    8,
+                    10
+                ) + ":" + date_text.substring(10, 12)
+                post_title.text = title_text
+                post_text.text = text_text
+                writer_email.text = email.replaceRange(1,email.indexOf("@"),"*")
+                //post_like.text = like_text.toString() + " Likes"
+                if (!reply_list.isNullOrEmpty()) {
+                    for (document in reply_list!!) {
+                        dat.add(document)
+                    }
+                    Log.d("firebase", "for문 끝")
+                    data = dat
+                    adapter?.listData = data
+                    post_recycle_view?.adapter = adapter
+                    post_recycle_view?.layoutManager = LinearLayoutManager(this)
                 }
-                Log.d("firebase", "for문 끝")
-                data = dat
-                adapter?.listData = data
-                post_recycle_view?.adapter = adapter
-                post_recycle_view?.layoutManager = LinearLayoutManager(this)
             }
-        }
     }
-    override fun onBackPressed(){
-        val intent = Intent(this, BoardPage::class.java)
-        intent.putExtra("BoardPage", boardname)
-        startActivity(intent)
-        finish()
-    }
+//    override fun onBackPressed(){
+//        val intent = Intent(this, BoardPage::class.java)
+//        intent.putExtra("BoardPage", boardname)
+//        startActivity(intent)
+//        finish()
+//    }
 
 }

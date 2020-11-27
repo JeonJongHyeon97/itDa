@@ -64,6 +64,7 @@
                     android:layout_height="match_parent"
                     android:hint="Email address"
                     android:inputType="textEmailAddress"
+                    android:maxLines="1"
                     android:paddingStart="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,6 +82,8 @@
                     android:layout_height="match_parent"
                     android:hint="password"
                     android:inputType="textPassword"
+                    android:maxLength="15"
+                    android:maxLines="1"
                     android:paddingStart="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
             <!-- Button -->

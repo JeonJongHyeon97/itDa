@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.login_page.*
 
 import kotlinx.android.synthetic.main.signup_page.*
 import kotlinx.android.synthetic.main.signup_page.email_edittext
@@ -80,7 +81,7 @@ class SignUp: AppCompatActivity() {
                     emailAddress, password,
                     name_edittext.text.toString(), sex, age, marital
                 )
-                firestore!!.collection("accounts").document().set(userDTO)
+                firestore!!.collection("accounts").document(emailAddress).set(userDTO)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             //Toast.makeText(this, "Sign complete!!", Toast.LENGTH_SHORT).show()

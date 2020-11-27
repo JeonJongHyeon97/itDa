@@ -14,7 +14,7 @@
 
 
         <FrameLayout
-            android:layout_width="411dp"
+            android:layout_width="match_parent"
             android:layout_height="33dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -65,7 +65,8 @@
                 android:layout_height="100dp"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="invisible">
 
                 <Button
                     android:id="@+id/cha_Btn"
@@ -75,7 +76,6 @@
                     android:text="수정"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:visibility="invisible"
                     app:backgroundTint="@color/redButton" />
 
                 <Button
@@ -86,7 +86,6 @@
                     android:text="삭제"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:visibility="invisible"
                     app:backgroundTint="@color/redButton" />
             </LinearLayout>
         </FrameLayout>

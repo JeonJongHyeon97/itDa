@@ -8,29 +8,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/nav_view"
-        android:layout_marginBottom="0dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/board_name"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:text="TextView"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
         <LinearLayout
-            android:id="@+id/search_layout"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="0"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
             <TextView
@@ -44,7 +27,7 @@
                 android:textColor="#000000"
                 android:textSize="18sp"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/board_search"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -53,8 +36,10 @@
                 android:background="@drawable/underline"
                 android:gravity="center_vertical"
                 android:hint="Please enter the word"
+                android:maxLength="10"
+                android:maxLines="1"
                 android:paddingStart="10dp"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <ImageButton
                 android:id="@+id/search_button"
@@ -117,18 +102,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/board_write"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:text="Write"
-            app:backgroundTint="@color/redButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </LinearLayout>
 

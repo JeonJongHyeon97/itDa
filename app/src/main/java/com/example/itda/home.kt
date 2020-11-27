@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -19,6 +20,7 @@ class home : Fragment() {
     var firestore : FirebaseFirestore?=null
     var name_list = mutableListOf<String?>()
     var definition_list = mutableListOf<String?>()
+    var Useremail = MyApplication.prefs.getString("email", "aaaaaa@naver.com")
     private lateinit var auth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +58,7 @@ class home : Fragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Toast.makeText(this, "sign in with $Useremail", Toast.LENGTH_SHORT).show()
         new_neologism_summary.setOnClickListener {
 
         }
@@ -64,7 +67,7 @@ class home : Fragment() {
         }
         new_neologism_summary.setOnClickListener {
             activity?.let {
-                val intent = Intent(context, neologism_page::class.java)
+                val intent = Intent(context, Neologism_page::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)
                 activity?.finish()

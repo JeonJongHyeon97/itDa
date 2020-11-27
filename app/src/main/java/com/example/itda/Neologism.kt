@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,16 +39,16 @@ class neologism : Fragment() {
             }
             Log.d("firebase", "for문 끝")
             data = dat
-            adapter?.listData = data
-            neologism_recycle?.adapter = adapter
-            neologism_recycle?.layoutManager = LinearLayoutManager(getContext())
+            adapter.listData = data
+            neologism_recycle.adapter = adapter
+            neologism_recycle.layoutManager = LinearLayoutManager(getContext())
         }
         return view
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         neologism_request.setOnClickListener{
-            val intent = Intent(getContext(),NeologismRequest::class.java)
+            val intent = Intent(getContext(), NeologismRequest::class.java)
             startActivity(intent)
         }
         search_layout.setOnClickListener {
@@ -58,10 +57,6 @@ class neologism : Fragment() {
                 startActivity(intent)
             }
         }
-
-
-
-
 
     }
 

@@ -53,34 +53,35 @@
         <TextView
             android:id="@+id/board_date"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="5dp"
-            android:layout_weight="1"
+            android:layout_weight="0.7"
             android:text="20.20.20"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/board_email"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="TextView"
-            android:visibility="invisible" />
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:textSize="12sp"
+            android:text="TextView" />
 
         <TextView
             android:id="@+id/reply_likes"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:gravity="start"
             android:text="1 likes"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/board_replies"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
             android:gravity="start"
             android:text="1 replies"
             android:textSize="12sp" />

@@ -25,6 +25,7 @@
 
 
     <color name="mainBackground">#FDF4EF</color>
+    <color name="lightButton">#D9A589</color>
     <color name="basicButton">#966161</color>
     <color name="dadrkButton">#603939</color>
     <color name="redButton">#D95454</color>

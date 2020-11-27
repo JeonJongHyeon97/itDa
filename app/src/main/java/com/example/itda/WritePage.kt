@@ -17,7 +17,7 @@ class WritePage: AppCompatActivity() {
     var firestore : FirebaseFirestore?=null
     private lateinit var auth: FirebaseAuth
     var boardDTO = BoardDTO()
-    var Useremail = MyApplication.prefs.getString("email", "no email")
+    var Useremail = MyApplication.prefs.getString("email", "aaaaaa@naver.com")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.write_post_page)
@@ -47,7 +47,7 @@ class WritePage: AppCompatActivity() {
                     time,
                     Useremail,
                     0,
-                    null,
+                    mutableListOf(),
                     write_text.text.toString(),
                     write_title.text.toString()
                 )

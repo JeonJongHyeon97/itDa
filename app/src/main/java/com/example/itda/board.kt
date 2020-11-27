@@ -50,6 +50,9 @@ class board : Fragment() {
                 startActivity(intent)
             }
         }
+        my_post.setOnClickListener {
+
+        }
     }
 }
 

@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.itda">
 
     <application
         android:allowBackup="true"
         android:name=".MyApplication"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/tab_itda"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity android:name=".HomePage" />
         <activity android:name=".BoardPage" />
         <activity android:name=".SearchNeologism" />
+        <activity android:name=".SearchBoard" />
         <activity android:name=".BoardDetail" />
         <activity android:name=".SignUp" />
         <activity android:name=".NeologismRequest" />
+        <activity android:name=".SearchBoardDetail" />
         <activity android:name=".WritePage" />
-        <activity android:name=".neologism_page" />
+        <activity android:name=".Neologism_page" />
+        <activity android:name=".AddImagePage" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

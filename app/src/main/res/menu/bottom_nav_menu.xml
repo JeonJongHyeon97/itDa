@@ -10,10 +10,10 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/board"
+        android:id="@+id/family_board"
         android:enabled="true"
         android:icon="@drawable/post"
-        android:title="@string/title_board"
+        android:title="Family Board"
         app:showAsAction="ifRoom" />
 
     <item
@@ -22,16 +22,18 @@
         android:icon="@drawable/ic_home"
         android:title="@string/title_home"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/board"
+        android:enabled="true"
+        android:icon="@drawable/post"
+        android:title="@string/title_board"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/neologism"
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@mipmap/ic_launcher_calendar"
         android:title="@string/title_neologism" />
-    <item
-        android:id="@+id/setting"
-        app:showAsAction="ifRoom"
-        android:enabled="true"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_setting" />
 </menu>

@@ -1,17 +1,20 @@
 package com.example.itda
 
+
+import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.neologism_page.nav_view
 
-class HomePage : AppCompatActivity() {
-    private val fragment_board by lazy {board()}
-    private val fragment_calendar by lazy {calendar()}
-    private val fragment_home by lazy {home()}
+
+class Neologism_page : AppCompatActivity()  {
+    private val fragment_board by lazy { board() }
+    private val fragment_calendar by lazy { calendar() }
+    private val fragment_home by lazy { home() }
     private val fragment_neologism by lazy { neologism() }
-    private val fragment_familyboard by lazy {FamilyboardFragment()}
+    private val fragment_setting by lazy { setting() }
     var time3: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +22,7 @@ class HomePage : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initNavigationBar()
     }
+
     private fun initNavigationBar() {
         nav_view.run {
             setOnNavigationItemSelectedListener {
@@ -27,7 +31,7 @@ class HomePage : AppCompatActivity() {
                         changeFragment(fragment_board)
                     }
                     R.id.family_board -> {
-                        changeFragment(fragment_familyboard)
+                        changeFragment(fragment_board)
                     }
                     R.id.calendar -> {
                         changeFragment(fragment_calendar)
@@ -44,7 +48,7 @@ class HomePage : AppCompatActivity() {
                 }
                 true
             }
-            selectedItemId = R.id.home
+            selectedItemId = R.id.neologism
         }
     }
     private fun changeFragment(fragment: Fragment) {
@@ -65,7 +69,3 @@ class HomePage : AppCompatActivity() {
         }
     }
 }
-
-
-
-

@@ -39,6 +39,8 @@
                 android:background="@drawable/underline"
                 android:hint="Please enter the word"
                 android:inputType="textPersonName"
+                android:maxLength="10"
+                android:maxLines="1"
                 android:paddingStart="10dp"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"

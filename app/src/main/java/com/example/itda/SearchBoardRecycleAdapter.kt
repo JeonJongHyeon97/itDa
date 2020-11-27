@@ -1,13 +1,19 @@
 package com.example.itda
 
+import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.board_recycle.view.*
+import kotlinx.android.synthetic.main.content_page.*
+import java.util.ArrayList
 
-class BoardRecycleAdapter : RecyclerView.Adapter<BoardRecycleAdapter.Holder>() {
+class SearchBoardRecycleAdapter : RecyclerView.Adapter<SearchBoardRecycleAdapter.Holder>() {
     var listData = mutableListOf<BoardDTO>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context)
@@ -27,37 +33,23 @@ class BoardRecycleAdapter : RecyclerView.Adapter<BoardRecycleAdapter.Holder>() {
         var inputData:BoardDTO? = null
         init {
             itemView.detail_post.setOnClickListener {
-                val intent = Intent(itemView.context, BoardDetail::class.java)
+                val intent = Intent(itemView.context,SearchBoardDetail::class.java)
                 intent.putExtra("BoardPage", listData.get(adapterPosition).boardName.toString())
                 intent.putExtra("WriteTime", listData.get(adapterPosition).date.toString())
                 intent.putExtra("Like", listData.get(adapterPosition).like.toString())
                 intent.putExtra("Date", listData.get(adapterPosition).date.toString())
                 intent.putExtra("Email", listData.get(adapterPosition).email.toString())
                 itemView.context.startActivity(intent)
-                (itemView.context as BoardPage).finish()
             }
         }
         //BoardDTO(var boardName:String?=null, var date:Long?=null, var email:String?=null, var like:Long?=null,
         // var reply:Map<String,String>?=null, var text:String?=null, var title:String?=null)
 
         fun setData(data: BoardDTO) {
-            if (data.date.toString().contains("@")) {
-                itemView.board_email.text = listData.get(adapterPosition).email.toString()
-                    .replaceRange(
-                        1,
-                        listData.get(adapterPosition).email.toString().indexOf("@"),
-                        "*"
-                    )
-            }else{
-                ""
-            }
+            itemView.board_email.text = listData.get(adapterPosition).email.toString().replaceRange(1,listData.get(adapterPosition).email.toString().indexOf("@"),"*")
             itemView.reply_title.text = data.title
             itemView.reply_text.text = data.text
-
-            itemView.board_date.text = data.date.toString().subSequence(2, 4).toString()+"."+data.date.toString().subSequence(
-                4,
-                6
-            ).toString()+"."+data.date.toString().subSequence(6, 8).toString()
+            itemView.board_date.text = data.date.toString().subSequence(2,4).toString()+"."+data.date.toString().subSequence(4,6).toString()+"."+data.date.toString().subSequence(6,8).toString()
             itemView.reply_likes.text = data.like.toString()+" likes"
             itemView.board_replies.text = if(data.replies.isNullOrEmpty()){
                 "0 replies"}else{
