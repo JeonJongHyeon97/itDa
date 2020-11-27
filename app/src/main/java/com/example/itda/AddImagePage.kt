@@ -20,7 +20,7 @@ import java.util.*
 class AddImagePage : AppCompatActivity() {
     var Useremail = MyApplication.prefs.getString("email", "no email")
     val PICK_IMAGE_FROM_ALBUM = 0
-
+    var downloadKey :String? = "null"
     var photoUri: Uri? = null
 
     var storage: FirebaseStorage? = null
@@ -30,13 +30,16 @@ class AddImagePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_images)
-
-        // Firebase storage
         storage = FirebaseStorage.getInstance()
-        // Firebase Database
         firestore = FirebaseFirestore.getInstance()
-        // Firebase Auth
         auth = FirebaseAuth.getInstance()
+        firestore!!.collection("accounts").whereEqualTo("Email", Useremail).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    var data = document.toObject(UserDTO::class.java)
+                    downloadKey = data.family
+                }
+            }
 
         val photoPickerIntent = Intent(Intent.ACTION_PICK)
         photoPickerIntent.type = "image/*"
@@ -109,7 +112,7 @@ class AddImagePage : AppCompatActivity() {
                         //이미지 주소
                         contentDTO.imageUrl = uri!!.toString()
                         //유저의 UID
-                        contentDTO.uid = "familyKey"
+                        contentDTO.uid = downloadKey
                         //게시물의 설명
                         contentDTO.explain = addphoto_edit_explain.text.toString()
                         //유저의 아이디

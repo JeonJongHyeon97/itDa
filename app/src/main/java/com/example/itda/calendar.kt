@@ -14,6 +14,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_calendar.*
+import kotlinx.android.synthetic.main.fragment_calendar.cha_Btn
+import kotlinx.android.synthetic.main.fragment_setting.*
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.text.DateFormat
@@ -26,7 +28,7 @@ class calendar : Fragment() {
     var firestore : FirebaseFirestore?=null
     private lateinit var auth: FirebaseAuth
     var Useremail = MyApplication.prefs.getString("email", "no email")
-    val host = "test@naver.com"
+    var downloadKey :String? = "null"
     var check = false
     var selectDay = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis())).toString()
     lateinit var list : Map<String,Any>
@@ -37,12 +39,19 @@ class calendar : Fragment() {
         var time = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis())).toString()
         auth= Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection("calendar")?.document(host)?.get()?.addOnSuccessListener { document ->
-            list = document.data as Map<String, Any>
-            Log.d("check", "list : $list")
-            Log.d("check", "document : ${document.data}")
-            checkSchedule(time)
-        }
+        firestore!!.collection("accounts").whereEqualTo("Email", Useremail).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    var data = document.toObject(UserDTO::class.java)
+                    downloadKey = data.family
+                }
+            }
+//        firestore?.collection("calendar")?.document(downloadKey)?.get()?.addOnSuccessListener { document ->
+//            list = document.data as Map<String, Any>
+//            Log.d("check", "list : $list")
+//            Log.d("check", "document : ${document.data}")
+//            checkSchedule(time)
+//        }
         return view
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -95,12 +104,12 @@ class calendar : Fragment() {
         if (text.isNullOrEmpty()){
             Toast.makeText( getContext(), "Please enter the content", Toast.LENGTH_SHORT).show()
         }else {
-            firestore!!.collection("calendar").document(host).update(data)
+            firestore!!.collection("calendar").document(downloadKey!!).update(data)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(getContext(), "Save complete!!", Toast.LENGTH_SHORT).show()
                     }
-                    firestore?.collection("calendar")?.document(host)?.get()
+                    firestore?.collection("calendar")?.document(downloadKey!!)?.get()
                         ?.addOnSuccessListener { document ->
                             list = document.data as Map<String, Any>
                             checkSchedule(Day)
@@ -118,11 +127,11 @@ class calendar : Fragment() {
 
     }
     fun delete(Day:String){
-        firestore?.collection("calendar")?.document(host)?.get()
+        firestore?.collection("calendar")?.document(downloadKey!!)?.get()
             ?.addOnSuccessListener { document ->
                 list = document.data as MutableMap<String, Any>
                 (list as MutableMap<String, Any>).remove(Day)
-                firestore!!.collection("calendar").document(host).set(list)
+                firestore!!.collection("calendar").document(downloadKey!!).set(list)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(getContext(), "Delete complete!!", Toast.LENGTH_SHORT).show()

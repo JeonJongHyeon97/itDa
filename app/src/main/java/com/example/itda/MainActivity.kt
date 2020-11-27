@@ -3,6 +3,7 @@ package com.example.itda
 
 import android.Manifest
 import android.app.Activity
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.login_page.*
 import kotlinx.android.synthetic.main.login_page.email_edittext
 import kotlinx.android.synthetic.main.login_page.password_edittext
 import kotlinx.android.synthetic.main.signup_page.*
-
+import java.util.Random
 
 class MainActivity : AppCompatActivity() {
     // Firebase Authentication 관리 클래스
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
 
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
         signup_button.setOnClickListener{
             val intent = Intent(this,SignUp::class.java)
             startActivity(intent)

@@ -25,7 +25,7 @@ import java.util.*
 
 class FamilyboardFragment : Fragment() {
     var Useremail = MyApplication.prefs.getString("email", "no email")
-
+    var downloadKey :String? = "null"
     var user: FirebaseUser? = null
     var firestore: FirebaseFirestore? = null
     var imagesSnapshot: ListenerRegistration? = null
@@ -38,7 +38,13 @@ class FamilyboardFragment : Fragment() {
         firestore = FirebaseFirestore.getInstance()
         okHttpClient = OkHttpClient()
 //        fcmPush = FcmPush()
-
+        firestore!!.collection("accounts").whereEqualTo("Email", Useremail).get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    var data = document.toObject(UserDTO::class.java)
+                    downloadKey = data.family
+                }
+            }
         //리사이클러 뷰와 어뎁터랑 연결
         mainView = inflater.inflate(R.layout.fragment_familyboard, container, false)
 
@@ -68,7 +74,7 @@ class FamilyboardFragment : Fragment() {
         init {
             contentDTOs = ArrayList()
             contentUidList = ArrayList()
-            getCotents("familyKey")
+            getCotents(downloadKey)
         }
 
         fun getCotents(familyKey: String?) {
@@ -122,6 +128,7 @@ class FamilyboardFragment : Fragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         write_btn.setOnClickListener {
             activity?.let {
                 val intent = Intent(context, AddImagePage::class.java)

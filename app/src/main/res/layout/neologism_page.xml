@@ -5,153 +5,144 @@
     android:layout_height="match_parent"
     android:background="@color/mainBackground">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom"
         android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/board_name2"
             android:layout_width="match_parent"
-            android:layout_height="658dp"
-            android:orientation="vertical">
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:text="Neologism dictionary"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/title_neologism"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:paddingStart="15dp"
-                android:text="Neologism Dictionary"
+                android:id="@+id/neologism_search_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="Search"
                 android:textColor="#000000"
-                android:textSize="30sp" />
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/neologism_search"
+                app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
 
-            <LinearLayout
-                android:id="@+id/search_layout"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="0"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/neologism_search_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="0.5"
-                    android:gravity="center"
-                    android:text="Search"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toStartOf="@+id/neologism_search"
-                    app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
-
-                <TextView
-                    android:id="@+id/neologism_search"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="7"
-                    android:background="@drawable/underline"
-                    android:gravity="center_vertical"
-                    android:hint="Please enter the word"
-                    android:paddingStart="10dp"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
-
-                <ImageButton
-                    android:id="@+id/search_button"
-                    style="@style/Widget.AppCompat.ImageButton"
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.3"
-                    android:scaleType="fitCenter"
-                    app:backgroundTint="#FFA000"
-                    app:srcCompat="@drawable/ic_search" />
-            </LinearLayout>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/neologism_recycle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:layout_weight="10"
-                app:layout_constraintBottom_toTopOf="@+id/neologism_request"
+            <TextView
+                android:id="@+id/neologism_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="7"
+                android:background="@drawable/underline"
+                android:gravity="center_vertical"
+                android:hint="Please enter the word"
+                android:paddingStart="10dp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/neologism_quiz" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <Button
-                    android:id="@+id/neologism_left_arrow"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="&lt;"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="@color/dadrkButton"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="6" />
-
-                <Button
-                    android:id="@+id/neologism_right_arrow"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="&gt;"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    app:backgroundTint="@color/dadrkButton"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/neologism_request"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_gravity="bottom|right"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:text="Request addition"
-                app:backgroundTint="@color/redButton"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/neologism_recycle" />
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/nav_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/dadrkButton"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:menu="@menu/bottom_nav_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
+            <ImageButton
+                android:id="@+id/search_button"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:scaleType="fitCenter"
+                app:backgroundTint="#FFA000"
+                app:srcCompat="@drawable/ic_search" />
         </LinearLayout>
 
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/neologism_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="10"
+            app:layout_constraintBottom_toTopOf="@+id/neologism_request"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/neologism_left_arrow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="&lt;"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/dadrkButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+
+            <Button
+                android:id="@+id/neologism_right_arrow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="&gt;"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                app:backgroundTint="@color/dadrkButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/neologism_request"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:text="Request addition"
+            app:backgroundTint="@color/redButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/neologism_recycle" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/dadrkButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/bottom_nav_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
     </LinearLayout>
+
 </RelativeLayout>

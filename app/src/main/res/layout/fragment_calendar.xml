@@ -13,6 +13,18 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:text="Family calendar"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -26,7 +38,8 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#EEE3DD"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <ScrollView
             android:layout_width="match_parent"

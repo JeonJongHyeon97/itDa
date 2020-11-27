@@ -8,18 +8,42 @@
     android:background="@color/mainBackground">
 
 
-    <ImageView
-        android:id="@+id/imageView"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#FEEADE"
-        android:paddingStart="20dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tab_itda" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FEEADE"
+            android:textSize="0sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="10"
+            android:background="#FEEADE"
+            android:paddingTop="8dp"
+            android:paddingEnd="1dp"
+            android:paddingBottom="8dp"
+            app:srcCompat="@drawable/tab_itda" />
+
+        <ImageView
+            android:id="@+id/setting_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FEEADE"
+            app:srcCompat="@mipmap/ic_launcher_setting_foreground" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="0dp"
@@ -27,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <LinearLayout
             android:layout_width="match_parent"

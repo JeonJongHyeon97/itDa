@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.login_page.*
 import kotlinx.android.synthetic.main.signup_page.*
 import kotlinx.android.synthetic.main.signup_page.email_edittext
 import kotlinx.android.synthetic.main.signup_page.password_edittext
-
+import java.util.Random
 
 class SignUp: AppCompatActivity() {
     //firebase 선언
@@ -77,9 +77,11 @@ class SignUp: AppCompatActivity() {
                     marital = false
                 }
                 age = 2020 - year_spinner.getSelectedItem().toString().toInt() + 1
+                var familyKey = getRandomString(10)
+
                 userDTO = UserDTO(
                     emailAddress, password,
-                    name_edittext.text.toString(), sex, age, marital
+                    name_edittext.text.toString(), sex, age, marital, familyKey
                 )
                 firestore!!.collection("accounts").document(emailAddress).set(userDTO)
                     .addOnCompleteListener { task ->
@@ -105,7 +107,13 @@ class SignUp: AppCompatActivity() {
         }
 
 
-        }
+    }
+    fun getRandomString(length: Int) : String {
+        val charset = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+        return (1..length)
+            .map { charset.random() }
+            .joinToString("")
+    }
 
 
 
@@ -122,6 +130,7 @@ class SignUp: AppCompatActivity() {
                     Toast.makeText(this,
                         "Sign-up complete!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this,MainActivity::class.java)
+                    MyApplication.prefs.setString("email", emailAddress)
                     startActivity(intent)
                     finish()
                 } else if (task.exception?.message.isNullOrEmpty()) {

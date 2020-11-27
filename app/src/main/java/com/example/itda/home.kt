@@ -16,6 +16,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
+
 class home : Fragment() {
     var firestore : FirebaseFirestore?=null
     var name_list = mutableListOf<String?>()
@@ -28,6 +29,7 @@ class home : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
         auth= Firebase.auth
         firestore = FirebaseFirestore.getInstance()
         firestore?.collection("neologism")?.orderBy(
@@ -55,15 +57,16 @@ class home : Fragment() {
             Log.d("firebase", "for문 끝")
         }
         return view
+        setting_button!!.bringToFront()
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Toast.makeText(requireContext(), "sign in with $Useremail", Toast.LENGTH_SHORT).show()
-        new_neologism_summary.setOnClickListener {
 
-        }
-        today_summary.setOnClickListener {
-
+        setting_button.setOnClickListener {
+            activity?.getSupportFragmentManager()
+                ?.beginTransaction()
+                ?.replace(R.id.nav_host_fragment, setting())
+                ?.commit();
         }
         new_neologism_summary.setOnClickListener {
             activity?.let {
