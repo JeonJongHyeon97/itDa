@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <activity android:name=".HomePage" />
-        <activity android:name=".setting" />
+        <activity android:name=".SettingPage" />
         <activity android:name=".BoardPage" />
         <activity android:name=".SearchNeologism" />
         <activity android:name=".SearchBoard" />

@@ -3,64 +3,59 @@ package com.example.itda
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_setting.*
 
-
-class setting: Fragment() {
+class SettingPage: AppCompatActivity() {
     var firestore: FirebaseFirestore? = null
     private lateinit var auth: FirebaseAuth
     var Useremail = MyApplication.prefs.getString("email", "aaaaaa@naver.com")
     var downloadKey:String? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_setting, container, false)
-
-        return view
-
-    }
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    // Firebase Authentication 관리 클래스
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_setting)
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
         login_email.text = Useremail
-
-        firestore!!.collection("accounts").whereEqualTo("Email", Useremail).get()
+        Log.d("Family", "진입1")
+        entered_familykey.text = "downloadKey"
+        firestore!!.collection("accounts").whereEqualTo("email", Useremail).get()
             .addOnSuccessListener { documents ->
+                var name_list = mutableListOf<String?>()
+                Log.d("Family", "진입2")
                 for (document in documents) {
                     var data = document.toObject(UserDTO::class.java)
-                    downloadKey=data.family.toString()
-                    Log.d("Family", "$downloadKey")
-                    entered_familykey.text = downloadKey
-
+//                    downloadKey=data.family.toString()
+//                    Log.d("Family", "$downloadKey")
+//                    entered_familykey.text = "downloadKey"
+                    name_list.add(data.family)
                 }
+                Log.d("Family", "$name_list[0]")
+                entered_familykey?.text=name_list[0]
             }
+
 
         logout_btn.setOnClickListener {
             auth.signOut()
-            Toast.makeText(requireContext(), "Log out complete !", Toast.LENGTH_SHORT).show()
-            activity?.let {
-                val intent = Intent(context, MainActivity::class.java)
-                startActivity(intent)
-                activity?.finish()
-            }
+            Toast.makeText(this, "Log out complete !", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
+
 
         cha_Btn.setOnClickListener {
             family_key.setText(downloadKey)
-            entered_familykey.visibility=View.INVISIBLE
-            family_key.visibility=View.VISIBLE
+            entered_familykey.visibility= View.INVISIBLE
+            family_key.visibility= View.VISIBLE
         }
 
         save_btn.setOnClickListener {
@@ -69,13 +64,15 @@ class setting: Fragment() {
             firestore!!.collection("accounts").document(Useremail).update(input as Map<String, Any>)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(requireContext(), "Family Key is Changed !", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Family Key is Changed !", Toast.LENGTH_SHORT).show()
                         downloadKey=newKey
                         entered_familykey.text=newKey
-                        entered_familykey.visibility=View.VISIBLE
-                        family_key.visibility=View.INVISIBLE
+                        entered_familykey.visibility= View.VISIBLE
+                        family_key.visibility= View.INVISIBLE
                     }
                 }
         }
     }
+
+
 }

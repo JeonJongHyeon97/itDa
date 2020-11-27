@@ -80,7 +80,7 @@
                 android:layout_gravity="top"
                 android:layout_weight="1"
                 android:hint="Please enter Key."
-                android:inputType="textMultiLine"
+                android:inputType="textPersonName"
                 android:visibility="invisible" />
 
             <TextView
@@ -90,6 +90,8 @@
                 android:layout_gravity="top"
                 android:layout_weight="1"
                 android:padding="10dp"
+                android:textColor="#000000"
+                android:text="#000000"
                 android:textSize="18sp"
                 android:visibility="visible" />
         </FrameLayout>

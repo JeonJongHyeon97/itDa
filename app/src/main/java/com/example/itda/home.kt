@@ -19,8 +19,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class home : Fragment() {
     var firestore : FirebaseFirestore?=null
-    var name_list = mutableListOf<String?>()
-    var definition_list = mutableListOf<String?>()
     var Useremail = MyApplication.prefs.getString("email", "aaaaaa@naver.com")
     private lateinit var auth: FirebaseAuth
     override fun onCreateView(
@@ -32,11 +30,10 @@ class home : Fragment() {
 
         auth= Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection("neologism")?.orderBy(
-            "date",
-            Query.Direction.DESCENDING
-        )?.get()?.addOnSuccessListener { result ->
+        firestore?.collection("neologism")?.orderBy("date",Query.Direction.DESCENDING)?.get()?.addOnSuccessListener { result ->
             Log.d("firebase", "진입은 성공")
+            var name_list = mutableListOf<String?>()
+            var definition_list = mutableListOf<String?>()
             for (document in result) {
                 Log.d("asdf", "${document.id} => ${document.data}")
                 var oneData = document.toObject(NeologismData::class.java)
@@ -56,17 +53,69 @@ class home : Fragment() {
             neologism_text4?.text=definition_list[3]
             Log.d("firebase", "for문 끝")
         }
+        firestore?.collection("father")?.orderBy("date",Query.Direction.DESCENDING)?.get()?.addOnSuccessListener { result ->
+            Log.d("firebase", "진입은 성공")
+            var name_list = mutableListOf<String?>()
+            var definition_list = mutableListOf<String?>()
+            for (document in result) {
+                Log.d("asdf", "${document.id} => ${document.data}")
+                var oneData = document.toObject(BoardDTO::class.java)
+                println(oneData)
+                Log.d("firebase", "for문 돌아가는중")
+                name_list.add(oneData.title)
+            }
+            today_title1?.text=name_list[0]
+        }
+        firestore?.collection("mother")?.orderBy("date",Query.Direction.DESCENDING)?.get()?.addOnSuccessListener { result ->
+            Log.d("firebase", "진입은 성공")
+            var name_list = mutableListOf<String?>()
+            var definition_list = mutableListOf<String?>()
+            for (document in result) {
+                Log.d("asdf", "${document.id} => ${document.data}")
+                var oneData = document.toObject(BoardDTO::class.java)
+                println(oneData)
+                Log.d("firebase", "for문 돌아가는중")
+                name_list.add(oneData.title)
+            }
+            today_title2?.text=name_list[1]
+        }
+        firestore?.collection("grandparents")?.orderBy("date",Query.Direction.DESCENDING)?.get()?.addOnSuccessListener { result ->
+            Log.d("firebase", "진입은 성공")
+            var name_list = mutableListOf<String?>()
+            var definition_list = mutableListOf<String?>()
+            for (document in result) {
+                Log.d("asdf", "${document.id} => ${document.data}")
+                var oneData = document.toObject(BoardDTO::class.java)
+                println(oneData)
+                Log.d("firebase", "for문 돌아가는중")
+                name_list.add(oneData.title)
+            }
+            today_title3?.text=name_list[2]
+        }
+        firestore?.collection("brother")?.orderBy("date",Query.Direction.DESCENDING)?.get()?.addOnSuccessListener { result ->
+            Log.d("firebase", "진입은 성공")
+            var name_list = mutableListOf<String?>()
+            var definition_list = mutableListOf<String?>()
+            for (document in result) {
+                Log.d("asdf", "${document.id} => ${document.data}")
+                var oneData = document.toObject(BoardDTO::class.java)
+                println(oneData)
+                Log.d("firebase", "for문 돌아가는중")
+                name_list.add(oneData.title)
+            }
+            today_title4?.text=name_list[3]
+        }
         return view
-        setting_button!!.bringToFront()
+
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         setting_button.setOnClickListener {
-            activity?.getSupportFragmentManager()
-                ?.beginTransaction()
-                ?.replace(R.id.nav_host_fragment, setting())
-                ?.commit();
+            activity?.let {
+                val intent = Intent(context, SettingPage::class.java)
+                startActivity(intent)
+            }
         }
         new_neologism_summary.setOnClickListener {
             activity?.let {
