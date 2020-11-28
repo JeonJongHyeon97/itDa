@@ -13,7 +13,7 @@
         android:id="@+id/family_board"
         android:enabled="true"
         android:icon="@drawable/family"
-        android:title="Family Board"
+        android:title="Family diary"
         app:showAsAction="ifRoom" />
 
     <item
