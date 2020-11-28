@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/write_page"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="0.7"
+            android:gravity="center"
+            android:text="Request new board"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@+id/write_cancel" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="270dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@color/basicButton" />
+
+        <EditText
+            android:id="@+id/write_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/underline"
+            android:hint="Title"
+            android:inputType="textPersonName"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:singleLine="true"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/write_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="8"
+            android:background="@drawable/border_layout"
+            android:gravity="top"
+            android:hint="Content"
+            android:inputType="textMultiLine"
+            android:maxLines="20"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/layoutt"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/write_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="X"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/redButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" />
+
+            <Button
+                android:id="@+id/write_complete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="O"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:backgroundTint="#0097A7"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

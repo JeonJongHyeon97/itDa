@@ -53,7 +53,7 @@ class BoardRecycleAdapter : RecyclerView.Adapter<BoardRecycleAdapter.Holder>() {
             }
             itemView.reply_title.text = data.title
             itemView.reply_text.text = data.text
-
+            itemView.board_email.text = data.email.toString().replaceRange(1,data.email.toString().indexOf("@"),"*")
             itemView.board_date.text = data.date.toString().subSequence(2, 4).toString()+"."+data.date.toString().subSequence(
                 4,
                 6

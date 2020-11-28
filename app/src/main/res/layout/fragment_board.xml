@@ -15,7 +15,8 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/tabName"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
             android:text="Bulletin Board"
@@ -56,20 +57,19 @@
                 android:id="@+id/my_reply"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
                 android:text="My reply"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/hot_post"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center_vertical"
@@ -88,7 +88,8 @@
                 android:paddingStart="10dp"
                 android:text="Best post"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -116,7 +117,7 @@
                 android:layout_marginBottom="20dp"
                 android:text="Ask a Family !"
                 android:textColor="#000000"
-                android:textSize="30sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/view1"
                 app:layout_constraintTop_toTopOf="@+id/view1" />

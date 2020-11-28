@@ -23,7 +23,8 @@
     <color name="colorNavIcon">#1d1d1d</color>
 
 
-
+    #FEEADE
+    <color name="tabName">#FEEADE</color>
     <color name="mainBackground">#FDF4EF</color>
     <color name="lightButton">#2B2B2B</color>
     <color name="basicButton">#966161</color>

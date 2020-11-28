@@ -4,7 +4,7 @@
     <item
         android:id="@+id/calendar"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher_calendar_foreground"
+        android:icon="@drawable/calendar"
         android:roundIcon="@mipmap/ic_launcher_calendar2_round"
         android:title="@string/title_calendar"
         app:showAsAction="ifRoom" />
@@ -12,7 +12,7 @@
     <item
         android:id="@+id/family_board"
         android:enabled="true"
-        android:icon="@drawable/post"
+        android:icon="@drawable/family"
         android:title="Family Board"
         app:showAsAction="ifRoom" />
 
@@ -26,7 +26,7 @@
     <item
         android:id="@+id/board"
         android:enabled="true"
-        android:icon="@drawable/post"
+        android:icon="@drawable/baseline_article_black_18dp"
         android:title="@string/title_board"
         app:showAsAction="ifRoom" />
 
@@ -34,6 +34,6 @@
         android:id="@+id/neologism"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher_calendar"
+        android:icon="@drawable/baseline_menu_book_black_18dp"
         android:title="@string/title_neologism" />
 </menu>

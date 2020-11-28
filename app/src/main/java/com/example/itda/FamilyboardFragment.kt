@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 import com.squareup.okhttp.OkHttpClient
 import kotlinx.android.synthetic.main.family_board_recycle.view.*
 import kotlinx.android.synthetic.main.fragment_familyboard.*
@@ -78,7 +79,7 @@ class FamilyboardFragment : Fragment() {
         }
 
         fun getCotents(familyKey: String?) {
-            imagesSnapshot = firestore?.collection("images")?.orderBy("timestamp")?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            imagesSnapshot = firestore?.collection("images")?.orderBy("timestamp", Query.Direction.DESCENDING)?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 contentDTOs.clear()
                 contentUidList.clear()
                 if (querySnapshot == null) return@addSnapshotListener

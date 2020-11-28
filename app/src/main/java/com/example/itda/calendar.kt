@@ -2,6 +2,7 @@ package com.example.itda
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.AndroidRuntimeException
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_calendar.cha_Btn
 import kotlinx.android.synthetic.main.fragment_setting.*
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.lang.NullPointerException
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -28,10 +30,10 @@ class calendar : Fragment() {
     var firestore : FirebaseFirestore?=null
     private lateinit var auth: FirebaseAuth
     var Useremail = MyApplication.prefs.getString("email", "no email")
-    var downloadKey :String = "null"
+    var downloadKey :String? = "null"
     var check = false
     var selectDay = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis())).toString()
-    lateinit var list : Map<String,Any>
+    var list : Map<String,Any> = mutableMapOf("contents" to "20")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -39,19 +41,35 @@ class calendar : Fragment() {
         var time = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis())).toString()
         auth= Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore!!.collection("accounts").whereEqualTo("Email", Useremail).get()
+        Log.d("check", "Useremail : $Useremail")
+        firestore!!.collection("accounts").whereEqualTo("email", Useremail).get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     var data = document.toObject(UserDTO::class.java)
-                    downloadKey = data.family.toString()
+                    downloadKey = data.family
+                    Log.d("check", "downloadKey 세팅 완료 : $downloadKey")
+                }
+                firestore?.collection("calendar")?.document(downloadKey!!)?.get()?.addOnSuccessListener { document ->
+                    Log.d("check", "dada size : ${document.data?.size}")
+                    try{
+                        list = document.data as Map<String, Any>
+                        Log.d("check", "list : $list")
+                        Log.d("check", "document : ${document.data}")
+                        checkSchedule(time)
+                    } catch(e:AndroidRuntimeException ) {
+                        firestore!!.collection("calendar").document(downloadKey!!)
+                            .set(mutableMapOf("20" to list))
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Log.d("check", "$downloadKey")
+                                    Log.d("check", "첫글 작성")
+                                }
+                            }
+                    }
                 }
             }
-        firestore?.collection("calendar")?.document(downloadKey)?.get()?.addOnSuccessListener { document ->
-            list = document.data as Map<String, Any>
-            Log.d("check", "list : $list")
-            Log.d("check", "document : ${document.data}")
-            checkSchedule(time)
-        }
+
+
         return view
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -90,7 +108,7 @@ class calendar : Fragment() {
             check=true
             buttonSetup(check)
         }else{
-            textView2.text="일정을 기입해주세요."
+            textView2?.text="일정을 기입해주세요."
             check=false
             buttonSetup(check)
         }
@@ -147,46 +165,15 @@ class calendar : Fragment() {
 
     fun buttonSetup(check:Boolean){
         if (check) {
-            save_Btn_setting.visibility = View.INVISIBLE
-            contextEditText.visibility = View.INVISIBLE
-            cha_Btn.visibility = View.VISIBLE
-            del_Btn.visibility = View.VISIBLE
+            save_Btn_setting?.visibility = View.INVISIBLE
+            contextEditText?.visibility = View.INVISIBLE
+            cha_Btn?.visibility = View.VISIBLE
+            del_Btn?.visibility = View.VISIBLE
         }else{
-            save_Btn_setting.visibility = View.VISIBLE
-            contextEditText.visibility = View.VISIBLE
-            cha_Btn.visibility = View.INVISIBLE
-            del_Btn.visibility = View.INVISIBLE
-        }
-    }
-
-    @SuppressLint("WrongConstant")
-    fun saveDiary(readyDay: String) {
-        var fos: FileOutputStream? = null
-
-        try {
-//            fos = openFileOutput(readyDay, AppCompatActivity.MODE_NO_LOCALIZED_COLLATORS)
-            var content: String = contextEditText.getText().toString()
-//            fos.write(content.toByteArray())
-//            fos.close()
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-    }
-
-    @SuppressLint("WrongConstant")
-    fun removeDiary(readyDay: String) {
-        var fos: FileOutputStream? = null
-
-        try {
-//            fos = openFileOutput(readyDay, AppCompatActivity.MODE_NO_LOCALIZED_COLLATORS)
-            var content: String = ""
-//            fos.write(content.toByteArray())
-//            fos.close()
-
-        } catch (e: Exception) {
-            e.printStackTrace()
+            save_Btn_setting?.visibility = View.VISIBLE
+            contextEditText?.visibility = View.VISIBLE
+            cha_Btn?.visibility = View.INVISIBLE
+            del_Btn?.visibility = View.INVISIBLE
         }
     }
 

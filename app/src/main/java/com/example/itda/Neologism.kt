@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_neologism.*
 
@@ -28,7 +29,8 @@ class neologism : Fragment() {
         var dat:MutableList<NeologismData> = mutableListOf()
         auth= Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection("neologism")?.get()?.addOnSuccessListener { result ->
+        firestore?.collection("neologism")?.orderBy("date",
+            Query.Direction.DESCENDING)?.get()?.addOnSuccessListener { result ->
             Log.d("firebase", "진입은 성공")
             for (document in result) {
                 Log.d("asdf", "${document.id} => ${document.data}")
@@ -40,8 +42,8 @@ class neologism : Fragment() {
             Log.d("firebase", "for문 끝")
             data = dat
             adapter.listData = data
-            neologism_recycle.adapter = adapter
-            neologism_recycle.layoutManager = LinearLayoutManager(getContext())
+            neologism_recycle?.adapter = adapter
+            neologism_recycle?.layoutManager = LinearLayoutManager(getContext())
         }
         return view
     }

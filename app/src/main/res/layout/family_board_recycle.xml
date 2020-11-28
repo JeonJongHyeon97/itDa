@@ -8,6 +8,12 @@
     android:orientation="vertical">
     <!-- Title Layout -->
 
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dadrkButton" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,6 +52,16 @@
 
     <!-- favorite & comment -->
 
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="2dp"
+        android:background="#8B8B8B"
+        android:paddingStart="5dp" />
+
     <TextView
         android:id="@+id/detailviewitem_title_textview"
         android:layout_width="match_parent"
@@ -62,17 +78,12 @@
         android:id="@+id/detailviewitem_explain_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="25dp"
         android:textColor="#000000"
         android:textSize="18sp"
         tools:text="사진 내용" />
 
-    <View
-        android:id="@+id/divider9"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginBottom="10dp"
-        android:background="#FF000000" />
 </LinearLayout>

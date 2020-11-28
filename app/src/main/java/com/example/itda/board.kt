@@ -53,6 +53,12 @@ class board : Fragment() {
         my_post.setOnClickListener {
 
         }
+        create_board.setOnClickListener {
+            activity?.let {
+                val intent = Intent(context, RequestNewBoard::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }
 

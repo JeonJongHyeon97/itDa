@@ -13,20 +13,22 @@
         <TextView
             android:id="@+id/title_neologism"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:paddingStart="15dp"
-            android:text="Neologism Dictionary"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/tabName"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
             android:textColor="#000000"
-            android:textSize="30sp" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="Neologism Dictionary"/>
 
         <LinearLayout
             android:id="@+id/search_layout"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_weight="0"
             android:orientation="horizontal">
 
