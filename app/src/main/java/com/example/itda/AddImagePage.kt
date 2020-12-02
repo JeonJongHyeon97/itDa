@@ -137,19 +137,3 @@ class AddImagePage : AppCompatActivity() {
 
 
 }
-
-
-
-
-    val storageRef = storage?.reference?.child("images")?.child(imageFileName)
-    if (storageRef != null) {
-        storageRef.putFile(photoUri!!).continueWithTask { task->
-            if (!task.isSuccessful) {
-                task.exception?.let {
-                    throw it
-                }
-            }
-            storageRef.downloadUrl
-        }
-    }
-
