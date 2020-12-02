@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.board_recycle.view.*
 
-class BoardRecycleAdapter : RecyclerView.Adapter<BoardRecycleAdapter.Holder>() {
+class HotpostRecycleAdapter : RecyclerView.Adapter<HotpostRecycleAdapter.Holder>() {
     var listData = mutableListOf<BoardDTO>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context)
@@ -29,13 +29,12 @@ class BoardRecycleAdapter : RecyclerView.Adapter<BoardRecycleAdapter.Holder>() {
             itemView.detail_post.setOnClickListener {
                 val intent = Intent(itemView.context, BoardDetail::class.java)
                 intent.putExtra("BoardPage", listData.get(adapterPosition).boardName.toString())
-                intent.putExtra("From", "board")
+                intent.putExtra("From", "Mypost")
                 intent.putExtra("WriteTime", listData.get(adapterPosition).date.toString())
                 intent.putExtra("Like", listData.get(adapterPosition).like.toString())
                 intent.putExtra("Date", listData.get(adapterPosition).date.toString())
                 intent.putExtra("Email", listData.get(adapterPosition).email.toString())
                 itemView.context.startActivity(intent)
-                (itemView.context as BoardPage).finish()
             }
         }
         //BoardDTO(var boardName:String?=null, var date:Long?=null, var email:String?=null, var like:Long?=null,
@@ -60,10 +59,7 @@ class BoardRecycleAdapter : RecyclerView.Adapter<BoardRecycleAdapter.Holder>() {
                 6
             ).toString()+"."+data.date.toString().subSequence(6, 8).toString()
             itemView.reply_likes.text = data.like.toString()+" likes"
-            itemView.board_replies.text = if(data.replies.isNullOrEmpty()){
-                "0 replies"}else{
-                data.replies?.size.toString()+" replies"
-            }
+            itemView.board_replies.text = "Ask a "+ data.boardName
             this.inputData =data
         }
     }

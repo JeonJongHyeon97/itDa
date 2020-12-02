@@ -41,7 +41,6 @@
             android:background="@drawable/underline"
             android:hint="Title"
             android:inputType="textPersonName"
-            android:maxLength="25"
             android:maxLines="1"
             android:padding="10dp"
             android:singleLine="true"

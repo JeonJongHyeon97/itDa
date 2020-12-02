@@ -51,7 +51,8 @@
                 android:rotationY="0"
                 android:text="My post"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/my_reply"
@@ -76,7 +77,8 @@
                 android:paddingStart="10dp"
                 android:text="Hot post"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/best_post"

@@ -52,7 +52,13 @@ class board : Fragment() {
         }
         my_post.setOnClickListener {
             activity?.let {
-                val intent = Intent(context, BoardPage::class.java)
+                val intent = Intent(context, MyPostPage::class.java)
+                startActivity(intent)
+            }
+        }
+        hot_post.setOnClickListener {
+            activity?.let {
+                val intent = Intent(context, HotpostPage::class.java)
                 startActivity(intent)
             }
         }

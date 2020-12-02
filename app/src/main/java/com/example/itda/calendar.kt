@@ -51,6 +51,20 @@ class calendar : Fragment() {
                 }
                 firestore?.collection("calendar")?.document(downloadKey!!)?.get()?.addOnSuccessListener { document ->
                     Log.d("check", "dada size : ${document.data?.size}")
+                    if (document.data?.size == null) {
+                        firestore!!.collection("calendar").document(downloadKey!!)
+                            .set(mutableMapOf("20" to list))
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Log.d("check", "$downloadKey")
+                                    Log.d("check", "첫글 작성")
+                                }
+                            }
+                    }
+
+                }
+                firestore?.collection("calendar")?.document(downloadKey!!)?.get()?.addOnSuccessListener { document ->
+                    Log.d("check", "dada size : ${document.data?.size}")
                     try{
                         list = document.data as Map<String, Any>
                         Log.d("check", "list : $list")
@@ -66,6 +80,8 @@ class calendar : Fragment() {
                                 }
                             }
                     }
+
+
                 }
             }
 
@@ -80,7 +96,8 @@ class calendar : Fragment() {
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             Log.d("check", "$year,${month+1},$dayOfMonth")
             calendar.set(year,month,dayOfMonth)
-            selectDay = year.toString()+(month+1).toString().format("%02d")+dayOfMonth.toString().format("%02d")
+            selectDay = year.toString()+(month+1).toString().format("%2d")+dayOfMonth.toString().format("%2d")
+            Log.d("check", "$selectDay")
             checkSchedule(selectDay)
         }
 

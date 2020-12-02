@@ -22,18 +22,19 @@ class BoardDetail : AppCompatActivity() {
     lateinit var list: Map<String, Any?>
     var boardname = ""
     lateinit var data: MutableList<String?>
-
+    var from:String? = null
     var reply_list :MutableList<String?>? = null
     var useremail = MyApplication.prefs.getString("email", "no email")
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_page)
-
+        from = intent.getStringExtra("From")!!.toString()
         val date = intent.getStringExtra("Date")!!.toString()
         val email = intent.getStringExtra("Email")!!.toString()
         val boardName = intent.getStringExtra("BoardPage")!!.toString()
         boardname = boardName
+        Log.d("myPost", "$boardName")
         val writeTime = intent.getStringExtra("WriteTime")!!.toString()
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
@@ -48,6 +49,13 @@ class BoardDetail : AppCompatActivity() {
             var input = mutableMapOf<String,MutableList<String?>?>("replies" to reply_list)
             firestore!!.collection(boardName).document(writeTime).update(input as Map<String, Any>)
                 .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Write reply complete!!", Toast.LENGTH_SHORT).show()
+                        checkReply(boardName, date, email)
+                        reply_box.setText(null)
+                    }
+                }
+            firestore!!.collection("totalBoard").document(writeTime).update(input as Map<String, Any>).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Write reply complete!!", Toast.LENGTH_SHORT).show()
                         checkReply(boardName, date, email)
@@ -99,10 +107,13 @@ class BoardDetail : AppCompatActivity() {
         }
     }
     override fun onBackPressed(){
-        val intent = Intent(this, BoardPage::class.java)
-        intent.putExtra("BoardPage", boardname)
-        startActivity(intent)
-        finish()
+        if (from == "Mypost"){
+            finish()
+        }else{
+            val intent = Intent(this, BoardPage::class.java)
+            intent.putExtra("BoardPage", boardname)
+            startActivity(intent)
+            finish()
+        }
     }
-
 }

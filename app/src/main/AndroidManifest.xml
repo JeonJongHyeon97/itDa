@@ -20,7 +20,9 @@
         <activity android:name=".SearchBoard" />
         <activity android:name=".BoardDetail" />
         <activity android:name=".SignUp" />
+        <activity android:name=".HotpostPage" />
         <activity android:name=".NeologismRequest" />
+        <activity android:name=".MyPostPage" />
         <activity android:name=".SearchBoardDetail" />
         <activity android:name=".WritePage" />
         <activity android:name=".Neologism_page" />

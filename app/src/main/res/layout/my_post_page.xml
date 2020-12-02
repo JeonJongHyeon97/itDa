@@ -20,54 +20,11 @@
             android:background="@color/tabName"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
-            android:text="Bulletin Board"
+            android:text="My post"
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold" />
 
-
-
-        <LinearLayout
-            android:id="@+id/search_layout"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="0"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/boardsearch_text"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:text="Search"
-                android:textColor="#000000"
-                android:textSize="18sp"/>
-
-            <TextView
-                android:id="@+id/board_search"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="7"
-                android:background="@drawable/underline"
-                android:gravity="center_vertical"
-                android:hint="Please enter the word"
-                android:paddingStart="10dp"
-                android:textSize="18sp"/>
-
-            <ImageButton
-                android:id="@+id/search_button"
-                style="@style/Widget.AppCompat.ImageButton"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:scaleType="fitCenter"
-                app:backgroundTint="#FFA000"
-                app:srcCompat="@drawable/ic_search" />
-        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/board_recycle_view"
@@ -119,18 +76,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/board_write"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:text="Write"
-            app:backgroundTint="@color/redButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </LinearLayout>
 

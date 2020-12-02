@@ -34,18 +34,11 @@ class FamilyboardFragment : Fragment() {
     //    var fcmPush: FcmPush? = null
     var mainView: View? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+        Log.d("Family","$Useremail")
         user = FirebaseAuth.getInstance().currentUser
         firestore = FirebaseFirestore.getInstance()
         okHttpClient = OkHttpClient()
 //        fcmPush = FcmPush()
-        firestore!!.collection("accounts").whereEqualTo("Email", Useremail).get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    var data = document.toObject(UserDTO::class.java)
-                    downloadKey = data.family
-                }
-            }
         //리사이클러 뷰와 어뎁터랑 연결
         mainView = inflater.inflate(R.layout.fragment_familyboard, container, false)
 
@@ -75,25 +68,36 @@ class FamilyboardFragment : Fragment() {
         init {
             contentDTOs = ArrayList()
             contentUidList = ArrayList()
-            getCotents(downloadKey)
+            getCotents()
         }
 
-        fun getCotents(familyKey: String?) {
-            imagesSnapshot = firestore?.collection("images")?.orderBy("timestamp", Query.Direction.DESCENDING)?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-                contentDTOs.clear()
-                contentUidList.clear()
-                if (querySnapshot == null) return@addSnapshotListener
-                for (snapshot in querySnapshot!!.documents) {
-                    var item = snapshot.toObject(ContentDTO::class.java)!!
-                    println(item.uid)
-                    if (familyKey==item.uid) {
-                        Log.d("upload image","성공")
-                        contentDTOs.add(item)
-                        contentUidList.add(snapshot.id)
+        fun getCotents() {
+            firestore!!.collection("accounts").whereEqualTo("email", Useremail).get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        var data = document.toObject(UserDTO::class.java)
+                        downloadKey = data.family
+                        Log.d("Family", "처음 downloadKey 설정 : $downloadKey")
                     }
+                    imagesSnapshot = firestore?.collection("images")
+                        ?.orderBy("timestamp", Query.Direction.DESCENDING)
+                        ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                            contentDTOs.clear()
+                            contentUidList.clear()
+                            if (querySnapshot == null) return@addSnapshotListener
+                            for (snapshot in querySnapshot!!.documents) {
+                                var item = snapshot.toObject(ContentDTO::class.java)!!
+                                println(item.uid)
+                                Log.d("Family", "downloadKey 설정 : ${item.uid},$downloadKey")
+                                if (downloadKey == item.uid) {
+                                    Log.d("upload image", "성공")
+                                    contentDTOs.add(item)
+                                    contentUidList.add(snapshot.id)
+                                }
+                            }
+                            notifyDataSetChanged()
+                        }
                 }
-                notifyDataSetChanged()
-            }
 
         }
 
