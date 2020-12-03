@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.search_neologism.*
 class SearchNeologism : AppCompatActivity() {
     var firestore : FirebaseFirestore?=null
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_neologism)

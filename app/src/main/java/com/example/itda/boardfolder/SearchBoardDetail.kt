@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.itda.AlarmDTO
+import com.example.itda.FcmPush
 import com.example.itda.MyApplication
 import com.example.itda.R
 
@@ -23,22 +25,24 @@ class SearchBoardDetail : AppCompatActivity() {
     lateinit var list: Map<String, Any?>
     var boardname = ""
     lateinit var data: MutableList<String?>
-
+    var alarmDTO = AlarmDTO()
+    var fcmPush : FcmPush? =null
     var reply_list :MutableList<String?>? = null
     var useremail = MyApplication.prefs.getString("email", "no email")
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_page)
-
+        val writerUid = intent.getStringExtra("WriterUid")!!.toString()
         val date = intent.getStringExtra("Date")!!.toString()
         val email = intent.getStringExtra("Email")!!.toString()
-        val boardName = intent.getStringExtra("BoardPage")!!.toString()
-        boardname = boardName
+        val boardNa = intent.getStringExtra("BoardPage")!!.toString()
+        boardname = boardNa
         val writeTime = intent.getStringExtra("WriteTime")!!.toString()
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        checkReply(boardName, date, email)
+        checkReply(boardname, date, email)
+        fcmPush = FcmPush()
 
         reply_send.setOnClickListener {
             Log.d("reply", "click 실행")
@@ -47,16 +51,46 @@ class SearchBoardDetail : AppCompatActivity() {
             val text = reply_box.text.toString()
             reply_list?.add(time+"※"+useremail+"◎"+text)
             var input = mutableMapOf<String,MutableList<String?>?>("replies" to reply_list)
-            firestore!!.collection(boardName).document(writeTime).update(input as Map<String, Any>)
+            firestore!!.collection(boardNa).document(writeTime).update(input as Map<String, Any>)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Write reply complete!!", Toast.LENGTH_SHORT).show()
-                        checkReply(boardName, date, email)
+                        checkReply(boardNa, date, email)
                         reply_box.setText(null)
                     }
                 }
+            firestore!!.collection("totalBoard").document(writeTime).update(input as Map<String, Any>).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Write reply complete!!", Toast.LENGTH_SHORT).show()
+                    checkReply(boardNa, date, email)
+                    reply_box.setText(null)
+                }
+            }
+            alarmDTO = AlarmDTO(email, useremail,text,boardNa,date.toLong(),time.toLong())
+            firestore!!.collection("alarm").document(time.toString()).set(alarmDTO)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+
+                    }
+                }
+            commentAlarm(writerUid)
+
         }
 
+    }
+    fun commentAlarm(destination: String) {
+        Log.d("alarm","함수 진입")
+
+        val alarmDTO = AlarmDTO()
+        alarmDTO.destinationEmail = destination
+        alarmDTO.userEmail = useremail
+//        alarmDTO.message = message
+        alarmDTO.replyDate = System.currentTimeMillis()
+
+        FirebaseFirestore.getInstance().collection("alarms").document().set(alarmDTO)
+
+        var message = useremail + " left a comment"
+        fcmPush?.sendMessage(destination, "New comment is added on your post !","")
     }
 
     @SuppressLint("SetTextI18n")

@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.login_page.password_edittext
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.itda.homefolder.HomePage
 import com.example.itda.homefolder.SignUp
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
+
 
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
 

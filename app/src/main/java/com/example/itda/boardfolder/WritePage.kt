@@ -51,7 +51,8 @@ class WritePage: AppCompatActivity() {
                     0,
                     mutableListOf(),
                     write_text.text.toString(),
-                    write_title.text.toString()
+                    write_title.text.toString(),
+                    auth?.currentUser?.uid
                 )
                 firestore!!.collection(boardName).document(time.toString()).set(boardDTO)
                     .addOnCompleteListener { task ->

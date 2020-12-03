@@ -35,6 +35,7 @@ class BoardRecycleAdapter : RecyclerView.Adapter<BoardRecycleAdapter.Holder>() {
                 intent.putExtra("Like", listData.get(adapterPosition).like.toString())
                 intent.putExtra("Date", listData.get(adapterPosition).date.toString())
                 intent.putExtra("Email", listData.get(adapterPosition).email.toString())
+                intent.putExtra("WriterUid", listData.get(adapterPosition).writerUid.toString())
                 itemView.context.startActivity(intent)
                 (itemView.context as BoardPage).finish()
             }

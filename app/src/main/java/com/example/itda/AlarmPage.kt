@@ -28,35 +28,30 @@ class AlarmPage : AppCompatActivity() {
     var firestore : FirebaseFirestore?=null
     private lateinit var auth: FirebaseAuth
     var alarmSnapshot: ListenerRegistration? = null
-
+    var Useremail = MyApplication.prefs.getString("email", "aaaaaa@naver.com")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.alarm_page)
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
 
-        var data: MutableList<NeologismData>
+//        var data: MutableList<NeologismData>
         val adapter = AlarmRecyclerViewAdapter()
         var dat:MutableList<AlarmDTO> = mutableListOf()
+//
+//        val alarmDTOList = ArrayList<AlarmDTO>()
 
-        var alarmSnapshot: ListenerRegistration? = null
-        val alarmDTOList = ArrayList<AlarmDTO>()
-
-
-        val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        println(uid)
         FirebaseFirestore.getInstance()
-            .collection("alarms")
-            .whereEqualTo("destinationUid", uid)
+            .collection("alarm")
+            .whereEqualTo("destinationUid", Useremail)
             .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-                alarmDTOList.clear()
+                dat.clear()
                 if (querySnapshot == null) return@addSnapshotListener
                 for (snapshot in querySnapshot?.documents!!) {
-                    alarmDTOList.add(snapshot.toObject(AlarmDTO::class.java)!!)
+                    dat.add(snapshot.toObject(AlarmDTO::class.java)!!)
                 }
-                alarmDTOList.sortByDescending { it.timestamp }
-
-                adapter?.listData = data
+                dat.sortByDescending { it.replyDate }
+                adapter?.listData = dat
                 neologism_recycle?.adapter = adapter
                 neologism_recycle?.layoutManager = LinearLayoutManager(this)
             }

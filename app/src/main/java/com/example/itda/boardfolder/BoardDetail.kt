@@ -26,12 +26,15 @@ class BoardDetail : AppCompatActivity() {
     var from:String? = null
     var reply_list :MutableList<String?>? = null
     var useremail = MyApplication.prefs.getString("email", "no email")
+    var fcmPush :FcmPush? =null
+    var alarmDTO = AlarmDTO()
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_page)
         from = intent.getStringExtra("From")!!.toString()
         val date = intent.getStringExtra("Date")!!.toString()
+        val writerUid = intent.getStringExtra("WriterUid")!!.toString()
         val email = intent.getStringExtra("Email")!!.toString()
         val boardName = intent.getStringExtra("BoardPage")!!.toString()
         boardname = boardName
@@ -40,6 +43,7 @@ class BoardDetail : AppCompatActivity() {
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
         checkReply(boardName, date, email)
+        fcmPush = FcmPush()
 
         reply_send.setOnClickListener {
             Log.d("reply", "click 실행")
@@ -63,8 +67,31 @@ class BoardDetail : AppCompatActivity() {
                         reply_box.setText(null)
                     }
                 }
+            alarmDTO = AlarmDTO(email, useremail,text,boardName,date.toLong(),time.toLong())
+            firestore!!.collection("alarm").document(time.toString()).set(alarmDTO)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+
+                    }
+                }
+            commentAlarm(writerUid)
+
         }
 
+    }
+    fun commentAlarm(destination: String) {
+        Log.d("alarm","함수 진입")
+
+        val alarmDTO = AlarmDTO()
+        alarmDTO.destinationEmail = destination
+        alarmDTO.userEmail = useremail
+//        alarmDTO.message = message
+        alarmDTO.replyDate = System.currentTimeMillis()
+
+        FirebaseFirestore.getInstance().collection("alarms").document().set(alarmDTO)
+
+        var message = useremail + " left a comment"
+        fcmPush?.sendMessage(destination, "New comment.","")
     }
 
     @SuppressLint("SetTextI18n")
