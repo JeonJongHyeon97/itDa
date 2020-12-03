@@ -86,7 +86,7 @@
             android:padding="10dp"
             android:text="Upload the post"
             android:textSize="22sp"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal" />
     </LinearLayout>
 
 

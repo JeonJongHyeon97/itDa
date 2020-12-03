@@ -53,7 +53,7 @@
         android:shadowDx="0"
         android:shadowDy="3"
         android:shadowRadius="5"
-        android:text=" 글쓰기"
+        android:text=" Write"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:theme="@style/MyMaterialTheme"
