@@ -14,7 +14,8 @@ import kotlinx.android.synthetic.main.login_page.*
 import kotlinx.android.synthetic.main.login_page.email_edittext
 import kotlinx.android.synthetic.main.login_page.password_edittext
 import androidx.drawerlayout.widget.DrawerLayout
-
+import com.example.itda.homefolder.HomePage
+import com.example.itda.homefolder.SignUp
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
 
         signup_button.setOnClickListener{
-            val intent = Intent(this,SignUp::class.java)
+            val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
         }
         // Firebase 로그인 통합 관리하는 Object 만들기

@@ -9,7 +9,7 @@
 
         <variable
             name="game"
-            type="com.example.itda.GameFragment" />
+            type="com.example.itda.gamefolder.GameFragment" />
     </data>
 
     <LinearLayout

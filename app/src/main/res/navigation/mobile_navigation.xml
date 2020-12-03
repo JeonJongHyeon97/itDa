@@ -6,6 +6,6 @@
     app:startDestination="@id/home2">
     <fragment
         android:id="@+id/home2"
-        android:name="com.example.itda.home"
+        android:name="com.example.itda.homefolder.home"
         android:label="home" />
 </navigation>
