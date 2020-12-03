@@ -12,6 +12,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.example.itda.databinding.FragmentGameBinding
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -23,15 +27,28 @@ import kotlinx.android.synthetic.main.login_page.email_edittext
 import kotlinx.android.synthetic.main.login_page.password_edittext
 import kotlinx.android.synthetic.main.signup_page.*
 import java.util.Random
-
+import androidx.drawerlayout.widget.DrawerLayout
 class MainActivity : AppCompatActivity() {
+    private lateinit var drawerLayout: DrawerLayout
     // Firebase Authentication 관리 클래스
     var auth: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        @Suppress("UNUSED_VARIABLE")
+        val binding = DataBindingUtil.setContentView<FragmentGameBinding>(this, R.layout.activity_main)
+
+        drawerLayout = binding.drawerLayout
+
+        val navController = this.findNavController(R.id.myNavHostFragment)
+
+        NavigationUI.setupActionBarWithNavController(this,navController, drawerLayout)
+
+        NavigationUI.setupWithNavController(binding.navView, navController)
+
         setContentView(R.layout.login_page)
 
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+
         signup_button.setOnClickListener{
             val intent = Intent(this,SignUp::class.java)
             startActivity(intent)
@@ -44,6 +61,12 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
 
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.myNavHostFragment)
+        return NavigationUI.navigateUp(navController, drawerLayout)
+    }
+
 
     fun moveMainPage(user: FirebaseUser?) {
 
