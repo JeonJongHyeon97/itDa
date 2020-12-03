@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.itda.calendarfolder.ContentDTO
 import com.example.itda.MyApplication
 import com.example.itda.R
 import com.example.itda.homefolder.UserDTO

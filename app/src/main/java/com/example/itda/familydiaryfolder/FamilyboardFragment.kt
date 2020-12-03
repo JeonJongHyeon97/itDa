@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.example.itda.MyApplication
 import com.example.itda.R
 import com.example.itda.homefolder.UserDTO
-import com.example.itda.calendarfolder.ContentDTO
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore

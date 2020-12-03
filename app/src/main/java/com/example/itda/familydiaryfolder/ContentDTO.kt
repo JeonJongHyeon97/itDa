@@ -1,4 +1,4 @@
-package com.example.itda.calendarfolder
+package com.example.itda.familydiaryfolder
 
 import java.util.HashMap
 

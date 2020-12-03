@@ -42,16 +42,21 @@ class AlarmRecyclerViewAdapter : RecyclerView.Adapter<AlarmRecyclerViewAdapter.H
             itemView.alarm_box.setOnClickListener {
                 val intent = Intent(itemView.context, SearchBoardDetail::class.java)
                 intent.putExtra("BoardPage", listData.get(adapterPosition).boardName.toString())
+                intent.putExtra("WriterUid", listData.get(adapterPosition).writerUid.toString())
                 intent.putExtra("WriteTime", listData.get(adapterPosition).postDate.toString())
                 intent.putExtra("Date", listData.get(adapterPosition).postDate.toString())
-                intent.putExtra("Email", listData.get(adapterPosition).userEmail.toString())
+                intent.putExtra("Email", listData.get(adapterPosition).destinationEmail.toString())
                 itemView.context.startActivity(intent)
             }
         }
         fun setData(data: AlarmDTO) {
-            itemView.reply_email.text = data.userEmail+" left a comment"
+            itemView.reply_email.text = data.userEmail!!.substring(0,1)+"**"+"  left a comment on your post"
             itemView.reply_board.text = "Ask a "+data.boardName
             itemView.reply_text.text = data.message
+            itemView.reply_date.text = data.replyDate.toString().subSequence(2, 4).toString()+"."+data.replyDate.toString().subSequence(
+                4,
+                6
+            ).toString()+"."+data.replyDate.toString().subSequence(6, 8).toString()
             this.inputData =data
         }
     }

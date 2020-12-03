@@ -8,6 +8,7 @@ data class AlarmDTO (
     var message: String? = null,
     var boardName: String? = null,
     var postDate: Long? = null,
-    var replyDate: Long? = null
+    var replyDate: Long? = null,
+    var writerUid:String? = null
 )
 

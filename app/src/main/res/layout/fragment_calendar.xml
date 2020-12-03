@@ -25,33 +25,16 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="0.3"
-            android:background="@color/basicButton"
-            android:gravity="center"
-            android:text="Family Calendar"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#EEE3DD"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.4">
+            android:layout_weight="2.3"
+            android:gravity="center">
 
             <CalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <View
@@ -93,8 +76,8 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="1">
+            android:layout_marginBottom="15dp"
+            android:layout_weight="0.7">
 
             <EditText
                 android:id="@+id/contextEditText"
@@ -122,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="저장"
+                android:text="Save"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:visibility="visible"
@@ -139,7 +122,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="수정"
+                    android:text="Modify"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:visibility="invisible"
@@ -150,7 +133,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="삭제"
+                    android:text="Delete"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:visibility="invisible"

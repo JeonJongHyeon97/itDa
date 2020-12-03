@@ -29,7 +29,7 @@ class calendar : Fragment() {
     var downloadKey :String? = "null"
     var check = false
     var selectDay = SimpleDateFormat("yyyyMMdd").format(Date(System.currentTimeMillis())).toString()
-    var list : Map<String,Any> = mutableMapOf("contents" to "20")
+    var list : Map<String,Any> = mutableMapOf("contents" to "None")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -49,36 +49,41 @@ class calendar : Fragment() {
                     Log.d("check", "dada size : ${document.data?.size}")
                     if (document.data?.size == null) {
                         firestore!!.collection("calendar").document(downloadKey!!)
-                            .set(mutableMapOf("20" to list))
+                            .set(mutableMapOf("None" to list))
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     Log.d("check", "$downloadKey")
                                     Log.d("check", "첫글 작성")
                                 }
                             }
-                    }
-
-                }
-                firestore?.collection("calendar")?.document(downloadKey!!)?.get()?.addOnSuccessListener { document ->
-                    Log.d("check", "dada size : ${document.data?.size}")
-                    try{
+                    }else{
                         list = document.data as Map<String, Any>
                         Log.d("check", "list : $list")
                         Log.d("check", "document : ${document.data}")
                         checkSchedule(time)
-                    } catch(e:AndroidRuntimeException ) {
-                        firestore!!.collection("calendar").document(downloadKey!!)
-                            .set(mutableMapOf("20" to list))
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    Log.d("check", "$downloadKey")
-                                    Log.d("check", "첫글 작성")
-                                }
-                            }
                     }
 
-
                 }
+//                firestore?.collection("calendar")?.document(downloadKey!!)?.get()?.addOnSuccessListener { document ->
+//                    Log.d("check", "dada size : ${document.data?.size}")
+//                    try{
+//                        list = document.data as Map<String, Any>
+//                        Log.d("check", "list : $list")
+//                        Log.d("check", "document : ${document.data}")
+//                        checkSchedule(time)
+//                    } catch(e:AndroidRuntimeException ) {
+//                        firestore!!.collection("calendar").document(downloadKey!!)
+//                            .set(mutableMapOf("20" to list))
+//                            .addOnCompleteListener { task ->
+//                                if (task.isSuccessful) {
+//                                    Log.d("check", "$downloadKey")
+//                                    Log.d("check", "첫글 작성")
+//                                }
+//                            }
+//                    }
+//
+//
+//                }
             }
 
 

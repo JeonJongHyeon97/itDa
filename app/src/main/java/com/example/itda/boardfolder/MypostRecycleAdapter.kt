@@ -28,13 +28,14 @@ class MypostRecycleAdapter : RecyclerView.Adapter<MypostRecycleAdapter.Holder>()
         var inputData: BoardDTO? = null
         init {
             itemView.detail_post.setOnClickListener {
-                val intent = Intent(itemView.context, BoardDetail::class.java)
+                val intent = Intent(itemView.context, SearchBoardDetail::class.java)
                 intent.putExtra("BoardPage", listData.get(adapterPosition).boardName.toString())
                 intent.putExtra("From", "Mypost")
                 intent.putExtra("WriteTime", listData.get(adapterPosition).date.toString())
                 intent.putExtra("Like", listData.get(adapterPosition).like.toString())
                 intent.putExtra("Date", listData.get(adapterPosition).date.toString())
                 intent.putExtra("Email", listData.get(adapterPosition).email.toString())
+                intent.putExtra("WriterUid", listData.get(adapterPosition).writerUid.toString())
                 itemView.context.startActivity(intent)
             }
         }

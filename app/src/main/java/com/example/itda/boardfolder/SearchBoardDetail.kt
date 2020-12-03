@@ -66,13 +66,15 @@ class SearchBoardDetail : AppCompatActivity() {
                     reply_box.setText(null)
                 }
             }
-            alarmDTO = AlarmDTO(email, useremail,text,boardNa,date.toLong(),time.toLong())
-            firestore!!.collection("alarm").document(time.toString()).set(alarmDTO)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
+            alarmDTO = AlarmDTO(email, useremail,text,boardNa,date.toLong(),time.toLong(),writerUid)
+            if (email!=useremail) {
+                firestore!!.collection("alarm").document(time.toString()).set(alarmDTO)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
 
+                        }
                     }
-                }
+            }
             commentAlarm(writerUid)
 
         }
@@ -88,8 +90,8 @@ class SearchBoardDetail : AppCompatActivity() {
         alarmDTO.replyDate = System.currentTimeMillis()
 
         FirebaseFirestore.getInstance().collection("alarms").document().set(alarmDTO)
-
-        var message = useremail + " left a comment"
+//
+//        var message = useremail + " left a comment"
         fcmPush?.sendMessage(destination, "New comment is added on your post !","")
     }
 

@@ -67,13 +67,15 @@ class BoardDetail : AppCompatActivity() {
                         reply_box.setText(null)
                     }
                 }
-            alarmDTO = AlarmDTO(email, useremail,text,boardName,date.toLong(),time.toLong())
-            firestore!!.collection("alarm").document(time.toString()).set(alarmDTO)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
+            alarmDTO = AlarmDTO(email, useremail,text,boardName,date.toLong(),time.toLong(),writerUid)
+            if (email!=useremail) {
+                firestore!!.collection("alarm").document(time.toString()).set(alarmDTO)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
 
+                        }
                     }
-                }
+            }
             commentAlarm(writerUid)
 
         }
