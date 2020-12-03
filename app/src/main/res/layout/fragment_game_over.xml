@@ -20,18 +20,14 @@
     tools:context="com.example.android.navigation.GameOverFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:name="androidx.navigation.fragment.GameOverFragment"
-        android:id="@+id/gameOverFragment"
+        android:id="@+id/gameOverConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F8BBD0">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/tryAgainImage"
             android:layout_width="wrap_content"
             android:layout_height="362dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@+id/tryAgainButton"
@@ -45,14 +41,8 @@
             android:id="@+id/tryAgainButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
             android:textColor="?colorAccent"
-            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

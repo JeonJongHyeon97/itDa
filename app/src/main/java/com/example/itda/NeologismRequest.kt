@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.itda.databinding.FragmentGameBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,7 +17,6 @@ import java.util.*
 class NeologismRequest: AppCompatActivity() {
     var firestore : FirebaseFirestore?=null
     private lateinit var auth: FirebaseAuth
-    private lateinit var binding:FragmentGameBinding
     var requestDTO = RequestDTO()
     var Useremail = MyApplication.prefs.getString("email", "no email")
     override fun onCreate(savedInstanceState: Bundle?) {

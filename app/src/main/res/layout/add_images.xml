@@ -29,7 +29,7 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
-            android:text="가족 게시판 글쓰기"
+            android:text="Family board positng"
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -38,13 +38,14 @@
             android:id="@+id/addphoto_image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="15dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="2"
-            android:padding="10dp"
-            tools:src="@drawable/ic_add_a_photo" />
+            tools:src ="@drawable/ic_add_a_photo"
+            android:padding="90dp"/>
 
         <EditText
             android:id="@+id/edtittext_title"
@@ -64,6 +65,8 @@
             android:id="@+id/addphoto_edit_explain"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:layout_weight="1"
             android:background="@drawable/board_layout"
             android:gravity="top"
@@ -81,9 +84,9 @@
             android:layout_marginEnd="8dp"
             android:background="@color/redButton"
             android:padding="10dp"
-            android:text="사진올리기"
+            android:text="Upload the post"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="normal|bold" />
     </LinearLayout>
 
 

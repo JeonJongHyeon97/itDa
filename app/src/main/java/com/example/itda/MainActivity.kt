@@ -2,32 +2,17 @@ package com.example.itda
 
 
 import android.Manifest
-import android.app.Activity
-import android.app.PendingIntent.getActivity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
-import com.example.itda.databinding.FragmentGameBinding
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.login_page.*
 import kotlinx.android.synthetic.main.login_page.email_edittext
 import kotlinx.android.synthetic.main.login_page.password_edittext
-import kotlinx.android.synthetic.main.signup_page.*
-import java.util.Random
 import androidx.drawerlayout.widget.DrawerLayout
 
 
@@ -38,15 +23,6 @@ class MainActivity : AppCompatActivity() {
     var auth: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        @Suppress("UNUSED_VARIABLE")
-        val binding = DataBindingUtil.setContentView<FragmentGameBinding>(this, R.layout.activity_main)
-
-
-
-
-
-
-
         setContentView(R.layout.login_page)
 
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)

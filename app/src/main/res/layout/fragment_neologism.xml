@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data>
-        <variable
-            name ="neologism"
-            type="com.example.itda.NeologismRequest"/>
-    </data>
     <RelativeLayout
 
         android:layout_width="match_parent"
@@ -30,6 +25,12 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:text="Neologism Dictionary"/>
+
+            <Button
+                android:id="@+id/playButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PlayGame" />
 
             <LinearLayout
                 android:id="@+id/search_layout"
@@ -141,11 +142,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/neologism_recycle" />
 
-            <Button
-                android:id="@+id/playButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="PlayGame" />
         </LinearLayout>
     </RelativeLayout>
 

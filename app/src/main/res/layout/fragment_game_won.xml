@@ -20,21 +20,15 @@
     tools:context="com.example.android.navigation.GameWonFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:name="androidx.navigation.fragment.GameWonFragment"
-        android:id="@+id/gameWonFragment"
+        android:id="@+id/gameWonConstraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#B7F8C9">
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/nextMatchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
             android:text="Next Match"
-            android:textColor="#35A571"
-            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,11 +38,8 @@
         <ImageView
             android:id="@+id/youWinImage"
             android:layout_width="0dp"
-            android:layout_height="350dp"
-            android:layout_marginStart="8dp"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@+id/nextMatchButton"
             app:layout_constraintEnd_toEndOf="parent"

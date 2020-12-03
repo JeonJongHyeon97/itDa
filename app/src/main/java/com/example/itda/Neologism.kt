@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.itda.GameMain
 import com.example.itda.databinding.FragmentNeologismBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -25,11 +26,6 @@ class neologism: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val binding = DataBindingUtil.inflate<FragmentNeologismBinding>(inflater,
-        R.layout.fragment_neologism,container,false)
-        binding.playButton.setOnClickListener{view:View ->
-            view.findNavController().navigate(R.id.action_neologismFragment_to_gameFragment)
-        }
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_neologism,container,false)
         var data: MutableList<NeologismData>
@@ -64,6 +60,12 @@ class neologism: Fragment() {
         search_layout.setOnClickListener {
             activity?.let {
                 val intent = Intent(context, SearchNeologism::class.java)
+                startActivity(intent)
+            }
+        }
+        playButton.setOnClickListener {
+            activity?.let {
+                val intent = Intent(context, GameMain::class.java)
                 startActivity(intent)
             }
         }

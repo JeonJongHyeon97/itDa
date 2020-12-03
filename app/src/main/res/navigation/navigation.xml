@@ -2,20 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation">
-    <fragment
-        android:id="@+id/neologismFragment"
-        android:name="com.example.android.navigation.NeologismFragment"
-        android:label="NeologismFragment"
-        tools:layout="@layout/fragment_neologism" >
-        <action
-            android:id="@+id/action_neologismFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
-    </fragment>
+    android:id="@+id/navigation"
+    app:startDestination="@id/gameFragment">
+
 
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.example.android.navigation.GameFragment"
+        android:name="com.example.itda.GameFragment"
         android:label="GameFragment"
         tools:layout="@layout/fragment_game" >
         <action
@@ -31,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
-        android:name="com.example.android.navigation.GameOverFragment"
+        android:name="com.example.itda.GameOverFragment"
         android:label="fragment_game_over"
         tools:layout="@layout/fragment_game_over" >
         <action
@@ -42,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameWonFragment"
-        android:name="com.example.android.navigation.GameWonFragment"
+        android:name="com.example.itda.GameWonFragment"
         android:label="fragment_game_won"
         tools:layout="@layout/fragment_game_won" >
         <action
@@ -50,5 +43,12 @@
             app:destination="@id/gameFragment"
             app:popUpTo="@+id/titleFragment"
             app:popUpToInclusive="false" />
+        <argument
+            android:name="numQuestions"
+            app:argType="integer" />
+        <argument
+            android:name="numCorrect"
+            app:argType="integer" />
     </fragment>
+
 </navigation>
