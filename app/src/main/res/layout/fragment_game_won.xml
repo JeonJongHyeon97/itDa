@@ -20,7 +20,8 @@
     tools:context="com.example.android.navigation.GameWonFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/gameWonConstraintLayout"
+        android:name="androidx.navigation.fragment.GameWonFragment"
+        android:id="@+id/gameWonFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#B7F8C9">

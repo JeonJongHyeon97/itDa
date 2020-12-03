@@ -23,12 +23,6 @@ class NeologismRequest: AppCompatActivity() {
     var Useremail = MyApplication.prefs.getString("email", "no email")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=DataBindingUtil.setContentView(this,R.layout.fragment_neologism)
-        binding.neologism=this
-        binding.playButton.setOnClickListener {
-            binding.invalidateAll()
-        }
-        setContentView(R.layout.request_neologism_page)
         auth= Firebase.auth
         firestore = FirebaseFirestore.getInstance()
 

@@ -20,7 +20,8 @@
     tools:context="com.example.android.navigation.GameOverFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/gameOverConstraintLayout"
+        android:name="androidx.navigation.fragment.GameOverFragment"
+        android:id="@+id/gameOverFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F8BBD0">

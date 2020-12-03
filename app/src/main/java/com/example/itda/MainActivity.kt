@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.itda.databinding.FragmentGameBinding
@@ -28,6 +29,9 @@ import kotlinx.android.synthetic.main.login_page.password_edittext
 import kotlinx.android.synthetic.main.signup_page.*
 import java.util.Random
 import androidx.drawerlayout.widget.DrawerLayout
+
+
+
 class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     // Firebase Authentication 관리 클래스
@@ -37,13 +41,11 @@ class MainActivity : AppCompatActivity() {
         @Suppress("UNUSED_VARIABLE")
         val binding = DataBindingUtil.setContentView<FragmentGameBinding>(this, R.layout.activity_main)
 
-        drawerLayout = binding.drawerLayout
 
-        val navController = this.findNavController(R.id.myNavHostFragment)
 
-        NavigationUI.setupActionBarWithNavController(this,navController, drawerLayout)
 
-        NavigationUI.setupWithNavController(binding.navView, navController)
+
+
 
         setContentView(R.layout.login_page)
 
@@ -62,10 +64,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.myNavHostFragment)
-        return NavigationUI.navigateUp(navController, drawerLayout)
-    }
+
 
 
     fun moveMainPage(user: FirebaseUser?) {

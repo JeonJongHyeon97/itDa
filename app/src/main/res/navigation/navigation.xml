@@ -2,18 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation"
-    app:startDestination="@id/titleFragment">
-
+    android:id="@+id/navigation">
     <fragment
-        android:id="@+id/titleFragment"
-        android:name="com.example.android.navigation.TitleFragment"
-        android:label="fragment_title"
-        tools:layout="@layout/fragment_title" >
+        android:id="@+id/neologismFragment"
+        android:name="com.example.android.navigation.NeologismFragment"
+        android:label="NeologismFragment"
+        tools:layout="@layout/fragment_neologism" >
         <action
-            android:id="@+id/action_titleFragment_to_gameFragment"
+            android:id="@+id/action_neologismFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.example.android.navigation.GameFragment"
@@ -52,14 +51,4 @@
             app:popUpTo="@+id/titleFragment"
             app:popUpToInclusive="false" />
     </fragment>
-    <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.example.android.navigation.AboutFragment"
-        android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
-    <fragment
-        android:id="@+id/rulesFragment"
-        android:name="com.example.android.navigation.RulesFragment"
-        android:label="fragment_rules"
-        tools:layout="@layout/fragment_rules" />
 </navigation>

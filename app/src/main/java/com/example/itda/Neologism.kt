@@ -7,7 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.itda.databinding.FragmentNeologismBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,12 +19,17 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_neologism.*
 
 
-class neologism : Fragment() {
+class neologism: Fragment() {
     var firestore : FirebaseFirestore?=null
     private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        val binding = DataBindingUtil.inflate<FragmentNeologismBinding>(inflater,
+        R.layout.fragment_neologism,container,false)
+        binding.playButton.setOnClickListener{view:View ->
+            view.findNavController().navigate(R.id.action_neologismFragment_to_gameFragment)
+        }
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_neologism,container,false)
         var data: MutableList<NeologismData>
