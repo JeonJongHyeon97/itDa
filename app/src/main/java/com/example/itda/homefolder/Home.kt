@@ -43,8 +43,14 @@ class home : Fragment() {
         neologismSetting()
         scheduleSetting()
 
+        var sampleDate = "2020-06-14 10:12:14"
+        var sf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        var date = sf.parse(sampleDate)
+        var today = Calendar.getInstance()
+        var calcuDate = (today.time.time - date.time) / (60 * 60 * 24 * 1000)
 
-//        firestore?.collection("totalBoard")?.whereGreaterThanOrEqualTo("date", nowTime-2000000)?.limit(4)?.get()?.addOnSuccessListener { result ->
+
+//        firestore?.collection("totalBoard")?.orderBy("replies",Query.Direction.DESCENDING)?.limit(4)?.get()?.addOnSuccessListener { result ->
 //            Log.d("firebase", "진입은 성공")
 //            var name_list = mutableListOf<String?>()
 //            var definition_list = mutableListOf<String?>()

@@ -35,7 +35,7 @@ class HotpostPage : AppCompatActivity() {
         var dat: MutableList<BoardDTO> = mutableListOf()
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection("totalBoard")?.whereGreaterThanOrEqualTo("date", nowTime-2000000)?.limit(4)?.get()?.addOnSuccessListener { result ->
+        firestore?.collection("totalBoard")?.orderBy("replies",Query.Direction.DESCENDING)?.limit(50)?.get()?.addOnSuccessListener { result ->
             var size=result.size()
             Log.d("firebase", "result size2 : $size")
 
