@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
+        <activity android:name=".gamefolder.Ranking" />
         <activity android:name=".gamefolder.GameMain" />
         <activity android:name=".homefolder.HomePage" />
         <activity android:name=".boardfolder.RequestNewBoard" />

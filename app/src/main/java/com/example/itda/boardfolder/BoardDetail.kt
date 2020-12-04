@@ -91,9 +91,8 @@ class BoardDetail : AppCompatActivity() {
         alarmDTO.replyDate = System.currentTimeMillis()
 
         FirebaseFirestore.getInstance().collection("alarms").document().set(alarmDTO)
-
-        var message = useremail + " left a comment"
-        fcmPush?.sendMessage(destination, "New comment.","")
+   
+        fcmPush?.sendMessage(destination, useremail.substring(0,1) + "**@**.com left a comment","")
     }
 
     @SuppressLint("SetTextI18n")

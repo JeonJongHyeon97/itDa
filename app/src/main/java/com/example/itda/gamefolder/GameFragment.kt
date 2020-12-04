@@ -29,25 +29,27 @@ class GameFragment : Fragment() {
         Question(text = "영끌의 뜻은 무엇인가요?",
             answers = listOf("영혼까지 끌어모은다", "영국가서  끌끌끌", "영감이 끓어오른다", "영치기 끌치기")),
         Question(text = "핑프란 말은 어떤 말을 줄인건가요?",
-            answers = listOf("핑거 프린세스", "핑거 프랑스", "핑핑이 프랑스", "핑이 프랑스만큼 높네")),
+            answers = listOf("핑거 프린(세)스", "핑거 프랑스", "핑핑이 프랑스", "핑이 프랑스만큼 높네")),
         Question(text = "고답의 고는 어떤 고인가요",
             answers = listOf("고구마", "고기", "고성방가", "고민")),
         Question(text = "엄근진의 근은 무엇인가요?",
             answers = listOf("근엄하다", "근육", "두근", "근손실")),
         Question(text = "꾸안꾸는 무슨 뜻인가요??",
-            answers = listOf("꾸민듯안꾸민듯", "꾸러미안꾸러미", "꾸꾸까까", "꾸미고싶은데안꾸밈")),
+            answers = listOf("꾸민듯안꾸민듯꾸민", "꾸러미안꾸러미", "꾸꾸까까", "꾸미고싶은데안꾸밈")),
         Question(text = "시강은 어떤 뜻인가요?",
             answers = listOf("시선 강탈", "시세 강조", "시사 강조", "시민 강조")),
         Question(text = "자삭의 자는 어떤 말을 의미하나요",
             answers = listOf("<자신>", "<자유>", "<자리>", "<자주>"))
     )
-
+    companion object{
+        var score = 0
+    }
 
 
     lateinit var currentQuestion: Question
     lateinit var answers: MutableList<String>
     private var questionIndex = 0
-    private val numQuestions = Math.min((questions.size + 1) / 2, 3)
+    private val numQuestions = 10
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -77,24 +79,22 @@ class GameFragment : Fragment() {
                 // The first answer in the original question is always the correct one, so if our
                 // answer matches, we have the correct answer.
                 if (answers[answerIndex] == currentQuestion.answers[0]) {
+                    score+=10
                     questionIndex++
+                }else{questionIndex++}
                     // Advance to the next question
-                    if (questionIndex < numQuestions) {
-                        currentQuestion = questions[questionIndex]
-                        setQuestion()
-                        binding.invalidateAll()
-                    } else {
-                        // We've won!  Navigate to the gameWonFragment.
-                        view.findNavController()
-                            .navigate(
-                                GameFragmentDirections
-                                .actionGameFragmentToGameWonFragment(numQuestions, questionIndex))
-                    }
+                if (questionIndex < numQuestions) {
+                    currentQuestion = questions[questionIndex]
+                    setQuestion()
+                    binding.invalidateAll()
                 } else {
-                    // Game over! A wrong answer sends us to the gameOverFragment.
+                    // We've won!  Navigate to the gameWonFragment.
                     view.findNavController()
-                        .navigate(GameFragmentDirections.actionGameFragmentToGameOverFragment())
+                        .navigate(
+                            GameFragmentDirections
+                                .actionGameFragmentToGameWonFragment(numQuestions, questionIndex))
                 }
+
             }
         }
         return binding.root

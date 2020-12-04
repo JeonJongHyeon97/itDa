@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.itda.R
 import com.example.itda.gamefolder.GameMain
+import com.example.itda.gamefolder.Ranking
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -64,6 +65,12 @@ class neologism: Fragment() {
         playButton.setOnClickListener {
             activity?.let {
                 val intent = Intent(context, GameMain::class.java)
+                startActivity(intent)
+            }
+        }
+        rank_btn.setOnClickListener {
+            activity?.let {
+                val intent = Intent(context, Ranking::class.java)
                 startActivity(intent)
             }
         }

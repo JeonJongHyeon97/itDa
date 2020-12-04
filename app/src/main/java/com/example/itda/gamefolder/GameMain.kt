@@ -18,11 +18,6 @@ class GameMain : AppCompatActivity() {
 
         drawerLayout = binding.drawerLayout
 
-//        val navController = this.findNavController(R.id.myNavHostFragment)
-//
-//        NavigationUI.setupActionBarWithNavController(this,navController, drawerLayout)
-//
-//        NavigationUI.setupWithNavController(binding.navView, navController)
 
     }
 
