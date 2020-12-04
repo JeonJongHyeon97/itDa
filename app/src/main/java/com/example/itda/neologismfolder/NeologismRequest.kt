@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.itda.MyApplication
+import com.example.itda.R
 import com.example.itda.boardfolder.RequestDTO
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -20,6 +21,7 @@ class NeologismRequest: AppCompatActivity() {
     var Useremail = MyApplication.prefs.getString("email", "no email")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.request_neologism_page)
         auth= Firebase.auth
         firestore = FirebaseFirestore.getInstance()
 

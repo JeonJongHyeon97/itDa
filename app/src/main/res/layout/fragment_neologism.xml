@@ -30,7 +30,9 @@
                 android:id="@+id/playButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PlayGame" />
+                android:text="Play Game"
+                android:textSize="16sp"
+                app:backgroundTint="@color/color2" />
 
             <LinearLayout
                 android:id="@+id/search_layout"
