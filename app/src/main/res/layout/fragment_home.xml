@@ -169,8 +169,17 @@
 
                     <TextView
                         android:id="@+id/today_title1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.6"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/today_text1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:maxLines="1" />
 
@@ -187,8 +196,17 @@
 
                     <TextView
                         android:id="@+id/today_title2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.6"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/today_text2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:maxLines="1" />
 
@@ -205,8 +223,17 @@
 
                     <TextView
                         android:id="@+id/today_title3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.6"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/today_text3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:maxLines="1" />
 
@@ -223,8 +250,17 @@
 
                     <TextView
                         android:id="@+id/today_title4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.6"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/today_text4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:ellipsize="end"
                         android:maxLines="1" />
 

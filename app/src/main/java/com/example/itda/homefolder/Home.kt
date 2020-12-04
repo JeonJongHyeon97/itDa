@@ -50,24 +50,30 @@ class home : Fragment() {
         var calcuDate = (today.time.time - date.time) / (60 * 60 * 24 * 1000)
 
 
-//        firestore?.collection("totalBoard")?.orderBy("replies",Query.Direction.DESCENDING)?.limit(4)?.get()?.addOnSuccessListener { result ->
-//            Log.d("firebase", "진입은 성공")
-//            var name_list = mutableListOf<String?>()
-//            var definition_list = mutableListOf<String?>()
-//            for (document in result) {
-//                Log.d("asdf", "${document.id} => ${document.data}")
-//                var oneData = document.toObject(BoardDTO::class.java)
-//                println(oneData)
-//                Log.d("firebase", "for문 돌아가는중")
-//                name_list.add(oneData.title)
-//            }
-//            today_title1?.text=name_list[0]
-//            today_title2?.text=name_list[1]
-//            today_title3?.text=name_list[2]
-//            today_title4?.text=name_list[3]
-//
-//            Log.d("firebase", "for문 끝")
-//        }
+        firestore?.collection("totalBoard")?.orderBy("replies",Query.Direction.DESCENDING)?.limit(4)?.get()?.addOnSuccessListener { result ->
+            Log.d("firebase", "진입은 성공")
+            var title_list = mutableListOf<String?>()
+            var board_list = mutableListOf<String?>()
+            var definition_list = mutableListOf<String?>()
+            for (document in result) {
+                Log.d("asdf", "${document.id} => ${document.data}")
+                var oneData = document.toObject(BoardDTO::class.java)
+                println(oneData)
+                Log.d("firebase", "for문 돌아가는중")
+                board_list.add(oneData.boardName)
+                title_list.add(oneData.title)
+            }
+            today_text1?.text=title_list[0]
+            today_text2?.text=title_list[1]
+            today_text3?.text=title_list[2]
+            today_text4?.text=title_list[3]
+            today_title1?.text="Ask a "+board_list[0]
+            today_title2?.text="Ask a "+board_list[1]
+            today_title3?.text="Ask a "+board_list[2]
+            today_title4?.text="Ask a "+board_list[3]
+
+            Log.d("firebase", "for문 끝")
+        }
 
         return view
 

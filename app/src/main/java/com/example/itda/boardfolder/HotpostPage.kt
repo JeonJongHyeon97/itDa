@@ -50,6 +50,7 @@ class HotpostPage : AppCompatActivity() {
             }
             Log.d("firebase", "for문 끝")
             data = dat
+            data.sortByDescending { it.replies?.size }
             adapter.listData = data
             board_recycle_view.adapter = adapter
             board_recycle_view.layoutManager = LinearLayoutManager(this)
