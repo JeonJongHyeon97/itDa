@@ -25,7 +25,7 @@ import java.util.*
 class AddImagePage : AppCompatActivity() {
     var Useremail = MyApplication.prefs.getString("email", "no email")
     val PICK_IMAGE_FROM_ALBUM = 0
-    var downloadKey :String? = "null"
+
     var photoUri: Uri? = null
 
     var storage: FirebaseStorage? = null
@@ -35,16 +35,12 @@ class AddImagePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_images)
+        println("user email : $Useremail")
+//        var downloadKey :String? = "null"
         storage = FirebaseStorage.getInstance()
         firestore = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
-        firestore!!.collection("accounts").whereEqualTo("Email", Useremail).get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    var data = document.toObject(UserDTO::class.java)
-                    downloadKey = data.family
-                }
-            }
+
 
         val photoPickerIntent = Intent(Intent.ACTION_PICK)
         photoPickerIntent.type = "image/*"
@@ -59,6 +55,7 @@ class AddImagePage : AppCompatActivity() {
         addphoto_btn_upload.setOnClickListener {
             contentUpload()
         }
+
 
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -81,41 +78,6 @@ class AddImagePage : AppCompatActivity() {
         }
     }
 
-//    fun setupPermissions() {
-//        //스토리지 읽기 퍼미션을 permission 변수에 담는다
-//        val permission = ContextCompat.checkSelfPermission(this,
-//            Manifest.permission.READ_EXTERNAL_STORAGE)
-//        if (permission == PackageManager.PERMISSION_GRANTED) {
-//
-//        }else{
-//            requestPermission()
-//        }
-//
-//    }
-
-//    fun requestPermission() {
-//        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
-//    }
-//
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray
-//    ) {
-//        when (requestCode){
-//            1 -> {
-//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    val photoPickerIntent = Intent(Intent.ACTION_PICK)
-//                    photoPickerIntent.type = "image/*"
-//                    startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
-//                }else{
-//                    ActivityCompat.finishAffinity(Activity())
-//                }
-//            }
-//        }
-//    }
-
-
         fun contentUpload(){
         progress_bar.visibility = View.VISIBLE
 
@@ -132,41 +94,47 @@ class AddImagePage : AppCompatActivity() {
                     storageRef.downloadUrl
                 }.addOnCompleteListener { task ->
                     val uri = task.result
-        //            val uri = taskSnapshot.downloadUri
-                        //디비에 바인딩 할 위치 생성 및 컬렉션(테이블)에 데이터 집합 생성
+                    var downloadKey: String? = null
+                    firestore!!.collection("accounts").whereEqualTo("email", Useremail).get()
+                        .addOnSuccessListener { documents ->
+                            for (document in documents) {
+                                var data = document.toObject(UserDTO::class.java)
+                                downloadKey = data.family.toString()
+                            }
+                            println("downloadKey : $downloadKey")
 
 
-                        //시간 생성
-                        val contentDTO = ContentDTO()
-                        var time =
-                            SimpleDateFormat("yyyyMMddHHmmss").format(Date(System.currentTimeMillis()))
-                                .toLong()
-                        //이미지 주소
-                        contentDTO.imageUrl = uri!!.toString()
-                        //유저의 UID
-                        contentDTO.uid = downloadKey
-                        //게시물의 설명
-                        contentDTO.explain = addphoto_edit_explain.text.toString()
-                        //유저의 아이디
-                        contentDTO.userId = Useremail
-                        //게시물 업로드 시간
-                        contentDTO.timestamp = time
-                        contentDTO.title = edtittext_title.text.toString()
-                        //게시물을 데이터를 생성 및 엑티비티 종료
-                        firestore?.collection("images")?.document()?.set(contentDTO)
+                            //시간 생성
+                            val contentDTO = ContentDTO()
+                            var time =
+                                SimpleDateFormat("yyyyMMddHHmmss").format(Date(System.currentTimeMillis()))
+                                    .toLong()
+                            //이미지 주소
+                            contentDTO.imageUrl = uri!!.toString()
+                            //유저의 UID
+                            contentDTO.uid = downloadKey
+                            //게시물의 설명
+                            contentDTO.explain = addphoto_edit_explain.text.toString()
+                            //유저의 아이디
+                            contentDTO.userId = Useremail
+                            //게시물 업로드 시간
+                            contentDTO.timestamp = time
+                            contentDTO.title = edtittext_title.text.toString()
+                            //게시물을 데이터를 생성 및 엑티비티 종료
+                            firestore?.collection("images")?.document()?.set(contentDTO)
 
-                        setResult(Activity.RESULT_OK)
-                        finish()
-                    }
+                            setResult(Activity.RESULT_OK)
+                            finish()
+                        }
                         ?.addOnFailureListener {
                             progress_bar.visibility = View.GONE
                             progress_bar.bringToFront()
-                            Toast.makeText(this, "upload fail",
-                                Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this, "upload fail",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                 }
             }
-
-
-
+        }
 }

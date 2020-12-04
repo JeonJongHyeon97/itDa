@@ -88,8 +88,6 @@ class SearchBoardDetail : AppCompatActivity() {
         alarmDTO.userEmail = useremail
 //        alarmDTO.message = message
         alarmDTO.replyDate = System.currentTimeMillis()
-
-        FirebaseFirestore.getInstance().collection("alarms").document().set(alarmDTO)
 //
 //        var message = useremail + " left a comment"
         fcmPush?.sendMessage(destination, "New comment is added on your post !","")

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.itda.R
 import com.example.itda.databinding.FragmentGameBinding
+import com.example.itda.gamefolder.GameMain.Companion.myScore
 
 class GameFragment : Fragment() {
     data class Question(
@@ -41,9 +42,8 @@ class GameFragment : Fragment() {
         Question(text = "자삭의 자는 어떤 말을 의미하나요",
             answers = listOf("<자신>", "<자유>", "<자리>", "<자주>"))
     )
-    companion object{
-        var score = 0
-    }
+
+
 
 
     lateinit var currentQuestion: Question
@@ -63,7 +63,7 @@ class GameFragment : Fragment() {
 
         // Bind this fragment class to the layout
         binding.game = this
-
+        var score = 0
         // Set the onClickListener for the submitButton
         binding.submitButton.setOnClickListener @Suppress("UNUSED_ANONYMOUS_PARAMETER")
         { view: View ->
@@ -88,11 +88,13 @@ class GameFragment : Fragment() {
                     setQuestion()
                     binding.invalidateAll()
                 } else {
+                    myScore=score
                     // We've won!  Navigate to the gameWonFragment.
                     view.findNavController()
                         .navigate(
                             GameFragmentDirections
                                 .actionGameFragmentToGameWonFragment(numQuestions, questionIndex))
+
                 }
 
             }

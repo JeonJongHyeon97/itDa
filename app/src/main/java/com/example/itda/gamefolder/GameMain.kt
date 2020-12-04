@@ -10,6 +10,9 @@ import com.example.itda.R
 import com.example.itda.databinding.GameMainBinding
 
 class GameMain : AppCompatActivity() {
+    companion object {
+        var myScore = 0
+    }
     private lateinit var drawerLayout: DrawerLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -167,6 +167,7 @@ class home : Fragment() {
             activity?.let {
                 val intent = Intent(context, SettingPage::class.java)
                 startActivity(intent)
+                activity?.finish()
             }
         }
         new_neologism_summary.setOnClickListener {
