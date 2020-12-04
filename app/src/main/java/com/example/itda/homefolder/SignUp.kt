@@ -40,24 +40,27 @@ class SignUp: AppCompatActivity() {
         var sex = "Male"
         var marital = true
         var age = 1
-        //아이디 중복체크
+        //confirm repetition of ID
         check_id.setOnClickListener {
                 var email = email_edittext.text.toString()
                 println("input email ->" + email)
                 var duplicateCheck = false
+                // check whether the ID is already existed in firebase
                 firestore!!.collection("accounts").whereEqualTo("Email", email).get()
                     .addOnCompleteListener { task ->
                         Log.d("firebase", "email check success")
-                        duplicateCheck = task.result!!.documents.isNullOrEmpty()
+                        duplicateCheck = task.result!!.documents.isNullOrEmpty() // Null or Empty => new ID
                         Log.d("firebase", "$duplicateCheck")
-                        println("duplicate -> " + duplicateCheck)
                         if (duplicateCheck) {
+                            // not overlapping
                             Toast.makeText(this, "You can use this email", Toast.LENGTH_SHORT).show()
+                            // convert emailCheck:Boolean to True
                             emailCheck=true
                         } else {
+                            //overlapping
                             Toast.makeText(this, "You can not use this email", Toast.LENGTH_SHORT).show()
                         }
-                    }
+                    } // read firebase failed
                     .addOnFailureListener { exception ->
                         Log.d("firebase", "email check failed")
                         Toast.makeText(this, "Please try later", Toast.LENGTH_SHORT).show()
@@ -71,19 +74,14 @@ class SignUp: AppCompatActivity() {
             passwordCheck=password_check_edittext.text.toString()
 
             if (emailCheck&&(password==passwordCheck)) {
-                if (radio_female.isChecked) {
-                    sex = "Female"
-                }
-                if (radio_single.isChecked) {
-                    marital = false
-                }
+                if (radio_female.isChecked) {sex = "Female"}
+                if (radio_single.isChecked) {marital = false}
                 age = 2020 - year_spinner.getSelectedItem().toString().toInt() + 1
+                //Assign random value for family key
                 var familyKey = getRandomString(10)
-
-                userDTO = UserDTO(
-                    emailAddress, password,
-                    name_edittext.text.toString(), sex, age, marital, familyKey
-                )
+                //Use data class to save data in firebase
+                userDTO = UserDTO(emailAddress, password, name_edittext.text.toString(), sex, age, marital, familyKey)
+                //Save data about user's account
                 firestore!!.collection("accounts").document(emailAddress).set(userDTO)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
@@ -91,12 +89,12 @@ class SignUp: AppCompatActivity() {
                         }
                     }
                 createEmail()
-            }else if (!emailCheck){
+            }else if (!emailCheck){     //check whether the user check the id or not
                 Toast.makeText(this, "Please check ID", Toast.LENGTH_SHORT).show()
-            }else if(!password.isNullOrBlank()&&(password!=passwordCheck)){
+            }else if(!password.isNullOrBlank()&&(password!=passwordCheck)){     //password check
                 Toast.makeText(this, "Please check the password", Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this, "Please enter 어쩌구저쩌구", Toast.LENGTH_SHORT).show()
+            }else{  //check the empty text box
+                Toast.makeText(this, "Please enter the value for all boxes", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -118,25 +116,23 @@ class SignUp: AppCompatActivity() {
 
 
 
-    fun createEmail() {
+    fun createEmail() { // create authentication
         progressBar!!.visibility = View.VISIBLE
         progressBar!!.bringToFront()
         Log.d("firebase", "try create account")
-        auth.createUserWithEmailAndPassword(emailAddress, password)
+        auth.createUserWithEmailAndPassword(emailAddress, password)     // create accounts with email
             .addOnCompleteListener { task ->
                 progressBar!!.visibility = View.GONE
-                if (task.isSuccessful) {
-                    Log.d("firebase", "create account complete")
-                    //아이디 생성이 성공했을 경우
+                if (task.isSuccessful) { // create success
                     Toast.makeText(this,
                         "Sign-up complete!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     MyApplication.prefs.setString("email", emailAddress)
                     startActivity(intent)
-                    finish()
+                    finish()    // finish the activity and back to log in page
                 } else if (task.exception?.message.isNullOrEmpty()) {
                     Log.d("firebase", "create account failed")
-                    //회원가입 에러가 발생했을 경우
+                    //error occur
                     Toast.makeText(this,
                         task.exception!!.message, Toast.LENGTH_SHORT).show()
                 }

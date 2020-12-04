@@ -35,22 +35,19 @@ class HotpostPage : AppCompatActivity() {
         var dat: MutableList<BoardDTO> = mutableListOf()
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection("totalBoard")?.orderBy("replies",Query.Direction.DESCENDING)?.limit(50)?.get()?.addOnSuccessListener { result ->
+        firestore?.collection("totalBoard")?.orderBy("replies",Query.Direction.DESCENDING)?.
+        limit(50)?.get()?.addOnSuccessListener { result ->
             var size=result.size()
-            Log.d("firebase", "result size2 : $size")
-
-            Log.d("firebase", "진입은 성공")
             for (document in result) {
                 Log.d("asdf", "${document.id} => ${document.data}")
                 var oneData = document.toObject(BoardDTO::class.java)
                 println(oneData)
-                Log.d("firebase", "for문 돌아가는중")
                 if((!oneData.replies!!.isNullOrEmpty())&&((nowTime - oneData.date!!)>2))
                 dat.add(oneData)
             }
-            Log.d("firebase", "for문 끝")
             data = dat
-            data.sortByDescending { it.replies?.size }
+            data.sortByDescending { it.replies?.size } //order by the number of replies
+            //show each post through recycler view
             adapter.listData = data
             board_recycle_view.adapter = adapter
             board_recycle_view.layoutManager = LinearLayoutManager(this)

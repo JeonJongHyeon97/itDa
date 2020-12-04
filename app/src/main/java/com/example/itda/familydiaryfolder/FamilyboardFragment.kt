@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.itda.MyApplication
 import com.example.itda.R
 import com.example.itda.homefolder.UserDTO
@@ -18,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
+import com.bumptech.glide.Glide
 import com.squareup.okhttp.OkHttpClient
 import kotlinx.android.synthetic.main.family_board_recycle.view.*
 import kotlinx.android.synthetic.main.fragment_familyboard.*
@@ -77,11 +77,12 @@ class FamilyboardFragment : Fragment() {
         fun getCotents() {
             firestore!!.collection("accounts").whereEqualTo("email", Useremail).get()
                 .addOnSuccessListener { documents ->
+                    //load the family key
                     for (document in documents) {
                         var data = document.toObject(UserDTO::class.java)
                         downloadKey = data.family
                         Log.d("Family", "처음 downloadKey 설정 : $downloadKey")
-                    }
+                    } // load the image download url
                     imagesSnapshot = firestore?.collection("images")
                         ?.orderBy("timestamp", Query.Direction.DESCENDING)
                         ?.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
@@ -92,7 +93,7 @@ class FamilyboardFragment : Fragment() {
                                 var item = snapshot.toObject(ContentDTO::class.java)!!
                                 println(item.uid)
                                 Log.d("Family", "downloadKey 설정 : ${item.uid},$downloadKey")
-                                if (downloadKey == item.uid) {
+                                if (downloadKey == item.uid) { // only load data which has same family key
                                     Log.d("upload image", "성공")
                                     contentDTOs.add(item)
                                     contentUidList.add(snapshot.id)
@@ -114,17 +115,17 @@ class FamilyboardFragment : Fragment() {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
             val viewHolder = (holder as CustomViewHolder).itemView
-            // 유저 아이디
+            // Setting user ID
             viewHolder.detailviewitem_profile_textview.text = contentDTOs[position].userId
-            //날짜
+            // Setting the date
             var timeStamp = contentDTOs[position].timestamp.toString()
             viewHolder.time.text = timeStamp.substring(0,4)+"."+timeStamp.substring(4,6)+"."+timeStamp.substring(6,8)+" "+timeStamp.substring(8,10)+":"+timeStamp.substring(10,12)
-            // 가운데 이미지
+            // download the image with downloadUrl
             Log.d("image","${contentDTOs[position]}")
             Glide.with(holder.itemView.context)
                 .load(contentDTOs[position].imageUrl)
                 .into(viewHolder.detailviewitem_imageview_content)
-            // 설명 텍스트
+            //text
             viewHolder.detailviewitem_explain_textview.text = contentDTOs[position].explain
             viewHolder.detailviewitem_title_textview.text = contentDTOs[position].title
         }

@@ -28,14 +28,15 @@ class MyPostPage : AppCompatActivity() {
         board_name.text="My Post"
 
     }
-    fun loadData(){
+    fun loadData(){ //load the post which is written by user
         var data: MutableList<BoardDTO>
         val adapter = MypostRecycleAdapter()
         var dat: MutableList<BoardDTO> = mutableListOf()
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
         Log.d("Mypost", "$useremail")
-        firestore?.collection("totalBoard")?.orderBy("date",Query.Direction.DESCENDING)?.limit(50)?.get()?.addOnSuccessListener { result ->
+        firestore?.collection("totalBoard")?.orderBy("date",Query.Direction.DESCENDING)?.
+        limit(50)?.get()?.addOnSuccessListener { result ->
             for (document in result) {
                 Log.d("asdf", "${document.id} => ${document.data}")
                 var oneData = document.toObject(BoardDTO::class.java)
@@ -43,6 +44,7 @@ class MyPostPage : AppCompatActivity() {
                 if ((oneData.email==useremail)) dat.add(oneData)
             }
             data = dat
+            //show each post through recycler view
             adapter.listData = data
             board_recycle_view.adapter = adapter
             board_recycle_view.layoutManager = LinearLayoutManager(this)

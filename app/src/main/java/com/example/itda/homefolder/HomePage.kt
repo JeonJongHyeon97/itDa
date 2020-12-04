@@ -83,13 +83,12 @@ class HomePage : AppCompatActivity() {
             Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다", Toast.LENGTH_SHORT).show()
         }
     }
-    fun registerPushToken(){
+    fun registerPushToken(){    //save the push token when user complete the login for push alarm
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             var pushToken = task.result
             var uid = FirebaseAuth.getInstance().currentUser?.uid
             var map = mutableMapOf<String,Any>()
             map["pushtoken"] = pushToken!!
-            FirebaseFirestore.getInstance().collection("pushtokens").document(uid!!).set(map)
             firestore!!.collection("pushtokens").document(uid!!).set(map)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {

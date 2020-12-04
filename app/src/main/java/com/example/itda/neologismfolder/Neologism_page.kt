@@ -10,7 +10,6 @@ import com.example.itda.R
 import com.example.itda.board
 import com.example.itda.calendarfolder.calendar
 import com.example.itda.homefolder.home
-import com.example.itda.homefolder.setting
 import kotlinx.android.synthetic.main.neologism_page.nav_view
 
 
@@ -19,7 +18,6 @@ class Neologism_page : AppCompatActivity()  {
     private val fragment_calendar by lazy { calendar() }
     private val fragment_home by lazy { home() }
     private val fragment_neologism by lazy { neologism() }
-    private val fragment_setting by lazy { setting() }
     var time3: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

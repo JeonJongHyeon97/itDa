@@ -18,17 +18,19 @@ import kotlinx.android.synthetic.main.fragment_setting.*
 class SettingPage: AppCompatActivity() {
     var firestore: FirebaseFirestore? = null
     private lateinit var auth: FirebaseAuth
+    //save and load user email by shared preference
     var Useremail = MyApplication.prefs.getString("email", "aaaaaa@naver.com")
     var downloadKey:String? = null
-    // Firebase Authentication 관리 클래스
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_setting)
+        //firebase authority and instance
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
+
         login_email.text = Useremail
         Log.d("Family", "진입1")
-        entered_familykey.text = "downloadKey"
+
         firestore!!.collection("accounts").whereEqualTo("email", Useremail).get()
             .addOnSuccessListener { documents ->
                 var name_list = mutableListOf<String?>()

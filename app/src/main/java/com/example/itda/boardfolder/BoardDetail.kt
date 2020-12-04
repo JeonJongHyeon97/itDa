@@ -90,7 +90,6 @@ class BoardDetail : AppCompatActivity() {
 //        alarmDTO.message = message
         alarmDTO.replyDate = System.currentTimeMillis()
 
-   
         fcmPush?.sendMessage(destination, useremail.substring(0,1) + "**@**.com left a comment","")
     }
 

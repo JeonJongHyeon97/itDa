@@ -10,9 +10,7 @@ import com.example.itda.R
 import com.example.itda.databinding.GameMainBinding
 
 class GameMain : AppCompatActivity() {
-    companion object {
-        var myScore = 0
-    }
+    var myScore = 0
     private lateinit var drawerLayout: DrawerLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +18,17 @@ class GameMain : AppCompatActivity() {
         val binding = DataBindingUtil.setContentView<GameMainBinding>(this, R.layout.game_main)
 
         drawerLayout = binding.drawerLayout
-
+        //deliver score to fragment via bundle
+        val gameFrag:GameFragment = GameFragment()
+        var bundle = Bundle()
+        bundle.putInt("key",myScore)
+        gameFrag.arguments = bundle
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.myNavHostFragment, gameFrag)
+        transaction.commit()
 
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavHostFragment)

@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.itda.R
 import com.example.itda.databinding.FragmentGameBinding
-import com.example.itda.gamefolder.GameMain.Companion.myScore
 
 class GameFragment : Fragment() {
     data class Question(
@@ -88,7 +87,6 @@ class GameFragment : Fragment() {
                     setQuestion()
                     binding.invalidateAll()
                 } else {
-                    myScore=score
                     // We've won!  Navigate to the gameWonFragment.
                     view.findNavController()
                         .navigate(
@@ -119,4 +117,5 @@ class GameFragment : Fragment() {
         answers.shuffle()
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions)
     }
+
 }

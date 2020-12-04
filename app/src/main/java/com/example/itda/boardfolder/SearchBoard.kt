@@ -27,24 +27,24 @@ class SearchBoard : AppCompatActivity() {
             var data: MutableList<BoardDTO>
             val adapter = SearchBoardRecycleAdapter()
             var dat:MutableList<BoardDTO> = mutableListOf()
-            var keyword: String? = board_search.text.toString()
+            var keyword: String? = board_search.text.toString() //receive key word from user input
             if (keyword.isNullOrEmpty()||keyword.length<2) {
                 Toast.makeText(this, "Enter at least 2 words", Toast.LENGTH_SHORT).show()
             }else {
+                // for the first, load all of the data, because firebase did not provide specific querying
                 firestore?.collection(boardName)?.orderBy("date", Query.Direction.DESCENDING)?.get()?.addOnSuccessListener { result ->
-                    Log.d("firebase", "진입은 성공")
                     for (document in result) {
                         Log.d("asdf", "${document.id} => ${document.data}")
                         var oneData = document.toObject(BoardDTO::class.java)
                         println(oneData)
-                        Log.d("firebase", "for문 돌아가는중")
+                        // check data whether it contains a keyword or not
                         if ((oneData.title!!.contains(keyword.toString()))||(oneData.text!!.contains(keyword.toString()))) dat.add(oneData)
                     }
-                    Log.d("firebase", "for문 끝")
                     data = dat
                     if (data.isNullOrEmpty()) {
                         Toast.makeText(this, "Result is empty", Toast.LENGTH_SHORT).show()
                     } else {
+                        //show each post through recycler view
                         adapter?.listData = data
                         board_recycle_view?.adapter = adapter
                         board_recycle_view?.layoutManager = LinearLayoutManager(this)

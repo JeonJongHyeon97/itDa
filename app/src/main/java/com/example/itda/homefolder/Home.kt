@@ -28,26 +28,20 @@ import java.util.*
 
 class home : Fragment() {
     var firestore : FirebaseFirestore?=null
+    //save and load user email by shared preference
     var Useremail = MyApplication.prefs.getString("email", "aaaaaa@naver.com")
     private lateinit var auth: FirebaseAuth
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        var nowTime =
-            SimpleDateFormat("yyyyMMddHHmmss").format(Date(System.currentTimeMillis()))
+
         auth= Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        neologismSetting()
-        scheduleSetting()
 
-        var sampleDate = "2020-06-14 10:12:14"
-        var sf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        var date = sf.parse(sampleDate)
-        var today = Calendar.getInstance()
-        var calcuDate = (today.time.time - date.time) / (60 * 60 * 24 * 1000)
+        //Retrieve data from server for each layout
+        neologismSetting()
+        hotpostSetting()
+        scheduleSetting()
 
 
         firestore?.collection("totalBoard")?.orderBy("replies",Query.Direction.DESCENDING)?.limit(4)?.get()?.addOnSuccessListener { result ->
@@ -76,6 +70,9 @@ class home : Fragment() {
         }
 
         return view
+
+    }
+    fun hotpostSetting(){
 
     }
     fun neologismSetting(){

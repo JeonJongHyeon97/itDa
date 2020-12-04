@@ -11,7 +11,6 @@ import com.example.itda.MyApplication
 import com.example.itda.R
 import com.example.itda.boardfolder.BoardDTO
 import com.example.itda.databinding.FragmentGameWonBinding
-import com.example.itda.gamefolder.GameMain.Companion.myScore
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -31,6 +30,10 @@ class GameWonFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding: FragmentGameWonBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_game_won, container, false)
+
+        var myScore = 0
+
+
         binding.score.text= myScore.toString()
         binding.exitBtn.setOnClickListener { view: View ->
             activity?.finish()
@@ -62,7 +65,6 @@ class GameWonFragment : Fragment() {
                             binding.rank.text="Ranking No."+myRank.toString()
                         }
                 }
-                myScore = 0
             }
 
 
@@ -71,5 +73,6 @@ class GameWonFragment : Fragment() {
         setHasOptionsMenu(true)
         return binding.root
     }
+
 
 }

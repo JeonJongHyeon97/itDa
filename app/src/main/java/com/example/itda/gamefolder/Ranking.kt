@@ -24,7 +24,9 @@ class Ranking : AppCompatActivity() {
 
         auth = Firebase.auth
         firestore = FirebaseFirestore.getInstance()
-        firestore?.collection("score")?.orderBy("score",Query.Direction.DESCENDING)?.limit(10)?.get()?.addOnSuccessListener { result ->
+        //order by score, load only 10 highest data
+        firestore?.collection("score")?.orderBy("score",Query.Direction.DESCENDING)?.
+        limit(10)?.get()?.addOnSuccessListener { result ->
             Log.d("firebase", "진입은 성공")
             var title_list = mutableListOf<String?>() //Email
             var board_list = mutableListOf<String?>() //Score
