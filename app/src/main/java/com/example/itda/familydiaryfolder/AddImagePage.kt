@@ -46,12 +46,14 @@ class AddImagePage : AppCompatActivity() {
                 }
             }
 
-//        val photoPickerIntent = Intent(Intent.ACTION_PICK)
-//        photoPickerIntent.type = "image/*"
-//        startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
+        val photoPickerIntent = Intent(Intent.ACTION_PICK)
+        photoPickerIntent.type = "image/*"
+        startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
 
         addphoto_image.setOnClickListener {
-            setupPermissions()
+            val photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.type = "image/*"
+            startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
         }
 
         addphoto_btn_upload.setOnClickListener {
@@ -59,46 +61,59 @@ class AddImagePage : AppCompatActivity() {
         }
 
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-    fun setupPermissions() {
-        //스토리지 읽기 퍼미션을 permission 변수에 담는다
-        val permission = ContextCompat.checkSelfPermission(this,
-            Manifest.permission.READ_EXTERNAL_STORAGE)
-        if (permission == PackageManager.PERMISSION_GRANTED) {
 
-        }else{
-            requestPermission()
-        }
-
-    }
-
-    fun requestPermission() {
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode){
-            1 -> {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    val photoPickerIntent = Intent(Intent.ACTION_PICK)
-                    photoPickerIntent.type = "image/*"
-                    startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
-                }else{
-                    ActivityCompat.finishAffinity(Activity())
-                }
+        if (requestCode == PICK_IMAGE_FROM_ALBUM) {
+            //이미지 선택시
+            if(resultCode == Activity.RESULT_OK){
+                //이미지뷰에 이미지 세팅
+                println(data?.data)
+                photoUri = data?.data
+                addphoto_image.setImageURI(data?.data)
             }
+
+            else{
+                finish()
+            }
+
         }
     }
 
-//    storageRef?.putFile(photoUri!!)?.addOnSuccessListener{ taskSnapshot ->
-//        progress_bar.visibility = View.GONE
-//        progress_bar.bringToFront()
-//        Toast.makeText(this, "upload complete",
-//            Toast.LENGTH_SHORT).show()
+//    fun setupPermissions() {
+//        //스토리지 읽기 퍼미션을 permission 변수에 담는다
+//        val permission = ContextCompat.checkSelfPermission(this,
+//            Manifest.permission.READ_EXTERNAL_STORAGE)
+//        if (permission == PackageManager.PERMISSION_GRANTED) {
+//
+//        }else{
+//            requestPermission()
+//        }
+//
+//    }
+
+//    fun requestPermission() {
+//        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+//    }
+//
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        when (requestCode){
+//            1 -> {
+//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    val photoPickerIntent = Intent(Intent.ACTION_PICK)
+//                    photoPickerIntent.type = "image/*"
+//                    startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
+//                }else{
+//                    ActivityCompat.finishAffinity(Activity())
+//                }
+//            }
+//        }
+//    }
 
 
         fun contentUpload(){
@@ -151,6 +166,7 @@ class AddImagePage : AppCompatActivity() {
                         }
                 }
             }
+
 
 
 }
