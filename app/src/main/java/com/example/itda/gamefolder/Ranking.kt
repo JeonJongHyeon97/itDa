@@ -28,15 +28,17 @@ class Ranking : AppCompatActivity() {
         firestore?.collection("score")?.orderBy("score",Query.Direction.DESCENDING)?.
         limit(10)?.get()?.addOnSuccessListener { result ->
             Log.d("firebase", "진입은 성공")
-            var title_list = mutableListOf<String?>() //Email
-            var board_list = mutableListOf<String?>() //Score
+            var title_list = mutableListOf("-","-","-","-","-","-","-","-","-","-")//Email
+            var board_list = mutableListOf("-","-","-","-","-","-","-","-","-","-") //Score
+            var size = 0
             for (document in result) {
                 Log.d("asdf", "${document.id} => ${document.data}")
                 var oneData = document.toObject(ScoreDTO::class.java)
                 println(oneData)
                 Log.d("firebase", "for문 돌아가는중")
-                title_list.add(oneData.userEmail)
-                board_list.add(oneData.score.toString())
+                title_list[size]=oneData.userEmail!!
+                board_list[size]=oneData.score.toString()!!
+                size++
             }
             today_title1?.text=title_list[0]
             today_title2?.text=title_list[1]

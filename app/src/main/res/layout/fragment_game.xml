@@ -5,12 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.navigation.InGame">
 
-    <data>
-
-        <variable
-            name="game"
-            type="com.example.itda.gamefolder.GameFragment" />
-    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,7 +41,6 @@
                 android:layout_marginTop="30dp"
                 android:fontFamily="sans-serif"
                 android:paddingStart="20dp"
-                android:text="@{game.currentQuestion.text}"
                 android:textColor="#000000"
                 android:textSize="21sp"
                 android:textStyle="normal"
@@ -75,7 +68,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="@{game.answers[0]}"
                     android:textSize="18sp"
                     tools:text="Blue" />
 
@@ -83,7 +75,6 @@
                     android:id="@+id/secondAnswerRadioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{game.answers[1]}"
                     android:textSize="18sp"
                     tools:text="Green" />
 
@@ -91,7 +82,6 @@
                     android:id="@+id/thirdAnswerRadioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{game.answers[2]}"
                     android:textSize="18sp"
                     tools:text="Yellow" />
 
@@ -99,7 +89,6 @@
                     android:id="@+id/fourthAnswerRadioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{game.answers[3]}"
                     android:textSize="18sp"
                     tools:text="Red" />
             </RadioGroup>

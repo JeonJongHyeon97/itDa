@@ -31,10 +31,10 @@ class GameWonFragment : Fragment() {
         val binding: FragmentGameWonBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_game_won, container, false)
 
-        var myScore = 0
+        var myScore = arguments?.getString("inputScore")
 
 
-        binding.score.text= myScore.toString()
+        binding.score.text= myScore
         binding.exitBtn.setOnClickListener { view: View ->
             activity?.finish()
         }
@@ -44,21 +44,22 @@ class GameWonFragment : Fragment() {
         var time =
             SimpleDateFormat("yyyyMMddHHmmss").format(Date(System.currentTimeMillis()))
                 .toLong()
-        scoreDTO= ScoreDTO(time, Useremail, myScore.toLong())
+        scoreDTO= ScoreDTO(time, Useremail, myScore?.toLong())
         firestore!!.collection("score").document(time.toString()).set(scoreDTO)
             .addOnCompleteListener { task ->
                 var myRank=0
                 if (task.isSuccessful) {
                     firestore?.collection("score")?.orderBy("score", Query.Direction.DESCENDING)
                         ?.get()?.addOnSuccessListener { result ->
+                            Log.d("size", "${result.size()}")
                             var rank = 1
                             for (document in result) {
-                                Log.d("my", "${time}, ${Useremail}, ${ myScore.toLong()}")
+                                Log.d("my", "${time}, ${Useremail}, ${myScore}")
                                 Log.d("asdf", "${document.id} => ${document.data}")
                                 var oneData = document.toObject(ScoreDTO::class.java)
                                 println(oneData)
                                 Log.d("score", "${oneData.userEmail} => ${oneData.score}")
-                                if((oneData.userEmail==Useremail)&&(oneData.score==  myScore.toLong())&&(oneData.date== time))
+                                if((oneData.userEmail==Useremail)&&(oneData.score==  myScore?.toLong())&&(oneData.date== time))
                                 {myRank = rank}
                                 rank++
                             }
@@ -66,9 +67,6 @@ class GameWonFragment : Fragment() {
                         }
                 }
             }
-
-
-        val args = GameWonFragmentArgs.fromBundle(requireArguments())
 
         setHasOptionsMenu(true)
         return binding.root
