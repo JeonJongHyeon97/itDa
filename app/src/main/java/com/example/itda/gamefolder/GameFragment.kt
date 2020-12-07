@@ -52,8 +52,8 @@ class GameFragment : Fragment() {
             auth= Firebase.auth
             var dat: MutableList<QuizDTO> = mutableListOf()
             firestore = FirebaseFirestore.getInstance()
-            firestore?.collection("quiz")?.orderBy(ENDING)
-                ?.get()?.addOnSuccessListener { result ->"date", Query.Direction.DESC
+            firestore?.collection("quiz")?.orderBy("date", Query.Direction.DESCENDING)
+                ?.get()?.addOnSuccessListener { result ->
                     Log.d("asdf", "진입은 성공")
                     for (document in result) {
                         Log.d("asdf", "${document.id} => ${document.data}")
@@ -108,7 +108,6 @@ class GameFragment : Fragment() {
                                 fourthAnswerRadioButton.text=answers[3]
 
                             } else {
-                                //finish
                                 pushData(score.toString())
 
                             }
